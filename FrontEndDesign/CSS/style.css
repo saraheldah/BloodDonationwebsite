@@ -1,0 +1,301 @@
+* ,html,body
+{
+    margin:0;
+    padding:0;
+}
+body
+{
+    height: 3000px;
+}
+header
+{
+    
+    height: 140px;
+    line-height: 112px;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+}
+.secondary
+{
+    background-color:rgb(241, 239, 239);
+    transition: all 0.5s ease-in;
+    box-shadow: 6px 6px 17px 6px; 
+}
+.logo1{
+    width: 150px;
+    height: 150px;
+}
+ul
+{
+    list-style: none;
+}
+ul li
+{
+    display: inline-block;
+}
+header nav
+{
+    float: right;
+}
+.logo img
+{
+    margin-top: 30px;
+}
+header nav ul li a
+{
+    padding-right: 30px;
+    font-weight: bold;
+    color: rgb(146, 143, 143);
+    transition: all 0.5s ease-out;
+}
+header nav ul li a:hover
+{
+    text-decoration: none;
+    color: rgb(214, 112, 112);
+}
+.img1
+{
+    background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(..//images/img1.png);
+    background-size: 100% 100%;
+}
+.slider,.slider ul,.slider ul li
+{
+    height: 710px;
+    width: 100%;
+    color: rgb(250, 244, 244);
+    text-align: center;
+}
+.slider h2
+{
+    font-weight: bold;
+    margin-top: 270px;
+}
+.slider span
+{
+    color: rgb(214, 112, 112);
+}
+.slider a
+{
+    padding: 10px 50px;
+    margin-right: 10px;
+}
+.slider a.btn-half 
+{
+    background-color:rgb(136, 38, 6);
+    color: white;
+    transition: 0.5s ease-in;
+}
+.slider a.btn-full
+{
+    background-color: rgb(136, 38, 6);
+    color: white;
+    transition: 0.5s ease-in;
+}
+.slider a.btn-half:hover 
+{
+    opacity: 0.8;
+}
+.slider a.btn-full:hover
+{
+    opacity: 0.8;
+}
+.img2
+{
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/img2.jpeg);
+    background-size: 100% 100%;
+}
+.img3
+{
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/img3.jpeg);
+    background-size: 100% 100%;
+}
+.slider i
+{
+    font-size: 35px;
+    margin-right: 10px;
+}
+.intro-area
+{
+    position: relative;
+    padding: 100px 0px;
+    text-align: center;
+}
+.sub-heading
+{
+    position: relative;
+    margin-bottom: 75px;
+}
+.sub-heading::before
+{
+    content:"";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -3%;
+    width: 6%;
+    height: 1px;
+    background-color: rgb(255, 110, 100);
+    z-index: 1;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+.sub-heading:hover:before
+{
+    width: 24%;
+    margin-left: -12px;
+}
+.sub-heading:after
+{
+    content:"";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -12%;
+    width: 24%;
+    height: 1px;
+    background-color: #e1e1e1;
+
+}
+.sub-heading p
+{
+    color: #818181;
+    display: inline-block;
+    padding: 0px 0px 20px;
+    position: relative;
+    line-height: 24px;
+    letter-spacing: 0.025em;
+}
+.intro-block
+{
+    position: relative;
+    background-color: #f7f7f7;
+    margin: 50px 0px 0px;
+    padding: 70px 25px 46px;
+    text-align: center;
+
+}
+.intro-block:hover , .intro-block.active
+{
+    background-color: rgb(214, 112, 112);
+    
+}
+.intro-block:hover
+{
+    transition: 0.6s ease;
+    -webkit-transition: 0.6s ease;
+    -moz-transition: 0.6s ease;
+    -o-transition: 0.6s ease;
+    -ms-transition: 0.6s ease;
+}
+.intro-block .intro-icon
+{
+    position: absolute;
+    top: -31px;
+    left: 50%;
+    margin-left: -31px;
+}
+.intro-block .fas
+{
+    width: 63px;
+    height: 63px;
+    font-size: 30px;
+    color: white;
+    line-height: 2;
+    background: rgb(214, 112, 112);
+    border-radius: 50%;
+    box-shadow: 0px 0px 0px 10px #FADBD8    ;
+
+}
+.intro-block:hover .fas, .intro-block.active .fas
+{
+    background: white;
+    color: rgb(214, 112, 112);
+    box-shadow: 0px 0px 0px 10px rgb(214, 112, 112);
+}
+.intro-block h3
+{
+    font-size: 18px;
+    color: rgb(214, 112, 112);
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+.intro-block p
+{
+    color: #505050;
+}
+.intro-block:hover h3, .intro-block:hover p
+{
+    color: #f6f6f6;
+}
+.feature-area
+{
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/don1.jpeg);
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.title h2 ,p
+{
+    margin-top: 250px;
+    color: white;
+}
+.single-feature h3
+{
+    color: white;
+}
+.single-feature
+{
+    position: relative;
+    width: 325px;
+    float: left;
+    padding: 30px 0;
+    text-align: center;
+    border-right: 1px solid #e57865;
+    border-bottom: 1px solid #e57865;
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+}
+.feature-icon::after
+{
+    content: "";
+    display: table;
+}
+.feature-icon::after
+{
+    clear: both;
+}
+.feature-icon
+{
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.single-feature i.fas
+{
+    border: 2px sloid #fff;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 30px;
+    background-color: rgb(214, 112, 112);
+    color: #fff;
+    width: 64px;
+    height: 64px;
+    transition: 0.3s ease;
+}
+.GiveBlood-area
+{
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/giveblood.jpeg);
+    background-position: center;
+    background-attachment: fixed;
+}
+section.a
+{
+        position: absolute;
+        right: 350px;  
+}
