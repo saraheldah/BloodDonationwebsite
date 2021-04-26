@@ -1,0 +1,104 @@
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`USER` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Fname` VARCHAR(45) NOT NULL,
+  `Lname` VARCHAR(45) NOT NULL,
+  `DOB` DATE NULL DEFAULT NULL,
+  `Gender` VARCHAR(45) NULL DEFAULT NULL,
+  `City` VARCHAR(45) NOT NULL,
+  `Phone` VARCHAR(45) NOT NULL,
+  `Password` VARCHAR(45) NOT NULL,
+  `IsDonor` VARCHAR(45) NULL DEFAULT NULL,
+  `Role` INT(11) NULL DEFAULT NULL,
+  `BloodTypeID` INT(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  INDEX `fk_USER_BloodType_idx` (`BloodTypeID` ASC),
+  CONSTRAINT `fk_USER_BloodType`
+    FOREIGN KEY (`BloodTypeID`)
+    REFERENCES `mydb`.`BloodType` (`ID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`BloodType` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(45) NOT NULL,
+  `RareGrade` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`BloodRequest` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `RequestDate` DATE NULL DEFAULT NULL,
+  `Status` INT(11) NULL DEFAULT NULL,
+  `ProoFie` BLOB NULL DEFAULT NULL,
+  `BloodTypeID` INT(11) NOT NULL,
+  `USERID` INT(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  INDEX `fk_BloodRequest_BloodType1_idx` (`BloodTypeID` ASC),
+  INDEX `fk_BloodRequest_USER1_idx` (`USERID` ASC),
+  CONSTRAINT `fk_BloodRequest_BloodType1`
+    FOREIGN KEY (`BloodTypeID`)
+    REFERENCES `mydb`.`BloodType` (`ID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_BloodRequest_USER1`
+    FOREIGN KEY (`USERID`)
+    REFERENCES `mydb`.`USER` (`ID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`BloodDonationHistory` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `DonationDate` DATE NULL DEFAULT NULL,
+  `DonorID` INT(11) NOT NULL,
+  `RecipientID` INT(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  INDEX `fk_BloodDonationHistory_USER1_idx` (`DonorID` ASC),
+  INDEX `fk_BloodDonationHistory_USER2_idx` (`RecipientID` ASC),
+  CONSTRAINT `fk_BloodDonationHistory_USER1`
+    FOREIGN KEY (`DonorID`)
+    REFERENCES `mydb`.`USER` (`ID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_BloodDonationHistory_USER2`
+    FOREIGN KEY (`RecipientID`)
+    REFERENCES `mydb`.`USER` (`ID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`BloodTypeCompatibilty` (
+  `BloodTypeID` INT(11) NOT NULL,
+  `CompatibleBloodTypeID` INT(11) NOT NULL,
+  INDEX `fk_BloodTypeCompatibilty_BloodType1_idx` (`BloodTypeID` ASC),
+  INDEX `fk_BloodTypeCompatibilty_BloodType2_idx` (`CompatibleBloodTypeID` ASC),
+  PRIMARY KEY (`BloodTypeID`, `CompatibleBloodTypeID`),
+  CONSTRAINT `fk_BloodTypeCompatibilty_BloodType1`
+    FOREIGN KEY (`BloodTypeID`)
+    REFERENCES `mydb`.`BloodType` (`ID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_BloodTypeCompatibilty_BloodType2`
+    FOREIGN KEY (`CompatibleBloodTypeID`)
+    REFERENCES `mydb`.`BloodType` (`ID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
