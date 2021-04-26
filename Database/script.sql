@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`USER` (
   `IsDonor` BIT NULL DEFAULT NULL,
   `Role` INT(11) NULL NOT NULL,
   `BloodTypeID` INT(11) NOT NULL,
+  `Adress` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`ID`),
   INDEX `fk_USER_BloodType_idx` (`BloodTypeID` ASC),
   CONSTRAINT `fk_USER_BloodType`
