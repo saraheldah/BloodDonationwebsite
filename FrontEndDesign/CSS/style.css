@@ -243,6 +243,7 @@ header nav ul li a:hover
     margin-top: 250px;
     color: white;
 }
+
 .single-feature h3
 {
     color: white;
@@ -288,6 +289,18 @@ header nav ul li a:hover
     height: 64px;
     transition: 0.3s ease;
 }
+
+.subheading p
+{
+    color: white;
+}
+/*learn more about blood*/
+.a p
+{
+    color: #505050;
+}
+/*Give Blood page*/
+
 .GiveBlood-area
 {
     background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/giveblood.jpeg);
@@ -307,6 +320,7 @@ body.Form-body {
     background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/don2.jpeg);
     font-family: Verdana;
     text-align: center;
+    height: 1020px;
 }
 
 form {
@@ -714,3 +728,30 @@ footer a {
     text-decoration: none;
 }
 */
+
+/*eligibility requirements */
+.eligibility-requirements-area
+{
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/don4.jpeg);
+    background-position: center;
+    background-attachment: fixed;
+}
+/*learn about blood page*/
+.learn-about-blood-area
+{
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/don3.jpeg);
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/*Donations of plasma page*/
+.DonationOfPlasma-area
+{
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/don7.jpeg);
+    background-position: center;
+    background-attachment: fixed;
+}
+.plasma-details p
+{
+    color: rgb(37, 31, 31);
+}
