@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<html lang="eng" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <title>BDMS</title>
+            <!--<link href="CSS/site.css" rel="stylesheet" type="text/css">-->
+            <link rel="stylesheet" href="~/css/site.css"/>
+        <script src="https://kit.fontawesome.com/fc5ac8f09d.js" crossorigin="anonymous"></script>
+        <!--BlootStrap CDN-->
+          <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+    </head>
+    <body>
+    <section class="slider">
+                <ul class="slider-carousel" id="slider-carousel">
+                        <li class="img1">
+                                <h2>YOU'RE SOMEBODY'S<span> TYPE</span></h2>
+                                <P>GIVE BLOOD</P>
+                                <i class='fas fa-heartbeat' style='font-size:36px'></i>
+                                <p><br>
+                                        Every type of blood is needed daily to meet patient needs.<br>
+                                        Donate blood today and save lives.
+                                        
+                                        
+                                </p><br>
+                               <!--  <a href="" class="btn btn-half">Sign Up</a>
+                                <a href="" class="btn btn-full">Join Us</a>-->
+                        </li>
+                        <li class="img2">
+                                <h2>YOU'RE SOMEBODY'S<span> TYPE</span></h2>
+                                <P>GIVE BLOOD</P>
+                                <i class='fas fa-heartbeat'></i>
+                                <p><br>
+                                        Every type of blood is needed daily to meet patient needs.<br>
+                                        Donate blood today and save lives.
+                                        
+                                </p><br>
+                               <!-- <a href="" class="btn btn-half">Sign Up</a>
+                                <a href="" class="btn btn-full">Join Us</a>-->
+                        </li>
+                        <li class="img3">
+                                <h2>YOU'RE SOMEBODY'S <span> TYPE</span></h2>
+                                <P>GIVE BLOOD</P>
+                                <i class='fas fa-heartbeat'></i>
+                                <p><br>
+                                        Every type of blood is needed daily to meet patient needs.<br>
+                                        Donate blood today and save lives.
+                                        
+                                </p><br>
+                                <!--<a href="" class="btn btn-half">Sign Up</a>
+                                <a href="" class="btn btn-full">Join Us</a>-->
+                        </li>
+                        
+                </ul>
+        </section>
+        <section class="intro-area white" id="intro">
+                <div class="container">
+                        <div class="row">
+                                <div class="col-sm-12 text-center">
+                                        <h2>DONATE WITH A SMILE</h2>
+                                        <div>
+                                                <p>Do you feel you don’t have much to offer? You have the most precious resource of all:<br>
+                                                         the ability to save a life by donating blood! 
+                                                        Help share this invaluable gift with someone in need.
+                                                        </p>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-sm-4">
+                                        <a asp-area="" asp-controller="Home" asp-action="DonationOfPlasma" style="text-decoration: none"> <div class="intro-block">
+                                                <span class="intro-icon"><i class="fas fa-vial"></i></span>
+                                                <h3>Plasma donation begins</h3>
+                                                <p>People have started donating plasma to use in medicines for the first time in more than 20 years today.
+                                                </p>
+                                        </div></a>
+                                </div>
+                                <div class="col-sm-4">
+                                       <a asp-area="" asp-controller="Home" asp-action="Eligibility" style="text-decoration: none"> <div class="intro-block">
+                                                <span class="intro-icon"><i class="fas fa-user-md"></i></span>
+                                                <h3>Am I Eligible to Donate Blood?</h3>
+                                                <p>Are you eligible for blood donation? Find out about the eligibility requirements to donate blood today. 
+                                                </p>
+                                        </div></a>
+                                </div>
+                                <div class="col-sm-4">
+                                        <a asp-area="" asp-controller="Home" asp-action="LearnAboutBlood" style="text-decoration: none"> <div class="intro-block">
+                                                <span class="intro-icon"><i class="fas fa-notes-medical"></i></span>
+                                                <h3>Learn About Blood</h3>
+                                                <p>Discover blood facts and statistics, and what happens to donated blood.
+                                                </p>
+                                        </div></a>
+                                </div>
+                        </div>
+                </div>
+
+        </section>
+     <script src="~/js/site.js"></script>
+    </body>
+</html>
