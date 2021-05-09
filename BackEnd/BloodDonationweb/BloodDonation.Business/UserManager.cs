@@ -7,14 +7,14 @@ namespace BloodDonation.Business
 {
     public class UserManager : IUserManager
     {
-        private readonly IUserRepository _userRepo;
-        public UserManager(IUserRepository userRepo)
+        private readonly IUnitOfWork _unitOfWork;
+        public UserManager(IUnitOfWork unitOfWork)
         {
-            _userRepo = userRepo;
+            _unitOfWork = unitOfWork;
         }
         public void LogIn()
         {
-            _userRepo.GetUser(5);
+            var users = _unitOfWork.UserRepository.All();
         }
     }
 }

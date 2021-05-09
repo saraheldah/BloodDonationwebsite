@@ -13,9 +13,9 @@ namespace BloodDonationweb.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly UserManager _userManager;
+        private readonly IUserManager _userManager;
 
-        public HomeController(ILogger<HomeController> logger, UserManager userManager)
+        public HomeController(ILogger<HomeController> logger, IUserManager userManager)
         {
             _logger = logger;
             _userManager = userManager;
