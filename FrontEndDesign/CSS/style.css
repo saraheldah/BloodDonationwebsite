@@ -1,3 +1,5 @@
+@import url('https://fots.googleapis.com//css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
 * ,html,body
 {
     margin:0;
@@ -755,3 +757,76 @@ footer a {
 {
     color: rgb(37, 31, 31);
 }
+
+
+/*modal*/
+.bg-modal{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.modal-content{
+    width: 500px;
+    height: 300px;
+    background-color: white;
+    border-radius: 4px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+.user-icon{
+    width: 90px;
+    height: 90px;
+}
+
+.modal-content button{
+    background-color: rgb(202, 81, 81);
+    color: white;
+    transition: 0.5s ease-in;
+    border: 1px solid #777;
+    border-radius: 2px;
+    font-size: 15px;
+    display: block;
+    width: 20%;
+    margin: auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    opacity: 1;
+    width: 50%;
+    display: block;
+    margin: 15px auto;
+}
+
+
+.modal-content button:hover{
+    opacity: 0.8;
+}
+.close{
+    position: absolute;
+    top: 0;
+    right: 14px;
+    font-size: 50px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+
+
+/*admin dashboard*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+
+ 

@@ -1,0 +1,614 @@
+﻿/*@import url('https://fots.googleapis.com//css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');*/
+
+* ,html,body
+{
+  margin:0;
+  padding:0;
+}
+body
+{
+  height: 1500px;
+}
+header
+{
+
+  height: 140px;
+  line-height: 112px;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+}
+.secondary
+{
+  background-color:rgb(241, 239, 239);
+  transition: all 0.5s ease-in;
+  box-shadow: 6px 6px 17px 6px;
+}
+.logo1{
+  width: 150px;
+  height: 150px;
+}
+ul
+{
+  list-style: none;
+}
+ul li
+{
+  display: inline-block;
+}
+header nav
+{
+  float: right;
+}
+.logo img
+{
+  margin-top: -7px;
+}
+header nav ul li a
+{
+  padding-right: 30px;
+  font-weight: bold;
+  color: rgb(146, 143, 143);
+  transition: all 0.5s ease-out;
+}
+header nav ul li a:hover
+{
+  text-decoration: none;
+  color: rgb(214, 112, 112);
+}
+.img1
+{
+  background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(..//images/img1.png);
+  background-size: 100% 100%;
+}
+.slider,.slider ul,.slider ul li
+{
+  height: 710px;
+  width: 100%;
+  color: rgb(250, 244, 244);
+  text-align: center;
+}
+.slider h2
+{
+  font-weight: bold;
+  margin-top: 270px;
+}
+.slider span
+{
+  color: rgb(214, 112, 112);
+}
+.slider a
+{
+  padding: 10px 50px;
+  margin-right: 10px;
+}
+.slider a.btn-half
+{
+  background-color:rgb(136, 38, 6);
+  color: white;
+  transition: 0.5s ease-in;
+}
+.slider a.btn-full
+{
+  background-color: rgb(136, 38, 6);
+  color: white;
+  transition: 0.5s ease-in;
+}
+.slider a.btn-half:hover
+{
+  opacity: 0.8;
+}
+.slider a.btn-full:hover
+{
+  opacity: 0.8;
+}
+.img2
+{
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/img2.jpeg);
+  background-size: 100% 100%;
+}
+.img3
+{
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/img3.jpeg);
+  background-size: 100% 100%;
+}
+.slider i
+{
+  font-size: 35px;
+  margin-right: 10px;
+}
+.intro-area
+{
+  position: relative;
+  padding: 100px 0px;
+  text-align: center;
+}
+.sub-heading
+{
+  position: relative;
+  margin-bottom: 75px;
+}
+.sub-heading::before
+{
+  content:"";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -3%;
+  width: 6%;
+  height: 1px;
+  background-color: rgb(255, 110, 100);
+  z-index: 1;
+  -webkit-transition: 0.3s ease;
+  -moz-transition: 0.3s ease;
+  -ms-transition: 0.3s ease;
+  -o-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.sub-heading:hover:before
+{
+  width: 24%;
+  margin-left: -12px;
+}
+.sub-heading:after
+{
+  content:"";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -12%;
+  width: 24%;
+  height: 1px;
+  background-color: #e1e1e1;
+
+}
+.sub-heading p
+{
+  color: #818181;
+  display: inline-block;
+  padding: 0px 0px 20px;
+  position: relative;
+  line-height: 24px;
+  letter-spacing: 0.025em;
+}
+.intro-block
+{
+  position: relative;
+  background-color: #f7f7f7;
+  margin: 50px 0px 0px;
+  padding: 70px 25px 46px;
+  text-align: center;
+
+}
+.intro-block:hover , .intro-block.active
+{
+  background-color: rgb(214, 112, 112);
+
+}
+.intro-block:hover
+{
+  transition: 0.6s ease;
+  -webkit-transition: 0.6s ease;
+  -moz-transition: 0.6s ease;
+  -o-transition: 0.6s ease;
+  -ms-transition: 0.6s ease;
+}
+.intro-block .intro-icon
+{
+  position: absolute;
+  top: -31px;
+  left: 50%;
+  margin-left: -31px;
+}
+.intro-block .fas
+{
+  width: 63px;
+  height: 63px;
+  font-size: 30px;
+  color: white;
+  line-height: 2;
+  background: rgb(214, 112, 112);
+  border-radius: 50%;
+  box-shadow: 0px 0px 0px 10px #FADBD8    ;
+
+}
+.intro-block:hover .fas, .intro-block.active .fas
+{
+  background: white;
+  color: rgb(214, 112, 112);
+  box-shadow: 0px 0px 0px 10px rgb(214, 112, 112);
+}
+.intro-block h3
+{
+  font-size: 18px;
+  color: rgb(214, 112, 112);
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+.intro-block p
+{
+  color: #505050;
+}
+.intro-block:hover h3, .intro-block:hover p
+{
+  color: #f6f6f6;
+}
+.feature-area
+{
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/don1.jpeg);
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.title h2 ,p
+{
+  margin-top: 250px;
+  color: white;
+}
+
+.single-feature h3
+{
+  color: white;
+}
+.single-feature
+{
+  position: relative;
+  width: 325px;
+  float: left;
+  padding: 30px 0;
+  text-align: center;
+  border-right: 1px solid #e57865;
+  border-bottom: 1px solid #e57865;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+  -moz-transition: 0.3s ease;
+  -o-transition: 0.3s ease;
+  -ms-transition: 0.3s ease;
+}
+.feature-icon::after
+{
+  content: "";
+  display: table;
+}
+.feature-icon::after
+{
+  clear: both;
+}
+.feature-icon
+{
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.single-feature i.fas
+{
+  border: 2px sloid #fff;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 30px;
+  background-color: rgb(214, 112, 112);
+  color: #fff;
+  width: 64px;
+  height: 64px;
+  transition: 0.3s ease;
+}
+
+.subheading p
+{
+  color: white;
+}
+/*learn more about blood*/
+.a p
+{
+  color: #505050;
+}
+/*Give Blood page*/
+
+.GiveBlood-area
+{
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/giveblood.jpeg);
+  background-position: center;
+  background-attachment: fixed;
+}
+section.a
+{
+  position: absolute;
+  right: 350px;
+}
+
+
+/*DonorForm*/
+
+body.Form-body {
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/don2.jpeg);
+  font-family: Verdana;
+  text-align: center;
+  height: 1020px;
+}
+
+form {
+  background-color: #fff;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px 20px;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-control {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.form-control label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-control input,
+.form-control select,
+.form-control textarea {
+  border: 1px solid #777;
+  border-radius: 2px;
+  font-family: inherit;
+  padding: 10px;
+  display: block;
+  width: 95%;
+}
+
+.form-control input[type="radio"],
+.form-control input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+}
+button.SubmitFormBtn {
+  border: 1px solid #777;
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: 21px;
+  display: block;
+  width: 100%;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  background-color:rgb(136, 38, 6);
+  color: white;
+  border-radius: 8px;
+  opacity: 1;
+  transition: 0.5s ease-in;
+}
+
+button.SubmitFormBtn:hover {
+  opacity: 0.9;
+  color: rgb(8, 8, 8);
+}
+
+
+/*HomePage*/
+.Home-area
+{
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/donate3.jpg);
+  background-position: center;
+  background-attachment: fixed;
+}
+i.far
+{
+  font-size: 18;
+}
+a.btn-donor
+{
+  background-color:rgb(136, 38, 6);
+  color: white;
+  transition: 0.5s ease-in;
+  border: 1px solid #777;
+  border-radius: 2px;
+  font-size: 15px;
+  display: block;
+  width: 20%;
+  margin: auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  opacity: 1;
+}
+.blood-search
+{
+  margin-top: 20px;
+}
+select.bloodtype-selector
+{
+  width: 300px;
+}
+select.country-selector
+{
+  width: 300px;
+  margin-top: 80px;
+}
+.country
+{
+  margin-left: 175px;
+}
+a.btn-search
+{
+  background-color:rgb(136, 38, 6);
+  color: white;
+  transition: 0.5s ease-in;
+  border: 1px solid #777;
+  border-radius: 2px;
+  font-size: 15px;
+  display: block;
+  width: 150px;
+  margin: auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-left: 450px;
+  opacity: 1;
+}
+
+
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: rgb(136, 38, 6);;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: rgb(136, 38, 6);
+}
+
+.container1 {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+
+/*eligibility requirements */
+.eligibility-requirements-area
+{
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/don4.jpeg);
+  background-position: center;
+  background-attachment: fixed;
+}
+/*learn about blood page*/
+.learn-about-blood-area
+{
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/don3.jpeg);
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/*Donations of plasma page*/
+.DonationOfPlasma-area
+{
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/don7.jpeg);
+  background-position: center;
+  background-attachment: fixed;
+}
+.plasma-details p
+{
+  color: rgb(37, 31, 31);
+}
+
+
+/*modal*/
+.bg-modal{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.modal-content{
+  width: 500px;
+  height: 300px;
+  background-color: white;
+  border-radius: 4px;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+.user-icon{
+  width: 90px;
+  height: 90px;
+}
+
+.modal-content button{
+  background-color: rgb(202, 81, 81);
+  color: white;
+  transition: 0.5s ease-in;
+  border: 1px solid #777;
+  border-radius: 2px;
+  font-size: 15px;
+  display: block;
+  width: 20%;
+  margin: auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  opacity: 1;
+  width: 50%;
+  display: block;
+  margin: 15px auto;
+}
+
+
+.modal-content button:hover{
+  opacity: 0.8;
+}
+.close{
+  position: absolute;
+  top: 0;
+  right: 14px;
+  font-size: 50px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+
+/*admin dashboard*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
