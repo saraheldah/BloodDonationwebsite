@@ -1,4 +1,4 @@
-namespace BloodDonationweb.Properties
+namespace BloodDonation.DataAccess.Entities
 {
     public class DonationHistory
     {
