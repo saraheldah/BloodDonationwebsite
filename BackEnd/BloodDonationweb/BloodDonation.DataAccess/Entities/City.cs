@@ -1,4 +1,11 @@
-$HEADER$namespace $NAMESPACE$
+using System;
+
+namespace BloodDonation.DataAccess.Entities
 {
-  public class $CLASS$ {$END$}
+    public class City
+    {
+        public int ID { get; set; }
+        public String CityName { get; set; }
+        public int CountryId { get; set; }
+    }
 }

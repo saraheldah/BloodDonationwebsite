@@ -1,12 +1,40 @@
-$HEADER$using Microsoft.AspNetCore.Mvc;
-namespace $NAMESPACE$
+using Microsoft.AspNetCore.Mvc;
+
+namespace BloodDonationweb.Controllers
 {
-  public class $CLASS$: Controller
-  {
-    // GET
-    public IActionResult Index()
+    public class LoggedController : Controller
     {
-	  $END$return View();
+        // GET
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult LoggedDonor()
+        {
+            return View();
+        }
+
+        public IActionResult RequestBlood()
+        {
+            return View();
+        }
+
+        public IActionResult BecomeDonor()
+        {
+            return View();
+        }
+
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        public IActionResult UpdateInformation()
+        {
+            return View();
+        }
+
+       
     }
-  }
 }

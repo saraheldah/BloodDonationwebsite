@@ -1,4 +1,8 @@
-$HEADER$namespace $NAMESPACE$
+namespace BloodDonation.DataAccess.Entities
 {
-  public class $CLASS$ {$END$}
+    public class BloodTypeCompatibility
+    {
+        public int BloodTypeID { get; set; }
+        public int CompatibleBloodTypeID { get; set; }
+    }
 }

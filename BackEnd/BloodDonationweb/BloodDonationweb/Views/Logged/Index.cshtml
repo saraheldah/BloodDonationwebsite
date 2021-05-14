@@ -1,18 +1,59 @@
-@model dynamic
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Home Page";
+	Layout = "_LayoutUser";
 }
-
-<!DOCTYPE html>
-
 <html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
+    <head>
+        <title>Home</title>
+
+        <link href="~/css/site.css" rel="stylesheet" type="text/css">
+        <script src="https://kit.fontawesome.com/fc5ac8f09d.js" crossorigin="anonymous"></script>
+         <!--BlootStrap CDN-->
+          <!-- Latest compiled and minified CSS -->
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+          <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+  
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content=
+         "width=device-width, initial-scale=1.0">
+     
+    </head>
+    <body style="height: max-content;">
+  
+      <section class="Home-area" id="home">
+        <div class="container">
+                <div class="row">
+                        <div class="col-sm-12 text-center">
+                                <div class="title">
+                                                <h2 style="font-style: oblique;">Donate your blood for a reason, let the reason to be life</h2>
+                                                <div class="btn-container" style="padding: 20px 0Px;">
+                                                    <a class="btn btn-half" asp-area="" asp-controller="Logged" asp-action="RequestBlood">Request Blood</a>
+                                                    <a class="btn btn-full" asp-area="" asp-controller="Logged" asp-action="BecomeDonor">Become a Donor</a>
+                                                </div>
+                                                
+                                </div>
+                        </div>
+
+                </div>
+        </div>
+      </section>
+    
       
-</div>
-</body>
+    <div class="bg-modal hidden" id="bg-modal">
+        <div class="modal-content">
+            <div class="close">+</div>
+            <img src="./images/user1.png" alt="" class="user-icon">
+            <p style="color: black;">user's name</p>
+            <button type="button">Manage Your Profile</button>
+            <button type="button">Change Password</button>
+        </div>
+    </div>
+      <script src="~/js/caroufredsel.js" type="text/javascript"></script>
+      <script src="~/js/site.js"></script>
+    </body>
 </html>

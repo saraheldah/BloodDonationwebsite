@@ -7,7 +7,7 @@
 
 body {
     /*background: #f6f5f7;*/
-    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(..//images/don2.jpeg);
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(../images/don2.jpeg);
     display: flex;
     justify-content: center;
     align-items: center;

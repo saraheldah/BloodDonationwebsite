@@ -46,7 +46,7 @@
 			<span>or use your account</span>
 			<input type="email" placeholder="Email"/>
 			<input type="password" placeholder="Password"/>
-			<a href="#">Forgot your password?</a>
+			<a  asp-area="" asp-controller="Logged" asp-action="Index">Forgot your password?</a> 
 			<button>Sign In</button>
 		</form>
 	</div>
@@ -65,7 +65,9 @@
 		</div>
 	</div>
 </div>
-
-        <script src="~/js/site.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/caroufredsel.js" type="text/javascript"></script>
+<script src="~/js/site.js"></script>
     </body>
 </html>

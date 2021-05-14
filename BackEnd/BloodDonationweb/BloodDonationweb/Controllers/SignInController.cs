@@ -14,5 +14,10 @@ namespace BloodDonationweb.Controllers
         {
             return View();
         }
+
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
     }
 }

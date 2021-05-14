@@ -5,12 +5,21 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="Pages" />
       <Folder Include="wwwroot\images" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\BloodDonation.Business\BloodDonation.Business.csproj" />
       <ProjectReference Include="..\BloodDonation.DataAccess\BloodDonation.DataAccess.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Font.Awesome" Version="5.15.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\User\Index.cshtml" />
     </ItemGroup>
 
 </Project>

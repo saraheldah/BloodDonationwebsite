@@ -1,4 +1,7 @@
-$HEADER$namespace $NAMESPACE$
+namespace BloodDonation.DataAccess.Repositories
 {
-  public class $CLASS$ {$END$}
+    public class BloodTypeCompatibilityRepository
+    {
+        
+    }
 }
