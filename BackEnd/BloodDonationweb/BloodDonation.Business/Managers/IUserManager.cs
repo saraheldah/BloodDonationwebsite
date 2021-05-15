@@ -1,4 +1,4 @@
-﻿namespace BloodDonation.Business
+﻿namespace BloodDonation.Business.Managers
 {
     public interface IUserManager
     {

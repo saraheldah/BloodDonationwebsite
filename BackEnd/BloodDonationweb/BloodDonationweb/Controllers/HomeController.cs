@@ -1,12 +1,8 @@
-﻿using   System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BloodDonationweb.Models;
-using BloodDonation.Business;
+using BloodDonation.Business.Managers;
 
 namespace BloodDonationweb.Controllers
 {
@@ -14,17 +10,20 @@ namespace BloodDonationweb.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUserManager _userManager;
+        private readonly IBloodTypeManager _bloodTypeManager;
 
-        public HomeController(ILogger<HomeController> logger, IUserManager userManager)//dependencies injection
+        public HomeController(ILogger<HomeController> logger
+            , IUserManager userManager, IBloodTypeManager bloodTypeManager)//dependencies injection
         {
             _logger = logger;
             _userManager = userManager;
+            _bloodTypeManager = bloodTypeManager;
         }
 
         public IActionResult Index()
         {
-            _userManager.LogIn();
-            return View();
+            var dtos = _bloodTypeManager.GetAll();
+            return View(dtos);
         }
         public IActionResult AboutUs()
         {

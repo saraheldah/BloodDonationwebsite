@@ -2,7 +2,6 @@ using BloodDonation.DataAccess.Repositories;
 using MySqlConnector;
 using System;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace BloodDonation.DataAccess
 {
@@ -14,6 +13,8 @@ namespace BloodDonation.DataAccess
 
 
         private IUserRepository _userRepository;
+        private IBloodTypeRepository _bloodTypeRepository;
+        private IBloodTypeCompatibilityRepository _bloodTypeCompatibilityRepository;
 
 
         public UnitOfWork(string connectionString)
@@ -25,7 +26,16 @@ namespace BloodDonation.DataAccess
 
         public IUserRepository UserRepository
         {
-            get { return _userRepository ?? (_userRepository = new UserRepository(_transaction)); }
+            get { return _userRepository ??= new UserRepository(_transaction); }
+        }
+
+        public IBloodTypeRepository BloodTypeRepository
+        {
+            get { return _bloodTypeRepository ??= new BloodTypeRepository(_transaction); }
+        }
+        public IBloodTypeCompatibilityRepository BloodTypeCompatibilityRepository
+        {
+            get { return _bloodTypeCompatibilityRepository ??= new BloodTypeCompatibilityRepository(_transaction); }
         }
 
 

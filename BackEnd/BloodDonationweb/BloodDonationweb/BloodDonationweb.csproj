@@ -5,7 +5,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Pages" />
+      <Compile Remove="Pages\**" />
+      <Content Remove="Pages\**" />
+      <EmbeddedResource Remove="Pages\**" />
+      <None Remove="Pages\**" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Folder Include="wwwroot\images" />
     </ItemGroup>
 
@@ -15,6 +21,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="10.1.1" />
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
       <PackageReference Include="Font.Awesome" Version="5.15.3" />
     </ItemGroup>
 

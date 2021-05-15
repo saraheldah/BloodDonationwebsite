@@ -17,7 +17,7 @@ namespace BloodDonation.DataAccess.Repositories
         public IEnumerable<BloodTypeCompatibility> All()
         {
             return Connection.Query<BloodTypeCompatibility>(
-                "SELECT * FROM BloodTypeCompatibility",
+                "SELECT * FROM bloodtypecompatibilty",
                 transaction: Transaction
             ).ToList();
         }
