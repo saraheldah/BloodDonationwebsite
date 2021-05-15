@@ -6,10 +6,10 @@ using System.Data.SqlClient;
 
 namespace BloodDonation.DataAccess
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork //the UnitOfWork which is the database context is inheriting from class IUnitOfWork 
     {
-        private IDbConnection _connection;
-        private IDbTransaction _transaction;
+        private IDbConnection _connection; //IDbConnection interface to enable the UnitOfWork class to implements a connection class (_connection)
+        private IDbTransaction _transaction; //IDbTransaction interface to allow the UnitOfWork class to implements a Transaction class (_transaction) which represents the transaction to be performed at the database
         private bool _disposed;
 
 
@@ -19,7 +19,7 @@ namespace BloodDonation.DataAccess
         public UnitOfWork(string connectionString)
         {
             _connection = new MySqlConnection(connectionString);
-            _connection.Open();
+            _connection.Open(); //opens the connection to the database
             _transaction = _connection.BeginTransaction();
         }
 

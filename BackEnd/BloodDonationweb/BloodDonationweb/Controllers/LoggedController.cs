@@ -1,9 +1,12 @@
+using BloodDonation.DataAccess;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace BloodDonationweb.Controllers
 {
     public class LoggedController : Controller
     {
+    
         // GET
         public IActionResult Index()
         {

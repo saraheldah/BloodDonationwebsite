@@ -25,8 +25,8 @@ namespace BloodDonationweb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddTransient<IUnitOfWork>(x => new UnitOfWork(connectionString));
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");//retrieving the connection string and saving the default connection in a variable
+            services.AddTransient<IUnitOfWork>(x => new UnitOfWork(connectionString));//we are passing the database we want to use (I want to make sure that this connection string is used when ever we use the IUniOfWork)
             services.AddTransient<IUserManager, UserManager>();
 
             services.AddControllersWithViews();

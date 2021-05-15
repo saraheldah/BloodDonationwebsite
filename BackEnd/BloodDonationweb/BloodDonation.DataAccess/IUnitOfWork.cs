@@ -3,7 +3,7 @@ using System;
 
 namespace BloodDonation.DataAccess
 {
-    public interface IUnitOfWork : IDisposable
+    public interface  IUnitOfWork : IDisposable
     {
         IUserRepository UserRepository { get; }
 

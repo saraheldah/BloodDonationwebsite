@@ -19,27 +19,38 @@
     
     <form id="form">
   
-        
-       <div class="form-control">
+        <div class="form-control">
             <label for="firstname" id="label-name">
-                Passwrod
+                First Name
             </label>
   
             
             <input type="text"
                    id="fname"
-                   placeholder="current password" />
-  
-            
-            <input type="text"
-                   id="fname"
-                   placeholder="New password" />
+                   placeholder="Enter your first name" />
         </div>
+   
+        <div class="form-control">
+            <label for="lastname" id="label-name">
+                Last Name
+            </label>
+            <input type="text"
+                   id="lname"
+                   placeholder="Enter your last name" />
+          </div>
 
         <div class="form-control">
           <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" pattern=" [0-9]{3}-[0-9]{2}-[0-9]{3}"/>
+          <input type="tel" id="phone" name="phone" pattern=" [0-9]{2}-[0-9]{3}-[0-9]{3}"/>
         </div>
+
+        <div class="form-control">
+            <label for="age" id="label-age">
+                Date of Birth
+            </label>
+            <input type="date" id="birth-date" name="birth-date">
+        </div>
+
 
         <div class="form-control">
           <label>
@@ -294,7 +305,67 @@
           <option value="Zimbabwe">Zimbabwe</option>
        </select>
         </div>
+
+        <div class="form-control">
+          <label>
+            Gender
+          </label>
+          <label for="recommed-1">
+              <input type="radio"
+                     id="recommed-1"
+                     name="recommed">Male</input>
+          </label>
+          <label for="recommed-1">
+            <input type="radio"
+                   id="recommed-1"
+                   name="recommed">Female</input>
+        </label>
         </div>
+
+        <div class="form-control">
+            <label>
+                Blood Type
+            </label>
+            <label for="recommed-1">
+                <input type="radio"
+                       id="recommed-1"
+                       name="recommed">AB+</input>
+            </label>
+            <label for="recommed-2">
+                <input type="radio"
+                       id="recommed-2"
+                       name="recommed">AB-</input>
+            </label>
+            <label for="recommed-3">
+                <input type="radio"
+                       id="recommed-3"
+                       name="recommed">B+</input>
+            </label>
+            <label for="recommed-3">
+              <input type="radio"
+                     id="recommed-3"
+                     name="recommed">B-</input>
+          </label>
+          <label for="recommed-3">
+            <input type="radio"
+                   id="recommed-3"
+                   name="recommed">A+</input>
+        </label>
+        <label for="recommed-3">
+          <input type="radio"
+                 id="recommed-3"
+                 name="recommed">A-</input>
+      </label>
+      <label for="recommed-3">
+        <input type="radio"
+               id="recommed-3"
+               name="recommed">O+</input>
+    </label>
+    <label for="recommed-3">
+      <input type="radio"
+             id="recommed-3"
+             name="recommed">O-</input>
+  </label>
         <button type="submit" value="submit" class="SubmitFormBtn">
             Save Changes
         </button>
