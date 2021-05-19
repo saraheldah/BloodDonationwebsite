@@ -14,6 +14,8 @@ namespace BloodDonation.DataAccess.Repositories
         void Delete(City entity);
         
         City Find(int id);
+
+        // City FindCityByCountry(int id);
         
         City FindByName(string name);
         

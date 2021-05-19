@@ -18,18 +18,6 @@ namespace BloodDonation.DataAccess.Repositories
                 transaction: Transaction
             ).ToList();
         }
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         public IEnumerable<User> FindDonorByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId)
         {
@@ -44,19 +32,6 @@ namespace BloodDonation.DataAccess.Repositories
         }
 
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         public User Find(int id)
         {
             return Connection.Query<User>(
@@ -69,7 +44,7 @@ namespace BloodDonation.DataAccess.Repositories
         public void Add(User entity)
         {
             //entity.Id = Connection.ExecuteScalar<int>(
-            //    "INSERT INTO User(Name) VALUES(@Name); SELECT SCOPE_IDENTITY()",
+            //    "INSERT INTO User(Fname,Lname,DOB,Gender,Phone,Email,Password,IsDonor,Role,BloodTypeID,CountryId,CityId) VALUES(@fname,@lname,@DOB,@Gender,@Phone,@Email,@Password,@IsDonor,@Role,@BloodTypeID,@CountryId,@CityId); SELECT SCOPE_IDENTITY()",
             //    param: new { Name = entity.Name },
             //    transaction: Transaction
             //);

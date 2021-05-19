@@ -342,7 +342,6 @@ INSERT INTO `blood-donner`.`City` (  `CityName`, `CountryId`) VALUES
 
 
 
-
 INSERT INTO `blood-donner`.`USER` ( `Fname`,`Lname`, `DOB`,  `Gender`,`Phone`,`Email`,  `Password`,`IsDonor`,`Role`,  `BloodTypeId`,`CountryId`,`CityId`) VALUES
  ('Samy','kalem','1990/3/2',0,'12345678','Samy.Kalem@hotmail.com','$@my123',0,1,2,125,7);
  

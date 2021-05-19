@@ -1,6 +1,7 @@
 
 @{
     ViewData["Title"] = "Registration Page";
+    Layout = null;
 }
 
 
@@ -12,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content=
         "width=device-width, initial-scale=1.0">
-        <link href="CSS/style.css" rel="stylesheet" type="text/css">
+        <link href="~/css/site.css" rel="stylesheet" type="text/css">
     <title>
         Registration Form
     </title>
@@ -23,142 +24,155 @@
 <body class="Form-body"> 
    
     
-    <form id="form">
-  
-        
-       <div class="form-control">
-            <label for="firstname" id="label-name">
-                First Name
-            </label>
-  
-            
-            <input type="text"
-                   id="fname"
-                   placeholder="Enter your first name" />
-        </div>
-   
-        <div class="form-control">
-            <label for="lastname" id="label-name">
-                Last Name
-            </label>
-            <input type="text"
-                   id="lname"
-                   placeholder="Enter your last name" />
-          </div>
-
-        <div class="form-control">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" pattern=" [0-9]{2}-[0-9]{3}-[0-9]{3}"/>
-        </div>
-
-        <div class="form-control">
-            <label for="age" id="label-age">
-                Date of Birth
-            </label>
-            <input type="date" id="birth-date" name="birth-date">
-        </div>
-        
-        
-                <div class="form-control">
-                  <label>
-                    City 
-                  </label>
-                <select id="city" name="city">
-                  <option value="Akkar">Akkar</option>
-                  <option value="Aley">Aley</option>
-                  <option value="Baabda">Baabda</option>
-                  <option value="Baalbeck">Baalbeck</option>
-                  <option value="Batroun">Batroun</option>
-                  <option value="Becharre">Becharre</option>
-                  <option value="Beirut">Beirut</option>
-                  <option value="Bint Jbeil">Bint Jbeil</option>
-                  <option value="Chouf">Chouf</option>
-                  <option value="Hasabaya">Hasabaya</option>
-                  <option value="Hermel">Hermel</option>
-                  <option value="Jbeil">Jbeil</option>
-                  <option value="Jezzine">Jezzine</option>
-                  <option value="Keserouan">Keserouan</option>
-                  <option value="Koura">Koura</option>
-                  <option value="Marjeeyoun">Marjeeyoun</option>
-                  <option value="Metn">Metn</option>
-                  <option value="Minnieh-Denniye">Minnieh-Denniye</option>
-                  <option value="Nabatieh">Nabatieh</option>
-                  <option value="Rachaya">Rachaya</option>
-                  <option value="Saida">Saida</option>
-                  <option value="Tripoli">Tripoli</option>
-                  <option value="Tyre">Tyre</option>
-                  <option value="West Bekaa">West Bekaa</option>
-                  <option value="Zahle">Zahle</option>
-                  <option value="Zgharta">Zgharta</option>
+<form id="form">
+    
+    <div class="form-control">
+        <label for="Email" id="label-name">
+            Email
+        </label>
+      
                 
-               </select>
-                </div>
+        <input type="email"
+               id="email"
+               placeholder="Email" />
+    </div>
+    
+    <div class="form-control">
+        <label for="firstname" id="label-name">
+            Password
+        </label>
+      
+                
+        <input type="password"
+               id="password"
+               placeholder="Password" />
+    </div>
 
-        <div class="form-control">
-          <label>
+
+    <div class="form-control">
+        <label for="firstname" id="label-name">
+            First Name
+        </label>
+
+
+        <input type="text"
+               id="fname"
+               placeholder="Enter your first name"/>
+    </div>
+
+    <div class="form-control">
+        <label for="lastname" id="label-name">
+            Last Name
+        </label>
+        <input type="text"
+               id="lname"
+               placeholder="Enter your last name"/>
+    </div>
+
+    <div class="form-control">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone"/>
+    </div>
+
+    <div class="form-control">
+        <label for="age" id="label-age">
+            Date of Birth
+        </label>
+        <input type="date" id="birth-date" name="birth-date">
+    </div>
+    
+    @* <div class="form-control"> *@
+    @*     <label>Country</label> *@
+    @*     <br>  *@
+    @*                           <select class="bloodtype-selector" id="blood-type" name="blood-type">  *@
+    @*                              <option value="0">Please select</option>  *@
+    @*                            @foreach (var country  in @ViewBag.counrty)  *@
+    @*                              {  *@
+    @*                                  <option value="@ViewBag.country.ID">@ViewBag.country.Name</option>  *@
+    @*                      *@
+    @*                          } *@
+    @*                           </select> *@
+    @* *@
+    @* </div> *@
+
+
+
+    <div class="form-control">
+        <label>
+            City
+        </label>
+        <select id="city" name="city">
+            <option value="Akkar">Akkar</option>
+            <option value="Aley">Aley</option>
+            <option value="Baabda">Baabda</option>
+            <option value="Baalbeck">Baalbeck</option>
+            <option value="Batroun">Batroun</option>
+            <option value="Becharre">Becharre</option>
+            <option value="Beirut">Beirut</option>
+            <option value="Bint Jbeil">Bint Jbeil</option>
+            <option value="Chouf">Chouf</option>
+            <option value="Hasabaya">Hasabaya</option>
+            <option value="Hermel">Hermel</option>
+            <option value="Jbeil">Jbeil</option>
+            <option value="Jezzine">Jezzine</option>
+            <option value="Keserouan">Keserouan</option>
+            <option value="Koura">Koura</option>
+            <option value="Marjeeyoun">Marjeeyoun</option>
+            <option value="Metn">Metn</option>
+            <option value="Minnieh-Denniye">Minnieh-Denniye</option>
+            <option value="Nabatieh">Nabatieh</option>
+            <option value="Rachaya">Rachaya</option>
+            <option value="Saida">Saida</option>
+            <option value="Tripoli">Tripoli</option>
+            <option value="Tyre">Tyre</option>
+            <option value="West Bekaa">West Bekaa</option>
+            <option value="Zahle">Zahle</option>
+            <option value="Zgharta">Zgharta</option>
+
+        </select>
+    </div>
+
+    <div class="form-control">
+        <label>
             Gender
-          </label>
-          <label for="recommed-1">
-              <input type="radio"
-                     id="recommed-1"
-                     name="recommed">Male</input>
-          </label>
-          <label for="recommed-1">
-            <input type="radio"
-                   id="recommed-1"
-                   name="recommed">Female</input>
         </label>
-        </div>
+                 <select id="bloodType" name="BloodType">
+                     <option value="0">Male</option>
+                     <option value="1">Female</option> 
+                  
+                 </select>
+    </div>
 
-        <div class="form-control">
-            <label>
-                Blood Type
-            </label>
-            <label for="recommed-1">
-                <input type="radio"
-                       id="recommed-1"
-                       name="recommed">AB+</input>
-            </label>
-            <label for="recommed-2">
-                <input type="radio"
-                       id="recommed-2"
-                       name="recommed">AB-</input>
-            </label>
-            <label for="recommed-3">
-                <input type="radio"
-                       id="recommed-3"
-                       name="recommed">B+</input>
-            </label>
-            <label for="recommed-3">
-              <input type="radio"
-                     id="recommed-3"
-                     name="recommed">B-</input>
-          </label>
-          <label for="recommed-3">
-            <input type="radio"
-                   id="recommed-3"
-                   name="recommed">A+</input>
+    <div class="form-control">
+        <label>
+            Blood Type
         </label>
-        <label for="recommed-3">
-          <input type="radio"
-                 id="recommed-3"
-                 name="recommed">A-</input>
-      </label>
-      <label for="recommed-3">
-        <input type="radio"
-               id="recommed-3"
-               name="recommed">O+</input>
-    </label>
-    <label for="recommed-3">
-      <input type="radio"
-             id="recommed-3"
-             name="recommed">O-</input>
-  </label>
-        </div>
-        <button type="submit" value="submit" class="SubmitFormBtn">
-            Submit
-        </button>
-    </form>
+                 <select id="bloodType" name="BloodType">
+                     <option value="1">O+</option>
+                     <option value="2">O-</option> 
+                     <option value="3">A+</option> 
+                     <option value="4">A-</option> 
+                     <option value="5">B+</option> 
+                     <option value="6">B-</option> 
+                     <option value="7">AB+</option> 
+                     <option value="8">AB-</option> 
+                 </select>
+    </div>
+    <button type="submit" value="submit" class="SubmitFormBtn">
+        Submit
+    </button>
+</form>
+
+ @* <script src="~/lib/jquery/dist/jquery.js"></script>  *@
+ @*    <script> *@
+ @*    $('#country').one("change",function (){ *@
+ @*        var id =$("#theme option:selected").val(); *@
+ @*        $.post("/SignIn/Registration",{ *@
+ @*            data: id *@
+ @*        }); *@
+ @*    }); *@
+ @* *@
+ @*     </script>  *@
 </body>
    
 </html>

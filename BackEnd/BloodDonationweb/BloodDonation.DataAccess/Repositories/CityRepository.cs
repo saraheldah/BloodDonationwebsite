@@ -30,6 +30,14 @@ namespace BloodDonation.DataAccess.Repositories
                 transaction: Transaction
             ).FirstOrDefault();
         }
+        // public IEnumerable<City> FindCityByCountry(int id)
+        // {
+        //     return Connection.Query<City>(
+        //         "SELECT * FROM City WHERE CountryId = @CountryId",
+        //         param: new { CountryId = id },
+        //         transaction: Transaction
+        //     ).ToList();
+        // }
 
         public void Add(City entity)
         {

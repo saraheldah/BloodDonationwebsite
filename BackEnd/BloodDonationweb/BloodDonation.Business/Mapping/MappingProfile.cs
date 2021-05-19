@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using BloodDonation.Business.Managers;
+using BloodRequest = BloodDonation.Business.DTO.BloodRequest;
 
 namespace BloodDonation.Business.Mapping
 {
@@ -35,6 +36,9 @@ namespace BloodDonation.Business.Mapping
             
             CreateMap<Country, CountryDTO>();
             CreateMap<CountryDTO, Country>();
+            
+            CreateMap<BloodRequest, BloodTypeDto>();
+            CreateMap<BloodTypeDto, BloodRequest>();
             
             
         }

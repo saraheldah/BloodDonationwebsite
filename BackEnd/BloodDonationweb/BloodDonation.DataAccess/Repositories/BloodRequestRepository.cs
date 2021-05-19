@@ -33,8 +33,8 @@ namespace BloodDonation.DataAccess.Repositories
         public void Add(BloodRequest entity)
         {
             //entity.ID = Connection.ExecuteScalar<int>(
-            //    "INSERT INTO City(Name) VALUES(@Name); SELECT SCOPE_IDENTITY()",
-            //    param: new { Name = entity.Name },
+            //    "INSERT INTO BloodRequest(`ID`,`RequestDate`, `Status`,  `ProofFile`,`BloodTypeID`,`UserID`) VALUES(@ID,@RequestDate,@Status,@ProofFile,@BloodTypeID,@UserID); SELECT SCOPE_IDENTITY()",
+            //    param: new { ID = entity.ID , RequestDate = ,Status= ,ProofFile= entity.ProofFile ,BloodTypeID= entity.ProofFile, UserID = entity.UserID},
             //    transaction: Transaction
             //);
         }

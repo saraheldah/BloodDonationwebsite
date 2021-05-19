@@ -20,6 +20,7 @@ namespace BloodDonationweb.Controllers
         private readonly IUserManager _userManager;
         private readonly IBloodTypeManager _bloodTypeManager;
         
+        
 
         public LoggedController(IUserManager userManager , IBloodTypeManager bloodTypeManager)
         {
@@ -44,13 +45,7 @@ namespace BloodDonationweb.Controllers
             return View(bloodList);
         }
 
-        // [HttpPost]
-        // public ActionResult Submit(FormCollection formcollection)
-        // {
-        //     TempData["Message"] = "Blood Type Name: " + formcollection["Name"];
-        //     TempData["Message"] = "Blood Type Id : " + formcollection["ID"];
-        //     return RedirectToAction("AvailableDonors");
-        // }
+   
 
         public IActionResult BecomeDonor()
         {
@@ -67,7 +62,7 @@ namespace BloodDonationweb.Controllers
             return View();
         }
 
-        // [HttpPost]
+      
         public IActionResult AvailableDonors(int BloodType,int city)
         {
             var bookId = BloodType;
