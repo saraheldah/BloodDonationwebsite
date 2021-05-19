@@ -472,7 +472,8 @@ select.country-selector
 
 
 
-input[type=text], select, textarea {
+input[type=text], select, textarea 
+{
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -483,7 +484,8 @@ input[type=text], select, textarea {
   resize: vertical;
 }
 
-input[type=submit] {
+input[type=submit] 
+{
   background-color: rgb(136, 38, 6);;
   color: white;
   padding: 12px 20px;
@@ -492,17 +494,23 @@ input[type=submit] {
   cursor: pointer;
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover 
+{
   background-color: rgb(136, 38, 6);
 }
 
-.search-blood {
+.search-blood 
+{
   background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(../images/don2.jpeg);
 }
-.search-blood-body{
+
+.search-blood-body
+{
   height: 100%;
 }
-.search-blood form{
+
+.search-blood form
+{
   margin-top: 120px;
 }
 
@@ -530,6 +538,7 @@ input[type=submit]:hover {
   background-position: center;
   background-attachment: fixed;
 }
+
 .plasma-details p
 {
   color: rgb(37, 31, 31);
@@ -537,7 +546,8 @@ input[type=submit]:hover {
 
 
 /*modal*/
-.bg-modal{
+.bg-modal
+{
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
@@ -548,7 +558,9 @@ input[type=submit]:hover {
   align-items: center;
   display: none;
 }
-.modal-content{
+
+.modal-content
+{
   width: 500px;
   height: 300px;
   background-color: white;
@@ -557,12 +569,15 @@ input[type=submit]:hover {
   padding: 20px;
   position: relative;
 }
-.user-icon{
+
+.user-icon
+{
   width: 90px;
   height: 90px;
 }
 
-.modal-content button{
+.modal-content button
+{
   background-color: rgb(202, 81, 81);
   color: white;
   transition: 0.5s ease-in;
@@ -581,10 +596,13 @@ input[type=submit]:hover {
 }
 
 
-.modal-content button:hover{
+.modal-content button:hover
+{
   opacity: 0.8;
 }
-.close{
+
+.close
+{
   position: absolute;
   top: 0;
   right: 14px;
@@ -603,22 +621,26 @@ input[type=submit]:hover {
 }
 
 /*Change password form*/
-.password-form{
+.password-form
+{
   margin-top: 110px;
 }
 
 
-.forgot-pass-container{
+.forgot-pass-container
+{
   margin-top: 40px;
 }
-.email-pass-reset{
+
+.email-pass-reset
+{
   width: 270px;
   height: 35px;
 }
+
 .btn-reset
 {
   border: 1px solid #777;
-  border-radius: 2px;
   font-family: inherit;
   font-size: 21px;
   display: block;
@@ -631,21 +653,24 @@ input[type=submit]:hover {
   border-radius: 8px;
   opacity: 1;
   transition: 0.5s ease-in;
-
 }
+
 .btn-reset:hover
 {
   opacity: 0.9;
   color: rgb(8, 8, 8);
 }
 
-
+.profile
+{
+  position: relative;
+}
 
 .profile_dd{
   text-align: center;
   position: absolute;
   top: 75px;
-  right: 900px;
+  right: 12px;
   background: #fff;
   width: 400px;
   height: auto;
@@ -655,6 +680,7 @@ input[type=submit]:hover {
   display: none;
   cursor: pointer;
 }
+
 .profile_dd:before{
   content: "";
   position: absolute;
@@ -663,18 +689,18 @@ input[type=submit]:hover {
   border: 10px solid;
   border-color: transparent transparent #fff transparent ;
 }
-/*.profile .icon_wrap{
-  display: flex;
-  align-items: center;
-}*/
-.profile .profile_dd{
+
+.profile .profile_dd
+{
   width: 270px;
 }
 
 
-.profile-li .profile-btn{
+.profile-li .profile-btn
+{
   margin-top: -50px;
 }
+
 .profile-li a.btn-half
 {
   display: block;
@@ -703,7 +729,8 @@ input[type=submit]:hover {
   opacity: 0.8;
 }
 
-.profile.active .profile_dd{
+.profile.active .profile_dd
+{
   display: block;
 }
 

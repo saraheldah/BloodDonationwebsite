@@ -1,6 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
+using BloodDonation.Business.DTO;
+using BloodDonation.Business.Managers;
 using BloodDonation.DataAccess;
+using BloodDonation.DataAccess.Repositories;
 using BloodDonationweb.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using User = BloodDonation.DataAccess.Entities.User;
 
@@ -9,17 +14,19 @@ namespace BloodDonationweb.Controllers
 {
     public class AvailableDonorsController : Controller
     {
-        private readonly UnitOfWork _db;
+        
+        
+      private readonly IUserManager _userManager;
 
-        public AvailableDonorsController(UnitOfWork db)
+        public AvailableDonorsController(IUserManager userManager)
         {
-            _db = db;
+            _userManager = userManager;
         }
         // GET
         public IActionResult Index()
         {
-            IEnumerable<User> objList = _db.UserRepository.All();
-            return View(objList as IEnumerable<Models.User>);
+            List<UserDTO> objList = _userManager.GetAll();
+            return View(objList);
         }
     }
 }

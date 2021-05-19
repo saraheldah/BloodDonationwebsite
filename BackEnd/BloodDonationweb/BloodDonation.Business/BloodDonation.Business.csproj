@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BloodDonation.Common\BloodDonation.Common.csproj" />
     <ProjectReference Include="..\BloodDonation.DataAccess\BloodDonation.DataAccess.csproj" />
   </ItemGroup>
 

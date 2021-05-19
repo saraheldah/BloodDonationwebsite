@@ -8,6 +8,16 @@ namespace BloodDonation.DataAccess
         IUserRepository UserRepository { get; }
         IBloodTypeCompatibilityRepository BloodTypeCompatibilityRepository { get; }
         IBloodTypeRepository BloodTypeRepository { get; }
+        
+        IBloodRequestRepository BloodRequestRepository { get; }
+        
+        IDonationHistoryRepository DonationHistoryRepository { get; }
+        
+        ICityRepository CityRepository { get; }
+        
+        ICountryRepository CountryRepository { get; }
+        
+        
 
         void Commit();
     }

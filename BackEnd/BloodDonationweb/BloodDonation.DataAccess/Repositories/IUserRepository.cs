@@ -12,5 +12,6 @@ namespace BloodDonation.DataAccess.Repositories
         User Find(int id);
         User FindByFirstName(string name);
         void Update(User entity);
+        IEnumerable<User> FindDonorByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId);
     }
 }

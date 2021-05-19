@@ -1,6 +1,7 @@
 using BloodDonation.Business.Managers;
 using BloodDonation.Business.Mapping;
 using BloodDonation.DataAccess;
+using BloodDonation.DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,7 +22,7 @@ namespace BloodDonationweb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(c => c.AddProfile<AutoMapping>(), typeof(Startup));
+            services.AddAutoMapper(c => c.AddProfile<MappingProfile>(), typeof(Startup));
             var connectionString = Configuration.GetConnectionString("DefaultConnection");//retrieving the connection string and saving the default connection in a variable
             services.AddTransient<IUnitOfWork>(x => new UnitOfWork(connectionString));//we are passing the database we want to use (I want to make sure that this connection string is used when ever we use the IUniOfWork)
             services.AddTransient<IUserManager, UserManager>();

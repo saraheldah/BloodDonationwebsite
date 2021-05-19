@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BloodDonation.DataAccess.Repositories
 {
-    public interface IDonationHistoryRepositoy
+    public interface IDonationHistoryRepository
     {
         void Add(DonationHistory entity);
         

@@ -15,6 +15,11 @@ namespace BloodDonation.DataAccess
         private IUserRepository _userRepository;
         private IBloodTypeRepository _bloodTypeRepository;
         private IBloodTypeCompatibilityRepository _bloodTypeCompatibilityRepository;
+        private IBloodRequestRepository _bloodRequestRepository;
+        private IDonationHistoryRepository _donationHistoryRepository;
+        private ICityRepository _cityRepository;
+        private ICountryRepository _countryRepository;
+        
 
 
         public UnitOfWork(string connectionString)
@@ -26,9 +31,9 @@ namespace BloodDonation.DataAccess
 
         public IUserRepository UserRepository
         {
-            get { return _userRepository ??= new UserRepository(_transaction); }
-        }
-
+            get { return _userRepository ??= new UserRepository(_transaction); } //groups all the interfaces of the repositories which contain database operations into single transaction or "unit of work "
+        }                                                                        //so that all operations either pass or fail(if there is a value in _userRepository return it otherwise create   
+                                                                                 //a new instance and assign it the user repository and send it)
         public IBloodTypeRepository BloodTypeRepository
         {
             get { return _bloodTypeRepository ??= new BloodTypeRepository(_transaction); }
@@ -36,6 +41,26 @@ namespace BloodDonation.DataAccess
         public IBloodTypeCompatibilityRepository BloodTypeCompatibilityRepository
         {
             get { return _bloodTypeCompatibilityRepository ??= new BloodTypeCompatibilityRepository(_transaction); }
+        }
+
+        public IBloodRequestRepository BloodRequestRepository
+        {
+            get { return _bloodRequestRepository ??= new BloodRequestRepository(_transaction); }
+        }
+
+        public IDonationHistoryRepository DonationHistoryRepository
+        {
+            get { return _donationHistoryRepository ??= new DonationHistoryRepository(_transaction); }
+        }
+
+        public ICityRepository CityRepository
+        {
+            get { return _cityRepository ??= new CityRepository(_transaction); }
+        }
+
+        public ICountryRepository CountryRepository
+        {
+            get { return _countryRepository ??= new CountryRepository(_transaction); }
         }
 
 

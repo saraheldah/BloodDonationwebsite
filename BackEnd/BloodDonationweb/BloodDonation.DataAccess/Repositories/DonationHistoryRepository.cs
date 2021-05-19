@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace BloodDonation.DataAccess.Repositories
 {
-    internal class DonationHistoryRepository : RepositoryBase, IDonationHistoryRepositoy
+    internal class DonationHistoryRepository : RepositoryBase, IDonationHistoryRepository
     {
         public DonationHistoryRepository(IDbTransaction transaction) : base(transaction)
         {

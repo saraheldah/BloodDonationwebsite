@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodDonation.Business", "B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodDonation.DataAccess", "BloodDonation.DataAccess\BloodDonation.DataAccess.csproj", "{D3F8AF08-B197-4534-802B-4E6F6429ECC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodDonation.Common", "BloodDonation.Common\BloodDonation.Common.csproj", "{5344172F-238B-430B-895F-BCF8FAEAF6E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D3F8AF08-B197-4534-802B-4E6F6429ECC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3F8AF08-B197-4534-802B-4E6F6429ECC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3F8AF08-B197-4534-802B-4E6F6429ECC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5344172F-238B-430B-895F-BCF8FAEAF6E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5344172F-238B-430B-895F-BCF8FAEAF6E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5344172F-238B-430B-895F-BCF8FAEAF6E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5344172F-238B-430B-895F-BCF8FAEAF6E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

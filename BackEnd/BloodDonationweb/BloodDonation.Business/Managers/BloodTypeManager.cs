@@ -15,8 +15,8 @@ namespace BloodDonation.Business.Managers
 
         public List<BloodTypeDto> GetAll()
         {
-            var bloodTypeEntities = _unitOfWork.BloodTypeRepository.All();
-            var bloodTypeCompatibilityEntities = _unitOfWork.BloodTypeCompatibilityRepository.All();
+            var bloodTypeEntities = _unitOfWork.BloodTypeRepository.All().ToList();
+            var bloodTypeCompatibilityEntities = _unitOfWork.BloodTypeCompatibilityRepository.All().ToList();
 
 
             //// Mapping
@@ -43,13 +43,14 @@ namespace BloodDonation.Business.Managers
             var dtoList = _mapper.Map<List<BloodTypeDto>>(bloodTypeEntities);
             foreach (var dto in dtoList)
             {
-                dto.CompatibleTypes = bloodTypeCompatibilityEntities
+                var typeCompatibilityEntities = bloodTypeCompatibilityEntities.ToList();
+                dto.CompatibleTypes = typeCompatibilityEntities
                     .Where(x => x.BloodTypeID == dto.ID)
                     .Select(y =>
                     new BloodTypeCompatibilityDto()
                     {
                         ID = y.CompatibleBloodTypeID,
-                        Name = bloodTypeEntities.FirstOrDefault(z => z.ID == y.CompatibleBloodTypeID).Name
+                        Name = bloodTypeEntities.FirstOrDefault(z => z.ID == y.CompatibleBloodTypeID)?.Name
                     }).ToList();
             }
 

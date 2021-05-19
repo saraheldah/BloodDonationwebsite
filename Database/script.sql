@@ -10,21 +10,34 @@ CREATE TABLE IF NOT EXISTS `blood-donner`.`USER` (
   `Fname` NVARCHAR(45) NOT NULL,
   `Lname` NVARCHAR(45) NOT NULL,
   `DOB` DATE NULL DEFAULT NULL,
-  `Gender` VARCHAR(45) NULL DEFAULT NULL,
+  `Gender` INT(11) NULL DEFAULT NULL,
   `Phone` NVARCHAR(45) NOT NULL,
   `Email` NVARCHAR(250) NOT NULL,
   `Password` NVARCHAR(45) NOT NULL,
   `IsDonor` BIT NULL DEFAULT NULL,
   `Role` INT(11) NULL NOT NULL,
   `BloodTypeID` INT(11) NOT NULL,
-  `Country` NVARCHAR(45) NOT NULL,
+  `CountryId` INT(45) NOT NULL,
+  `CityId` INT(45) NOT NULL,
+
   PRIMARY KEY (`ID`),
   INDEX `fk_USER_BloodType_idx` (`BloodTypeID` ASC),
   CONSTRAINT `fk_USER_BloodType`
     FOREIGN KEY (`BloodTypeID`)
     REFERENCES `blood-donner`.`BloodType` (`ID`)
     ON DELETE CASCADE
+    ON UPDATE CASCADE,
+     CONSTRAINT `fk_USER_Country`
+    FOREIGN KEY (`CountryId`)
+    REFERENCES `blood-donner`.`Country` (`ID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+      CONSTRAINT `fk_USER_City`
+    FOREIGN KEY (`CityId`)
+    REFERENCES `blood-donner`.`City` (`ID`)
+    ON DELETE CASCADE
     ON UPDATE CASCADE)
+
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -101,7 +114,7 @@ DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE IF NOT EXISTS `blood-donner`.`City` (
   `ID` INT(11) NOT NULL AUTO_INCREMENT,
-  `CountryName` NVARCHAR(50) NOT NULL,
+  `CityName` NVARCHAR(50) NOT NULL,
   `CountryId` INT(11) NOT NULL,
   PRIMARY KEY (`ID`),
   INDEX `fk_City_Country_idx` (`CountryId` ASC),

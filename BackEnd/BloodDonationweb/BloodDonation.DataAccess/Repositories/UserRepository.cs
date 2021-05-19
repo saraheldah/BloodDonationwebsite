@@ -8,9 +8,8 @@ namespace BloodDonation.DataAccess.Repositories
 {
     internal class UserRepository : RepositoryBase, IUserRepository
     {
-        public UserRepository(IDbTransaction transaction)
-            : base(transaction)
-        {
+        public UserRepository(IDbTransaction transaction) : base(transaction)   //constructor we are calling the base constructor and we are also passing transaction  
+        {                                                                      //that we initialize at the UnitOfWork and this represents the transaction that is going to be performed at the database
         }
         public IEnumerable<User> All()
         {
@@ -20,6 +19,44 @@ namespace BloodDonation.DataAccess.Repositories
             ).ToList();
         }
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        public IEnumerable<User> FindDonorByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId)
+        {
+            var sqlQuery = $@"SELECT * FROM `blood-donner`.USER U 
+  inner join BloodTypeCompatibilty BTC on BTC.CompatibleBloodTypeID = U.BloodTypeID
+ WHERE BTC.BloodTypeID = @BloodTypeId AND U.CityId=@CityId AND U.IsDonor=true;";
+            return Connection.Query<User>(
+                sqlQuery,
+                param: new{BloodTypeId = bloodTypeId, CityId = cityId},
+                transaction: Transaction
+            ).ToList();
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         public User Find(int id)
         {
             return Connection.Query<User>(
