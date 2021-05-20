@@ -43,11 +43,11 @@ namespace BloodDonation.DataAccess.Repositories
 
         public void Add(User entity)
         {
-            //entity.Id = Connection.ExecuteScalar<int>(
-            //    "INSERT INTO User(Fname,Lname,DOB,Gender,Phone,Email,Password,IsDonor,Role,BloodTypeID,CountryId,CityId) VALUES(@fname,@lname,@DOB,@Gender,@Phone,@Email,@Password,@IsDonor,@Role,@BloodTypeID,@CountryId,@CityId); SELECT SCOPE_IDENTITY()",
-            //    param: new { Name = entity.Name },
-            //    transaction: Transaction
-            //);
+            entity.Id = Connection.ExecuteScalar<int>(
+                "INSERT INTO User(Fname,Lname,DOB,Gender,Phone,Email,Password,IsDonor,Role,BloodTypeID,CountryId,CityId) VALUES(@fname,@lname,@DOB,@Gender,@Phone,@Email,@Password,@IsDonor,@Role,@BloodTypeID,@CountryId,@CityId); SELECT SCOPE_IDENTITY()",
+                param: new { Fname = entity.Fname, Lname = entity.Lname,DOB = entity.DOB ,Gender = entity.Gender ,Phone = entity.Phone,Email = entity.Phone,Password = entity.Password,IsDonor = false,Role =1,BloodTypeID = entity.BloodTypeID,CountryId = 125,CityId= entity.CityId},
+                transaction: Transaction
+            );
         }
 
         public void Update(User entity)

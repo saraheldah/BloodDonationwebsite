@@ -27,6 +27,8 @@ namespace BloodDonationweb
             services.AddTransient<IUnitOfWork>(x => new UnitOfWork(connectionString));//we are passing the database we want to use (I want to make sure that this connection string is used when ever we use the IUniOfWork)
             services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<IBloodTypeManager, BloodTypeManager>();
+            services.AddTransient<ICityManager, CityManager>();
+            
 
             services.AddControllersWithViews();
         }

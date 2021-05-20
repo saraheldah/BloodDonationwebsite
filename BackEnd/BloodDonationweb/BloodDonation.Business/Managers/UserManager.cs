@@ -44,7 +44,7 @@ namespace BloodDonation.Business.Managers
         {
             // int bloodTypeId;
             // int cityId;
-            var DonorEntityList = _unitOfWork.UserRepository.FindDonorByCompatibleBloodTypeAndCity(bloodTypeId,  cityId).ToList();
+            var DonorEntityList = _unitOfWork.UserRepository.FindDonorByCompatibleBloodTypeAndCity(bloodTypeId, cityId).ToList();
             var countries = _unitOfWork.CountryRepository.All().ToList();
             var cities = _unitOfWork.CityRepository.All().ToList();
             var userDtoList = _mapper.Map<List<UserDTO>>(DonorEntityList);
@@ -60,6 +60,11 @@ namespace BloodDonation.Business.Managers
             return userDtoList;
 
 
+        }
+
+        public void Add(User entity)
+        {
+            
         }
     }
 }

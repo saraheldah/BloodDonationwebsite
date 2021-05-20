@@ -15,8 +15,8 @@ namespace BloodDonation.Business.Managers
 
         public List<CityDTO> GetAll()
         {
-            var CityEntities = _unitOfWork.CityRepository.All().ToList();
-            var cityDtoList = _mapper.Map<List<CityDTO>>(CityEntities);
+            var cityEntities = _unitOfWork.CityRepository.All().ToList();
+            var cityDtoList = _mapper.Map<List<CityDTO>>(cityEntities);
             return cityDtoList;
         }
     }  

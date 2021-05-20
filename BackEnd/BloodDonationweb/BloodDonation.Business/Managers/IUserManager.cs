@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BloodDonation.Business.DTO;
+using BloodDonation.DataAccess.Entities;
 
 namespace BloodDonation.Business.Managers
 {
@@ -10,6 +11,7 @@ namespace BloodDonation.Business.Managers
         List<UserDTO> GetAll();
 
         List<UserDTO> FindDonorByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId);
-        
+        void Add(User entity);
+
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using BloodDonation.DataAccess.Entities;
 using Dapper;
 using System.Collections.Generic;
@@ -11,8 +12,8 @@ namespace BloodDonation.DataAccess.Repositories
         public BloodRequestRepository(IDbTransaction transaction) : base(transaction)
         {
         }
-        
-        
+
+
         public IEnumerable<BloodRequest> All()
         {
             return Connection.Query<BloodRequest>(
@@ -25,18 +26,18 @@ namespace BloodDonation.DataAccess.Repositories
         {
             return Connection.Query<BloodRequest>(
                 "SELECT * FROM BloodRequest WHERE BloodRequestId = @BloodRequestId",
-                param: new { BloodRequestId = id },
+                param: new {BloodRequestId = id},
                 transaction: Transaction
             ).FirstOrDefault();
         }
 
         public void Add(BloodRequest entity)
         {
-            //entity.ID = Connection.ExecuteScalar<int>(
-            //    "INSERT INTO BloodRequest(`ID`,`RequestDate`, `Status`,  `ProofFile`,`BloodTypeID`,`UserID`) VALUES(@ID,@RequestDate,@Status,@ProofFile,@BloodTypeID,@UserID); SELECT SCOPE_IDENTITY()",
-            //    param: new { ID = entity.ID , RequestDate = ,Status= ,ProofFile= entity.ProofFile ,BloodTypeID= entity.ProofFile, UserID = entity.UserID},
-            //    transaction: Transaction
-            //);
+            entity.ID = Connection.ExecuteScalar<int>(
+                "INSERT INTO BloodRequest(`RequestDate`, `Status`,`BloodTypeID`,`UserID`) VALUES(@RequestDate,@Status,@BloodTypeID,@UserID); SELECT SCOPE_IDENTITY()",
+                param: new {RequestDate = DateTime.UtcNow, Status = 1, BloodTypeID = entity.BloodTypeID, UserID = 1},
+                transaction: Transaction
+            );
         }
 
         public void Update(BloodRequest entity)
@@ -66,8 +67,8 @@ namespace BloodDonation.DataAccess.Repositories
         {
             return Connection.Query<BloodRequest>(
                 "SELECT * FROM City WHERE Name = @Name",
-                param: new { Name = Name },
-               transaction: Transaction
+                param: new {Name = Name},
+                transaction: Transaction
             ).FirstOrDefault();
         }
     }

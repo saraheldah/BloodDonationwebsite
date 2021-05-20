@@ -1,8 +1,9 @@
-@model List<BloodDonation.Business.DTO.BloodTypeDto>
+@using BloodDonation.Business.DTO
+@model Tuple<List<BloodDonation.Business.DTO.BloodTypeDto>, List<BloodDonation.Business.DTO.CityDTO>>
 
-@* @model List<BloodDonation.Business.DTO.UserDTO> *@
 @{
     Layout = "_LayoutUser";
+    
 }
 
 
@@ -36,162 +37,151 @@
              
 <!DOCTYPE html>
  
-<html>
+<>
 <head>
     <meta name="viewport" content="width=device-width"/>
     <title>Index</title>
 </head>
-<body>
-    <form method="post" enctype="multipart/form-data" asp-controller="Logged" asp-action="AvailableDonors">
-        <table>
-            <tr>
-                <td>BloodType: </td>
-                <td><select id="bloodType" name="BloodType">
-                    <option value="1">O+</option>
-                    <option value="2">O-</option> 
-                    <option value="3">A+</option> 
-                    <option value="4">A-</option> 
-                    <option value="5">B+</option> 
-                    <option value="6">B-</option> 
-                    <option value="7">AB+</option> 
-                    <option value="8">AB-</option> 
-                </select></td>
-            </tr>
-            <tr></tr>
-            <tr>
-                <td>City: </td>
-                <td>
-                    <select id="city" name="city">
-                        <option value="1">Akkar</option>
-                        <option value="2">Aley</option>
-                        <option value="3">Baabda</option>
-                        <option value="4">Baalbeck</option>
-                        <option value="5">Batroun</option>
-                        <option value="6">Becharre</option>
-                        <option value="7">Beirut</option>
-                        <option value="8" >Bint Jbeil</option>
-                        <option value="9">Chouf</option>
-                        <option value="10">Hasabaya</option>
-                        <option value="11">Hermel</option>
-                        <option value="12">Jbeil</option>
-                        <option value="13">Jezzine</option>
-                        <option value="14">Keserouan</option>
-                        <option value="15">Koura</option>
-                        <option value="16">Marjeeyoun</option>
-                        <option value="17">Metn</option>
-                        <option value="18">Minnieh-Denniye</option>
-                        <option value="19">Nabatieh</option>
-                        <option value="20">Rachaya</option>
-                        <option value="21">Saida</option>
-                        <option value="22">Tripoli</option>
-                        <option value="23">Tyre</option>
-                        <option value="24">West Bekaa</option>
-                        <option value="25">Zahle</option>
-                        <option value="26">Zgharta</option>
-                                
-                    </select>
-                </td>
-            </tr>
+<>
+    @* <form method="post" enctype="multipart/form-data" asp-controller="Logged" asp-action="AvailableDonors"> *@
+    @*     <table> *@
+    @*         <tr> *@
+    @*             <td>BloodType: </td> *@
+    @*             <td><select id="bloodType" name="BloodType"> *@
+    @*                 <option value="1">O+</option> *@
+    @*                 <option value="2">O-</option>  *@
+    @*                 <option value="3">A+</option>  *@
+    @*                 <option value="4">A-</option>  *@
+    @*                 <option value="5">B+</option>  *@
+    @*                 <option value="6">B-</option>  *@
+    @*                 <option value="7">AB+</option>  *@
+    @*                 <option value="8">AB-</option>  *@
+    @*             </select></td> *@
+    @*         </tr> *@
+    @*         <tr></tr> *@
+    @*         <tr> *@
+    @*             <td>City: </td> *@
+    @*             <td> *@
+    @*                 <select id="city" name="city"> *@
+    @*                     <option value="1">Akkar</option> *@
+    @*                     <option value="2">Aley</option> *@
+    @*                     <option value="3">Baabda</option> *@
+    @*                     <option value="4">Baalbeck</option> *@
+    @*                     <option value="5">Batroun</option> *@
+    @*                     <option value="6">Becharre</option> *@
+    @*                     <option value="7">Beirut</option> *@
+    @*                     <option value="8" >Bint Jbeil</option> *@
+    @*                     <option value="9">Chouf</option> *@
+    @*                     <option value="10">Hasabaya</option> *@
+    @*                     <option value="11">Hermel</option> *@
+    @*                     <option value="12">Jbeil</option> *@
+    @*                     <option value="13">Jezzine</option> *@
+    @*                     <option value="14">Keserouan</option> *@
+    @*                     <option value="15">Koura</option> *@
+    @*                     <option value="16">Marjeeyoun</option> *@
+    @*                     <option value="17">Metn</option> *@
+    @*                     <option value="18">Minnieh-Denniye</option> *@
+    @*                     <option value="19">Nabatieh</option> *@
+    @*                     <option value="20">Rachaya</option> *@
+    @*                     <option value="21">Saida</option> *@
+    @*                     <option value="22">Tripoli</option> *@
+    @*                     <option value="23">Tyre</option> *@
+    @*                     <option value="24">West Bekaa</option> *@
+    @*                     <option value="25">Zahle</option> *@
+    @*                     <option value="26">Zgharta</option> *@
+    @*                              *@
+    @*                 </select> *@
+    @*             </td> *@
+    @*         </tr> *@
+    @*          *@
+    @*         <tr> *@
+    @*             <td>First Name </td> *@
+    @*             <td><input type="text" id="fname" name="firstname" placeholder="Your first name.."></td> *@
+    @*         </tr> *@
+    @*         <tr> *@
+    @*             <td>Last Name</td> *@
+    @*             <td><input type="text" id="lname" name="lastname" placeholder="Your last name.."></td> *@
+    @*         </tr> *@
+    @*         <tr> *@
+    @*             <td>Center/Hospital Name</td> *@
+    @*             <td><input type="text" id="HospitalName" name="HospitalName" placeholder="Center Name"></td> *@
+    @*         </tr> *@
+    @*         <tr> *@
+    @*             <td>Phone Number</td> *@
+    @*             <td><input type="tel" id="phone" name="phone" /></td> *@
+    @*         </tr> *@
+    @*         <tr> *@
+    @*             <td>Attach a Proof Document</td> *@
+    @*             <td> <input type="file" id="document" name="document"></td>  *@
+    @*         </tr> *@
+    @*         <tr> *@
+    @*             <td>Any Additional Note</td> *@
+    @*             <td><textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea></td> *@
+    @*         </tr> *@
+    @*         <tr> *@
+    @*             <td> <a class="btn btn-full" asp-area="" asp-controller="Logged" asp-action="AvailableDonors" ><input type="submit" value="Submit"/></a></td> *@
+    @*         </tr> *@
+    @*     </table> *@
+    @*     <hr/> *@
+    @* </form> *@
+    @* *@
+    @* *@
+
+
+@using (Html.BeginForm("AvailableDonors", "Logged", FormMethod.Post))
+                 {
+                    <label> 
+                         Blood Type
+                     </label>
+                     <br>
+                     <select class="bloodtype-selector" id="blood-type" name="bloodType">
+                         <option value="0">Please select</option>
+                         @foreach (var bloodType in Model.Item1)
+                         {
+                             <option value="@bloodType.ID">@bloodType.Name</option>
+                
+                         }
+                     </select>
+                     <label> 
+                         City
+                     </label>
+                     <br>
+                     <select class="City-selector" id="city" name="city">
+                         <option value="0">Please select</option>
+                         @foreach (var city in Model.Item2)
+                         {
+                             <option value="@city.ID">@city.CityName</option>
+                
+                         }
+                     </select>
+                            <label for="fname">First Name</label> 
+                 <input type="text" id="fname" name="firstname" placeholder="Your first name.."> 
             
-            <tr>
-                <td>First Name: </td>
-                <td><input type="text" id="fname" name="firstname" placeholder="Your first name.."></td>
-            </tr>
-            <tr>
-                <td>Last Name</td>
-                <td><input type="text" id="lname" name="lastname" placeholder="Your last name.."></td>
-            </tr>
-            <tr>
-                <td>Center/Hospital Name</td>
-                <td><input type="text" id="HospitalName" name="HospitalName" placeholder="Center Name"></td>
-            </tr>
-            <tr>
-                <td>Phone Number</td>
-                <td><input type="tel" id="phone" name="phone" /></td>
-            </tr>
-            <tr>
-                <td>Attach a Proof Document</td>
-                <td> <input type="file" id="document" name="document"></td> 
-            </tr>
-            <tr>
-                <td>Any Additional Note</td>
-                <td><textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea></td>
-            </tr>
-            <tr>
-                <td> <a class="btn btn-full" asp-area="" asp-controller="Logged" asp-action="AvailableDonors" ><input type="submit" value="Submit"/></a></td>
-            </tr>
-        </table>
-        <hr/>
-    </form>
-</body>
-</html>
-@*             <form action="> *@
-@*                 <label> *@
-@*                     Please fill the following information: *@
-@*                 </label> *@
-@*                 <br> *@
-@*                 <br> *@
-@*                 <br> *@
-@*      *@
-@*                 <label> *@
-@*                     Blood Type *@
-@*                 </label> *@
-@*                 <br> *@
-@*                      *@
-@*                       *@
-@*                 <select id="bloodtype" name="bloodType"> *@
-@*                 <option value="AB+">AB+</option> *@
-@*                 <option value="AB-">AB-</option> *@
-@*                 <option value="B+">B+</option> *@
-@*                 <option value="B-">B-</option> *@
-@*                 <option value="A+">A+</option> *@
-@*                 <option value="A-">A-</option> *@
-@*                 <option value="O+">O+</option> *@
-@*                 <option value="O-">O-</option> *@
+                 <label for="lname">Last Name</label> 
+                 <input type="text" id="lname" name="lastname" placeholder="Your last name.."> 
+           
+                 <label for="lname">Center/Hospital Name</label> 
+                <input type="text" id="HospitalName" name="HospitalName" placeholder="Center Name"> 
+           
+                 <br> 
+                 <label for="phone">Phone Number</label> 
+                 <br> 
+                 <input type="tel" id="phone" name="phone" /> 
+                 <br> 
+                 <br> 
+                <label for="document">Attach a Proof Document:</label> 
+                 <input type="file" id="document" name="document"> 
+                <br> 
+            
+                <input type="submit" value="submit"/>
+            
+                  }
+                
 
 
 
 
-                @*  @using (Html.BeginForm("Submit", "Logged", FormMethod.Post)) *@
-                @*  { *@
-                @*      <label> *@
-                @*          Blood Type *@
-                @*      </label> *@
-                @*      <br> *@
-                @*      <select class="bloodtype-selector" id="blood-type" name="blood-type"> *@
-                @*          <option value="0">Please select</option> *@
-                @*          @foreach (var bloodType in Model) *@
-                @*          { *@
-                @*              <option value="@bloodType.ID">@bloodType.Name</option> *@
-                @* *@
-                @*          } *@
-                @*      </select> *@
-                @* //     @Html.Hidden("FruitName",null , new {@id = "blood-typeN"}) *@
-                @*      <input type="submit" value="submit"/> *@
-                @*       *@
-                @*  } *@
-                @*        *@
 
-
-
-
-                @* <label> *@
-                @*     Blood Type *@
-                @* </label> *@
-                @* <br> *@
-                @* *@
-                @* @Html.DropDownList("BloodTypes", new List<SelectListItem> *@
-                @* { *@
-                @*     new SelectListItem{Text = "O+", Value = "1" ,Selected = true}, *@
-                @*     new SelectListItem{Text = "O-", Value = "2" }, *@
-                @*     new SelectListItem{Text = "A+", Value = "3"}, *@
-                @*     new SelectListItem{Text = "A-", Value = "4"}, *@
-                @*     new SelectListItem{Text = "B+", Value = "5"}, *@
-                @*     new SelectListItem{Text = "B-", Value = "6"}, *@
-                @*     new SelectListItem{Text = "AB+", Value = "7"}, *@
-                @*     new SelectListItem{Text = "AB-", Value = "8"} *@
-                @* },"Select Blood Type" ) *@
-                @* *@
             @*     <label> *@
             @*         City *@
             @*     </label> *@

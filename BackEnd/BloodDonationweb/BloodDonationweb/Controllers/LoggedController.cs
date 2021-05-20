@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BloodDonation.Business.DTO;
@@ -19,13 +20,15 @@ namespace BloodDonationweb.Controllers
 
         private readonly IUserManager _userManager;
         private readonly IBloodTypeManager _bloodTypeManager;
+        private readonly ICityManager _cityManager;
         
         
 
-        public LoggedController(IUserManager userManager , IBloodTypeManager bloodTypeManager)
+        public LoggedController(IUserManager userManager , IBloodTypeManager bloodTypeManager,ICityManager cityManager)
         {
             _userManager = userManager;
-            _bloodTypeManager = bloodTypeManager; 
+            _bloodTypeManager = bloodTypeManager;
+            _cityManager = cityManager;
         }
         // GET
         public IActionResult Index()
@@ -42,7 +45,9 @@ namespace BloodDonationweb.Controllers
         {
             
             List<BloodTypeDto> bloodList = _bloodTypeManager.GetAll();
-            return View(bloodList);
+            List<CityDTO> cityList = _cityManager.GetAll();
+            var tuple = new Tuple<List<BloodTypeDto>, List<CityDTO>>(bloodList, cityList);
+            return View(tuple);
         }
 
    
@@ -63,12 +68,16 @@ namespace BloodDonationweb.Controllers
         }
 
       
+        [HttpPost]
         public IActionResult AvailableDonors(int BloodType,int city)
         {
             var bookId = BloodType;
             var cityId = city;
-
-            List<UserDTO> objList = _userManager.FindDonorByCompatibleBloodTypeAndCity(bookId, city);
+// fill request DTO (compose)
+// in the manager map DTO to Entity (BloodRequest)
+// use repo.Add()
+// use unitofwork.Commit()
+             List<UserDTO> objList = _userManager.FindDonorByCompatibleBloodTypeAndCity(bookId, city);
             return View(objList);
 
             // List<UserDTO> objList = _userManager.GetAll();
