@@ -5,7 +5,7 @@ namespace BloodDonation.DataAccess.Repositories
 {
     public interface IUserRepository
     {
-        void Add(User entity);
+        void Add(User newUser);
         IEnumerable<User> All();
         void Delete(int id);
         void Delete(User entity);

@@ -1,3 +1,4 @@
+using BloodDonation.Business.DTO;
 using BloodDonation.Business.Managers;
 using BloodDonation.Business.Mapping;
 using BloodDonation.DataAccess;
@@ -28,7 +29,7 @@ namespace BloodDonationweb
             services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<IBloodTypeManager, BloodTypeManager>();
             services.AddTransient<ICityManager, CityManager>();
-            
+            services.AddTransient<IBloodRequestManager, BloodRequestManager>();
 
             services.AddControllersWithViews();
         }

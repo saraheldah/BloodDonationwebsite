@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using BloodDonation.Business.DTO;
 using BloodDonation.Business.Managers;
 using BloodDonation.DataAccess;
@@ -21,18 +22,24 @@ namespace BloodDonationweb.Controllers
         private readonly IUserManager _userManager;
         private readonly IBloodTypeManager _bloodTypeManager;
         private readonly ICityManager _cityManager;
+        private readonly IBloodRequestManager _bloodRequest;
         
         
 
-        public LoggedController(IUserManager userManager , IBloodTypeManager bloodTypeManager,ICityManager cityManager)
+        public LoggedController(IUserManager userManager , IBloodTypeManager bloodTypeManager,ICityManager cityManager,IBloodRequestManager bloodRequestManager)
         {
             _userManager = userManager;
             _bloodTypeManager = bloodTypeManager;
             _cityManager = cityManager;
+            _bloodRequest = bloodRequestManager;
         }
         // GET
-        public IActionResult Index()
+        [HttpPost]
+        public IActionResult Index(string email,string password,string fname,string lname,string phone,DateTime birthDate,int city,int gender,int bloodType)
         {
+            
+            var newUserEntity = _userManager.userEntity( email, password, fname, lname, phone, birthDate, city, gender, bloodType);
+            _userManager.Add(newUserEntity);
             return View();
         }
 
@@ -71,18 +78,27 @@ namespace BloodDonationweb.Controllers
         [HttpPost]
         public IActionResult AvailableDonors(int BloodType,int city)
         {
-            var bookId = BloodType;
+            var booldId = BloodType;
             var cityId = city;
+            var bloodRequestentity = _bloodRequest.requestEntity(booldId, cityId);
+            _bloodRequest.Add(bloodRequestentity);
+            
+            
 // fill request DTO (compose)
 // in the manager map DTO to Entity (BloodRequest)
 // use repo.Add()
 // use unitofwork.Commit()
-             List<UserDTO> objList = _userManager.FindDonorByCompatibleBloodTypeAndCity(bookId, city);
+             List<UserDTO> objList = _userManager.FindDonorByCompatibleBloodTypeAndCity(booldId, city);
             return View(objList);
 
             // List<UserDTO> objList = _userManager.GetAll();
             // return View(objList);
 
+        }
+
+        public IActionResult BloodRequests()
+        {
+            return View();
         }
 
         // public JsonResult Test(int id)

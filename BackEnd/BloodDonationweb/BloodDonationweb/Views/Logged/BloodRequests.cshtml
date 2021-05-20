@@ -1,12 +1,13 @@
-@model List<BloodDonation.Business.DTO.UserDTO>
+@model List<BloodDonation.Business.DTO.BloodRequestDto>
 
 @{
     Layout = "_LayoutUser";
 }
+
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h4 class="text-primary" style="margin-top: 120px ; color:black">Your request has been sent successfully to the following available donors </h4>
+            <h4 class="text-primary" style="margin-top: 120px ; color:black">Pending Requests </h4>
         </div>
         <div class="col-6">
         </div>
@@ -37,15 +38,11 @@
             </th>
             </thead>
             <tbody>
-            @foreach (var user in Model)
+            @foreach (var request in Model)
             {
                 <tr>
-                    <td width="30%">@user.FirstName</td>
-                    <td width="30%">@user.LastName</td>
-                    <td width="30%">@user.DateOfBirth.ToString("yyyy-MM-dd")</td>
-                    <td width="30%">@user.Gender</td>
-                    <td width="30%">@user.Phone</td>
-                    <td width="30%">@user.Email</td>
+                    <td width="30%">@request.UserID</td>
+                  
                     
                 </tr>
             }
@@ -54,6 +51,6 @@
     }
     else
     {
-        <p style="color: black">No Donors Available with this blood type</p>
+        <p style="color: black">No Requests</p>
     }
 </div>

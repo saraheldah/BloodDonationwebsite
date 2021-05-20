@@ -85,10 +85,10 @@ namespace BloodDonationweb.Controllers
         //     return View();
         // }
 
-        public void Create(string email,string password,string fname,string lname,string phone,DateTime birthDate,int city,int gender,int BloodType)
-         {
-       
-         }
+        // public void Create(string email,string password,string fname,string lname,string phone,DateTime birthDate,int city,int gender,int BloodType)
+        //  {
+        //
+        //  }
 
    
 

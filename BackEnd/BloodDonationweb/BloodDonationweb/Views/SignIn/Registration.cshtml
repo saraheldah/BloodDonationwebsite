@@ -23,7 +23,7 @@
    
 <body class="Form-body">
 
-@using (Html.BeginForm("Create", "SignIn", FormMethod.Post))
+@using (Html.BeginForm("Index", "Logged", FormMethod.Post))
 {
 
 
@@ -40,7 +40,7 @@
     </div>
 
     <div class="form-control">
-        <label for="firstname" id="label-name">
+        <label for="password" id="label-name">
             Password
         </label>
 
@@ -128,7 +128,7 @@
         </select>
     </div>
     
-    <input type="submit" value="Submit" class="SubmitFormBtn"/>
+    <a class="btn btn-half" asp-area="" asp-controller="Logged" asp-action="Index" > <input type="submit" value="Register" class="SubmitFormBtn"/></a>
     @* <button type="submit" value="submit" class="SubmitFormBtn"> *@
     @*     Submit *@
     @* </button> *@

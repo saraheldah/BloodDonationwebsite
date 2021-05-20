@@ -5,10 +5,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
+
 namespace BloodDonation.DataAccess.Repositories
 {
     internal class BloodRequestRepository : RepositoryBase, IBloodRequestRepository
     {
+        
+        
         public BloodRequestRepository(IDbTransaction transaction) : base(transaction)
         {
         }
@@ -21,6 +24,21 @@ namespace BloodDonation.DataAccess.Repositories
                 transaction: Transaction
             ).ToList();
         }
+        
+        public IEnumerable<BloodRequest> FindRequestByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId)
+        {
+            var sqlQuery = $@"SELECT * FROM `blood-donner`.BloodRequest BR 
+  inner join BloodTypeCompatibilty BTC on BTC.CompatibleBloodTypeID = BR.BloodTypeID
+ WHERE BTC.BloodTypeID = @BloodTypeId AND BR.CityId=@CityId ;";
+            return Connection.Query<BloodRequest>(
+                sqlQuery,
+                param: new{BloodTypeId = bloodTypeId, CityId = cityId},
+                transaction: Transaction
+            ).ToList();
+            
+            // SELECT USER.Fname,USER.Lname,USER.Email,USER.Phone,BloodRequest.RequestDate FROM `blood-donner`.`USER` INNER JOIN `blood-donner`.`BloodRequest` ON USER.ID=BloodRequest.UserID inner join BloodTypeCompatibilty  on BloodTypeCompatibilty.CompatibleBloodTypeID = BloodRequest.BloodTypeID
+            // WHERE BloodTypeCompatibilty.BloodTypeID = 7 AND BloodRequest.CityId=7  ;  =>ready to be used
+        }
 
         public BloodRequest Find(int id)
         {
@@ -31,11 +49,11 @@ namespace BloodDonation.DataAccess.Repositories
             ).FirstOrDefault();
         }
 
-        public void Add(BloodRequest entity)
+        public void Add(BloodRequest bloodRequest)
         {
-            entity.ID = Connection.ExecuteScalar<int>(
-                "INSERT INTO BloodRequest(`RequestDate`, `Status`,`BloodTypeID`,`UserID`) VALUES(@RequestDate,@Status,@BloodTypeID,@UserID); SELECT SCOPE_IDENTITY()",
-                param: new {RequestDate = DateTime.UtcNow, Status = 1, BloodTypeID = entity.BloodTypeID, UserID = 1},
+            bloodRequest.ID = Connection.ExecuteScalar<int>(
+                "INSERT INTO BloodRequest(`RequestDate`, `Status`,`BloodTypeID`,`UserID`,`CityId`) VALUES(@RequestDate,@Status,@BloodTypeID,@UserID,@CityId); SELECT LAST_INSERT_ID()",
+                param: new {RequestDate = DateTime.UtcNow, Status = 1, BloodTypeID = bloodRequest.BloodTypeID, UserID = 1, bloodRequest.CityId},
                 transaction: Transaction
             );
         }

@@ -9,6 +9,9 @@ namespace BloodDonation.DataAccess.Entities
         public int Status { get; set; }
         public string ProofDocumentName { get; set; }
         public int BloodTypeID { get; set; }
+        
         public int UserID { get; set; }
+        
+        public int CityId { get; set; }
     }
 }

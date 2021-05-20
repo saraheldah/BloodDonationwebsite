@@ -41,11 +41,11 @@ namespace BloodDonation.DataAccess.Repositories
             ).FirstOrDefault();
         }
 
-        public void Add(User entity)
+        public void Add(User newUser)
         {
-            entity.Id = Connection.ExecuteScalar<int>(
-                "INSERT INTO User(Fname,Lname,DOB,Gender,Phone,Email,Password,IsDonor,Role,BloodTypeID,CountryId,CityId) VALUES(@fname,@lname,@DOB,@Gender,@Phone,@Email,@Password,@IsDonor,@Role,@BloodTypeID,@CountryId,@CityId); SELECT SCOPE_IDENTITY()",
-                param: new { Fname = entity.Fname, Lname = entity.Lname,DOB = entity.DOB ,Gender = entity.Gender ,Phone = entity.Phone,Email = entity.Phone,Password = entity.Password,IsDonor = false,Role =1,BloodTypeID = entity.BloodTypeID,CountryId = 125,CityId= entity.CityId},
+            newUser.Id = Connection.ExecuteScalar<int>(
+                "INSERT INTO User(Fname,Lname,DOB,Gender,Phone,Email,Password,IsDonor,Role,BloodTypeID,CountryId,CityId) VALUES(@fname,@lname,@DOB,@Gender,@Phone,@Email,@Password,@IsDonor,@Role,@BloodTypeID,@CountryId,@CityId); SELECT LAST_INSERT_ID()",
+                param: new { Fname = newUser.Fname, Lname = newUser.Lname,DOB = newUser.DOB ,Gender = newUser.Gender ,Phone = newUser.Phone,Email = newUser.Phone,Password = newUser.Password,IsDonor = false,Role =1,BloodTypeID = newUser.BloodTypeID,CountryId = 125,CityId= newUser.CityId},
                 transaction: Transaction
             );
         }

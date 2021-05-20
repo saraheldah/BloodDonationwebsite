@@ -5,7 +5,8 @@ namespace BloodDonation.DataAccess.Repositories
 {
     public interface IBloodRequestRepository
     {
-        void Add(BloodRequest entity);
+        void Add(BloodRequest bloodRequest);
+        IEnumerable<BloodRequest> FindRequestByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId);
         
         IEnumerable<BloodRequest> All();
         

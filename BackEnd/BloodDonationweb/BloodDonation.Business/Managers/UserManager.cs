@@ -1,9 +1,11 @@
 ﻿
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using BloodDonation.Business.DTO;
+using BloodDonation.Common;
 using BloodDonation.DataAccess;
 using BloodDonation.DataAccess.Entities;
 
@@ -62,9 +64,25 @@ namespace BloodDonation.Business.Managers
 
         }
 
-        public void Add(User entity)
+        public void Add(User newUser)
         {
+            _unitOfWork.UserRepository.Add(newUser);
+            _unitOfWork.Commit();
             
+        }
+        public User userEntity(string email,string password,string fname,string lname,string phone,DateTime birthDate,int city,int gender,int bloodType)
+        {
+            User newUser = new User();
+            newUser.Email = email;
+            newUser.Password = password;
+            newUser.Fname = fname;
+            newUser.Lname = lname;
+            newUser.Phone = phone;
+            newUser.DOB = birthDate.Date;
+            newUser.CityId = city;
+            newUser.Gender = (Gender) gender;
+            newUser.BloodTypeID = bloodType;
+            return newUser;
         }
     }
 }
