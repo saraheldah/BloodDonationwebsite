@@ -50,13 +50,22 @@ namespace BloodDonation.DataAccess.Repositories
             );
         }
 
-        public void Update(User entity)
+        public void Update(User updatedUser)
         {
-            //Connection.Execute(
-            //    "UPDATE User SET Name = @Name WHERE UserId = @UserId",
-            //    param: new { Name = entity.Name, UserId = entity.UserId },
-            //    transaction: Transaction
-            //);
+            Connection.Execute(
+                "UPDATE User SET Fname = @Fname, Lname = @Lname, DOB = @DOB , phone = @phone , Gender = @Gender, BloodTypeID = @BloodTypeID , CityId=@CityId  WHERE Id = 3",
+               param: new { Fname = updatedUser.Fname, Lname = updatedUser.Lname, DOB = updatedUser.DOB, phone = updatedUser.Phone, Gender = updatedUser.Gender, BloodTypeID = updatedUser.BloodTypeID, CityId=updatedUser.CityId},
+                transaction: Transaction
+            );
+        }
+        
+        public void UpdatePassword(User updatedPassword)
+        {
+            Connection.Execute(
+                "UPDATE User SET Password = @Password WHERE Id = 3",
+                param: new { Password = updatedPassword.Password},
+                transaction: Transaction
+            );
         }
 
         public void Delete(int id)

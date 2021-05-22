@@ -89,8 +89,7 @@
     <label> 
         City
     </label>
-      <br>
-      <select class="City-selector" id="city" name="city">
+        <select class="City-selector" id="city" name="city">
           <option value="0">Please select</option>
           @foreach (var city in Model.Item2)
           {
@@ -106,7 +105,6 @@
         <label>
             Blood Type
         </label>
-        <br>
         <select class="bloodtype-selector" id="blood-type" name="bloodType" style="width: 435px">
             <option value="0">Please select</option>
             @foreach (var bloodType in Model.Item1)

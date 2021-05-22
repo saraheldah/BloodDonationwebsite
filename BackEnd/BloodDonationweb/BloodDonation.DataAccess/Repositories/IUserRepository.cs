@@ -11,7 +11,10 @@ namespace BloodDonation.DataAccess.Repositories
         void Delete(User entity);
         User Find(int id);
         User FindByFirstName(string name);
-        void Update(User entity);
+        void Update(User updatedUser);
+
+        void UpdatePassword(User updatedPassword);
         IEnumerable<User> FindDonorByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId);
+        
     }
 }

@@ -17,8 +17,12 @@ namespace BloodDonation.Business.DTO
         
         public int BloodTypeID { get; set; }
         
-        public int UserID { get; set; }
+        // public int UserID { get; set; }
         
         public CityDTO City { get; set; }
+        
+        public string CenterName { get; set; }
+        
+        public UserDTO UserInfo { get; set; }
     }
 }

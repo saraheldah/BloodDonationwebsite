@@ -13,5 +13,7 @@ namespace BloodDonation.DataAccess.Entities
         public int UserID { get; set; }
         
         public int CityId { get; set; }
+        
+        public string CenterName { get; set; }
     }
 }

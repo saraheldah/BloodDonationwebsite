@@ -84,5 +84,37 @@ namespace BloodDonation.Business.Managers
             newUser.BloodTypeID = bloodType;
             return newUser;
         }
+
+        public void Update(User updatedUser)
+        {
+            _unitOfWork.UserRepository.Update(updatedUser);
+            _unitOfWork.Commit();
+        }
+
+        public User updatedUserEntity(string firstname, string lastname, string phone, DateTime birthDate, int city, int gender, int bloodType)
+        {
+            User updatedUser = new User();
+            updatedUser.Fname = firstname;
+            updatedUser.Lname = lastname;
+            updatedUser.Phone = phone;
+            updatedUser.DOB = birthDate.Date;
+            updatedUser.CityId = city;
+            updatedUser.Gender = (Gender) gender;
+            updatedUser.BloodTypeID = bloodType;
+            return updatedUser;
+        }
+        
+        public void UpdatePassword(User updatedPassword)
+        {
+            _unitOfWork.UserRepository.UpdatePassword(updatedPassword);
+            _unitOfWork.Commit();
+        }
+
+        public User changePasswordEntity(string Password)
+        {
+            User updatedPassword = new User();
+            updatedPassword.Password = Password;
+            return updatedPassword;
+        }
     }
 }

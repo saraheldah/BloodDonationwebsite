@@ -46,29 +46,7 @@ namespace BloodDonationweb.Controllers
             List<CityDTO> cityList = _cityManager.GetAll();
             var tuple = new Tuple<List<BloodTypeDto>, List<CityDTO>>(bloodList, cityList);
            
-            // UserDTO user = new UserDTO();
-            // user.Email = email;
-            // // user.password = password;
-            // user.FirstName = fname;
-            // user.LastName = lname;
-            // user.Phone = phone;
-            // user.DateOfBirth = birthDate.Date;
-            // user.City = city;
-            // user.Gender = (Gender) gender;
-            // user.BloodType = BloodType;
 
-            
-            
-            // User user = new User();
-            // user.Email = email;
-            // user.Password = password;
-            // user.Fname = fname;
-            // user.Lname = lname;
-            // user.Phone = phone;
-            // user.DOB = birthDate.Date;
-            // user.CityId = city;
-            // user.Gender = (Gender) gender;
-            // user.BloodTypeID = BloodType;
 
            
             
@@ -77,18 +55,7 @@ namespace BloodDonationweb.Controllers
         }
 
      
-        // public IActionResult Registration(string email,string password,string fname,string lname,string phone,DateTime birthDate,int city,int gender,int BloodType)
-        // {
-        //     UserDTO user = new UserDTO();
-        //     
-        //     
-        //     return View();
-        // }
-
-        // public void Create(string email,string password,string fname,string lname,string phone,DateTime birthDate,int city,int gender,int BloodType)
-        //  {
-        //
-        //  }
+ 
 
    
 

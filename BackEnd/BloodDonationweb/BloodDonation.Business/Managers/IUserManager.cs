@@ -14,7 +14,15 @@ namespace BloodDonation.Business.Managers
         List<UserDTO> FindDonorByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId);
         void Add(User newUser);
 
+        void Update(User updatedUser);
+
+        void UpdatePassword(User updatedPassword);
+
+        User changePasswordEntity(string Password);
+
          User userEntity(string email,string password,string fname,string lname,string phone,DateTime birthDate,int city,int gender,int bloodType);
+
+         User updatedUserEntity(string firstname, string lastname, string phone, DateTime birthDate, int city, int gender, int bloodType);
 
     }
 }

@@ -40,6 +40,9 @@ namespace BloodDonation.Business.Mapping
             CreateMap<BloodRequestDto, BloodTypeDto>();
             CreateMap<BloodTypeDto, BloodRequestDto>();
             
+            CreateMap<BloodRequestDto, BloodRequest>();
+            CreateMap<BloodRequest, BloodRequestDto>();
+            
             
         }
     }

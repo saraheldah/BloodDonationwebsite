@@ -9,7 +9,7 @@ namespace BloodDonation.Business.Managers
         List<BloodRequestDto> GetAll();
         void Add(BloodRequest bloodRequest);
 
-        BloodRequest requestEntity(int BloodType, int city);
+        BloodRequest requestEntity(int BloodType, int city,string HospitalName);
         
         List<BloodRequestDto> FindRequestByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId);
     }

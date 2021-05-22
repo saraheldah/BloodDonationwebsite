@@ -71,16 +71,30 @@ namespace BloodDonationweb.Controllers
 
         public IActionResult UpdateInformation()
         {
+            List<BloodTypeDto> bloodList = _bloodTypeManager.GetAll();
+            List<CityDTO> cityList = _cityManager.GetAll();
+            var tuple = new Tuple<List<BloodTypeDto>, List<CityDTO>>(bloodList, cityList);
+            return View(tuple);
+        }
+
+        [HttpPost]
+        public IActionResult UpdatedUserInfo(string firstname,string lastname,string phone,DateTime birthDate,int city,int gender,int bloodType)
+        {
+            var DOB = birthDate.Date;
+            var newUpdateUserEntity = _userManager.updatedUserEntity( firstname, lastname, phone, DOB, city, gender, bloodType);
+            _userManager.Update(newUpdateUserEntity);
+            
             return View();
         }
 
       
         [HttpPost]
-        public IActionResult AvailableDonors(int BloodType,int city)
+        public IActionResult AvailableDonors(int BloodType,int city,string HospitalName)
         {
             var booldId = BloodType;
             var cityId = city;
-            var bloodRequestentity = _bloodRequest.requestEntity(booldId, cityId);
+            var centerName = HospitalName;
+            var bloodRequestentity = _bloodRequest.requestEntity(booldId, cityId,centerName);
             _bloodRequest.Add(bloodRequestentity);
             
             
@@ -91,13 +105,20 @@ namespace BloodDonationweb.Controllers
              List<UserDTO> objList = _userManager.FindDonorByCompatibleBloodTypeAndCity(booldId, city);
             return View(objList);
 
-            // List<UserDTO> objList = _userManager.GetAll();
-            // return View(objList);
-
         }
 
         public IActionResult BloodRequests()
         {
+            List<BloodRequestDto> requestList = _bloodRequest.FindRequestByCompatibleBloodTypeAndCity(7, 7);
+            return View(requestList);
+        }
+
+
+        [HttpPost]
+        public IActionResult UpdatePasswordAction(string password)
+        {
+            var newPass = _userManager.changePasswordEntity(password);
+            _userManager.UpdatePassword(newPass);
             return View();
         }
 

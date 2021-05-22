@@ -25,25 +25,26 @@
                 Last Name
             </th>
             <th>
-                Date of birth 
-            </th>
-            <th>
-                Gender
+                Email 
             </th>
             <th>
                 PhoneNumber
             </th>
             <th>
-                Email
+                Center Name
             </th>
             </thead>
             <tbody>
             @foreach (var request in Model)
             {
                 <tr>
-                    <td width="30%">@request.UserID</td>
-                  
-                    
+                    <td width="30%">@request.UserInfo.FirstName</td>
+                    <td width="30%">@request.UserInfo.LastName</td>
+                    <td width="30%">@request.UserInfo.Email</td>
+                    <td width="30%">@request.UserInfo.Phone</td>
+                    <td width="30%">@request.CenterName</td>
+
+
                 </tr>
             }
             </tbody>
