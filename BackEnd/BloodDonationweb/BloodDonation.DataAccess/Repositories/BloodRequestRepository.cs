@@ -10,8 +10,6 @@ namespace BloodDonation.DataAccess.Repositories
 {
     internal class BloodRequestRepository : RepositoryBase, IBloodRequestRepository
     {
-        
-        
         public BloodRequestRepository(IDbTransaction transaction) : base(transaction)
         {
         }
@@ -24,18 +22,18 @@ namespace BloodDonation.DataAccess.Repositories
                 transaction: Transaction
             ).ToList();
         }
-        
+
         public IEnumerable<BloodRequest> FindRequestByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId)
         {
-            var sqlQuery = $@"SELECT USER.Fname,USER.Lname,USER.Email,USER.Phone,BloodRequest.CenterName FROM `blood-donner`.`USER` INNER JOIN `blood-donner`.`BloodRequest` ON USER.ID=BloodRequest.UserID inner join BloodTypeCompatibilty  on BloodTypeCompatibilty.CompatibleBloodTypeID = BloodRequest.BloodTypeID
-             WHERE BloodTypeCompatibilty.BloodTypeID =@BloodTypeId AND BloodRequest.CityId=@CityId  ;";
+            var sqlQuery =
+                $@"SELECT br.* from BloodRequest br 
+		 inner join BloodTypeCompatibilty btc on br.BloodTypeID = btc.BloodTypeID
+         WHERE br.CityId = @CityId and btc.CompatibleBloodTypeID = @BloodTypeId ";
             return Connection.Query<BloodRequest>(
                 sqlQuery,
-                param: new{BloodTypeId = bloodTypeId, CityId = cityId},
+                param: new {BloodTypeId = bloodTypeId, CityId = cityId},
                 transaction: Transaction
             ).ToList();
-            
-              
         }
 
         public BloodRequest Find(int id)
@@ -51,7 +49,11 @@ namespace BloodDonation.DataAccess.Repositories
         {
             bloodRequest.ID = Connection.ExecuteScalar<int>(
                 "INSERT INTO BloodRequest(`RequestDate`, `Status`,`BloodTypeID`,`UserID`,`CityId`,`CenterName`) VALUES(@RequestDate,@Status,@BloodTypeID,@UserID,@CityId,@CenterName); SELECT LAST_INSERT_ID()",
-                param: new {RequestDate = DateTime.UtcNow, Status = 1, BloodTypeID = bloodRequest.BloodTypeID, UserID = 1, CityId = bloodRequest.CityId ,CenterName = bloodRequest.CenterName},
+                param: new
+                {
+                    RequestDate = DateTime.UtcNow, Status = 1, BloodTypeID = bloodRequest.BloodTypeID, UserID = 1,
+                    CityId = bloodRequest.CityId, CenterName = bloodRequest.CenterName
+                },
                 transaction: Transaction
             );
         }

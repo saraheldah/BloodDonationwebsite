@@ -24,5 +24,10 @@ namespace BloodDonation.Business.Managers
 
          User updatedUserEntity(string firstname, string lastname, string phone, DateTime birthDate, int city, int gender, int bloodType);
 
+         User becomeDonorEntity();
+
+         void BecomeDonor(User becomeDonor);
+         UserDTO Find(int id);
+
     }
 }

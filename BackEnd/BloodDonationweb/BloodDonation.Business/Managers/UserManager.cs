@@ -44,8 +44,7 @@ namespace BloodDonation.Business.Managers
 
         public List<UserDTO> FindDonorByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId )
         {
-            // int bloodTypeId;
-            // int cityId;
+            
             var DonorEntityList = _unitOfWork.UserRepository.FindDonorByCompatibleBloodTypeAndCity(bloodTypeId, cityId).ToList();
             var countries = _unitOfWork.CountryRepository.All().ToList();
             var cities = _unitOfWork.CityRepository.All().ToList();
@@ -115,6 +114,36 @@ namespace BloodDonation.Business.Managers
             User updatedPassword = new User();
             updatedPassword.Password = Password;
             return updatedPassword;
+        }
+
+        public User becomeDonorEntity()
+        {
+            User becomeDonor = new User();
+            becomeDonor.IsDonor = true;
+            return becomeDonor;
+        }
+
+        public void BecomeDonor(User becomeDonor)
+        {
+            _unitOfWork.UserRepository.Add(becomeDonor);
+            _unitOfWork.Commit();
+        }
+
+        public UserDTO Find(int id)
+        {
+            var userEntity = _unitOfWork.UserRepository.Find(id);
+            var city = _unitOfWork.CityRepository.Find(id);
+            var bloodtype = _unitOfWork.CityRepository.Find(id);
+            var userDtoList = _mapper.Map<UserDTO>(userEntity);
+
+            var relatedUserEntity = userEntity.Id;
+            var relatedCity = city.ID;
+            var relatedBloodType = bloodtype.ID;
+            
+            userDtoList.City = _mapper.Map<CityDTO>(relatedCity);
+            userDtoList.BloodType = _mapper.Map<BloodTypeDto>(relatedBloodType);
+            return userDtoList;
+
         }
     }
 }

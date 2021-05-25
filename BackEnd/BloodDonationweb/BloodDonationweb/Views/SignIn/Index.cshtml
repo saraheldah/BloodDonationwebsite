@@ -22,13 +22,13 @@
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
 		<form action="#">
-			<h1>Create Account</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			</div>
-			<span>or use your email for registration</span>
+			 <h1>Create Account</h1> 
+			@* <div class="social-container"> *@
+			@* 	<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> *@
+			@* 	<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a> *@
+			@* 	<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> *@
+			@* </div> *@
+			<span></span>
 			<input  type="text" placeholder="Name"/>
 			<input  type="email" placeholder="Email"/>
 			<input type="password" placeholder="Password"/>
@@ -38,16 +38,16 @@
 	<div class="form-container sign-in-container">
 		<form action="#">
 			<h1>Sign in</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			</div>
-			<span>or use your account</span>
+			@* <div class="social-container"> *@
+			@* 	<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> *@
+			@* 	<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a> *@
+			@* 	<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> *@
+			@* </div> *@
+			<span></span>
 			<input type="email" placeholder="Email"/>
 			<input type="password" placeholder="Password"/>
-			<a  asp-area="" asp-controller="Logged" asp-action="LoggedDonor">Forgot your password?</a> 
-			<button>Sign In</button>
+			<a  asp-area="" asp-controller="Logged" asp-action="Index">Forgot your password?</a> 
+			<a  asp-area="" asp-controller="Logged" asp-action="LoggedDonor" style="text-decoration: none; color: white"><button>Sign In</button></a>
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -60,7 +60,7 @@
 			<div class="overlay-panel overlay-right">
 				<h1>Hello, Friend!</h1>
 				<p>Enter your personal details and start journey with us</p>
-				<a  asp-area="" asp-controller="SignIn" asp-action="Registration" style="text-decoration: none"><button class="ghost" id="signUp">Sign Up</button></a>
+				<a  asp-area="" asp-controller="SignIn" asp-action="Registration" style="text-decoration: none; color: white"><button class="ghost" id="signUp">Sign Up</button></a>
 			</div>
 		</div>
 	</div>

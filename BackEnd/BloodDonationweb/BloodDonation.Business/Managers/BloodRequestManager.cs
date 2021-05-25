@@ -49,6 +49,7 @@ namespace BloodDonation.Business.Managers
               var requestEntityList = _unitOfWork.BloodRequestRepository.FindRequestByCompatibleBloodTypeAndCity(bloodTypeId, cityId).ToList();
               var cities = _unitOfWork.CityRepository.All().ToList();
               var users =  _unitOfWork.UserRepository.All().ToList();
+              var bloodTypes = _unitOfWork.BloodTypeRepository.All().ToList();
               var requestDtoList = _mapper.Map<List<BloodRequestDto>>(requestEntityList);
               
               foreach (var requestDto in requestDtoList)
@@ -56,28 +57,14 @@ namespace BloodDonation.Business.Managers
                   var relatedRequestEntity = requestEntityList.FirstOrDefault(x => x.ID == requestDto.ID);
                   var relatedCity = cities.FirstOrDefault(x=> x.ID == relatedRequestEntity.CityId);
                   var relatedUser = users.FirstOrDefault(x => x.Id == relatedRequestEntity.UserID);
+                  var relatedBloodType = bloodTypes.FirstOrDefault(x => x.ID == relatedRequestEntity.BloodTypeID);
                   requestDto.City = _mapper.Map<CityDTO>(relatedCity);
                   requestDto.UserInfo = _mapper.Map<UserDTO>(relatedUser);
+                  requestDto.BloodType = _mapper.Map<BloodTypeDto>(relatedBloodType);
+
 
               }
               return requestDtoList;
-              
-              // var bloodRequestEntityList = _unitOfWork.UserRepository.FindDonorByCompatibleBloodTypeAndCity(bloodTypeId, cityId).ToList();
-              // var countries = _unitOfWork.CountryRepository.All().ToList();
-              // var cities = _unitOfWork.CityRepository.All().ToList();
-              // var userDtoList = _mapper.Map<List<UserDTO>>(DonorEntityList);
-              //
-              // foreach (var donorUserDto in userDtoList)
-              // {
-              //     var relatedUserEntity = DonorEntityList.FirstOrDefault(x => x.Id == donorUserDto.Id);
-              //     var relatedCity = cities.FirstOrDefault(x=> x.ID == relatedUserEntity.CityId);
-              //     var relatedCountry = countries.FirstOrDefault(x=> x.ID == relatedUserEntity.CountryId);
-              //     donorUserDto.City = _mapper.Map<CityDTO>(relatedCity);
-              //     donorUserDto.Country = _mapper.Map<CountryDTO>(relatedCountry);
-              // }
-              // return userDtoList;
-
-
           }
     }
 }

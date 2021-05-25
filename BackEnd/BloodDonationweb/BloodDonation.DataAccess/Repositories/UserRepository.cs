@@ -35,11 +35,13 @@ namespace BloodDonation.DataAccess.Repositories
         public User Find(int id)
         {
             return Connection.Query<User>(
-                "SELECT * FROM User WHERE UserId = @UserId",
-                param: new { UserId = id },
+                "SELECT * FROM User WHERE Id = @Id",
+                param: new { Id = id },
                 transaction: Transaction
             ).FirstOrDefault();
         }
+        
+        
 
         public void Add(User newUser)
         {
@@ -66,6 +68,13 @@ namespace BloodDonation.DataAccess.Repositories
                 param: new { Password = updatedPassword.Password},
                 transaction: Transaction
             );
+        }
+
+        public void BecomeDonor(User becomeDonor)
+        {
+            Connection.Execute("Update User SET IsDonor = true WHERE Id=3",
+                transaction:Transaction
+                );
         }
 
         public void Delete(int id)

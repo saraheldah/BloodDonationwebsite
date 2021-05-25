@@ -34,7 +34,7 @@ namespace BloodDonationweb.Controllers
             _bloodRequest = bloodRequestManager;
         }
         // GET
-        [HttpPost]
+       
         public IActionResult Index(string email,string password,string fname,string lname,string phone,DateTime birthDate,int city,int gender,int bloodType)
         {
             
@@ -73,7 +73,8 @@ namespace BloodDonationweb.Controllers
         {
             List<BloodTypeDto> bloodList = _bloodTypeManager.GetAll();
             List<CityDTO> cityList = _cityManager.GetAll();
-            var tuple = new Tuple<List<BloodTypeDto>, List<CityDTO>>(bloodList, cityList);
+            UserDTO loggedUser = _userManager.Find(2);
+            var tuple = new Tuple<List<BloodTypeDto>, List<CityDTO>,UserDTO>(bloodList, cityList,loggedUser);
             return View(tuple);
         }
 
@@ -97,11 +98,6 @@ namespace BloodDonationweb.Controllers
             var bloodRequestentity = _bloodRequest.requestEntity(booldId, cityId,centerName);
             _bloodRequest.Add(bloodRequestentity);
             
-            
-// fill request DTO (compose)
-// in the manager map DTO to Entity (BloodRequest)
-// use repo.Add()
-// use unitofwork.Commit()
              List<UserDTO> objList = _userManager.FindDonorByCompatibleBloodTypeAndCity(booldId, city);
             return View(objList);
 
@@ -119,6 +115,13 @@ namespace BloodDonationweb.Controllers
         {
             var newPass = _userManager.changePasswordEntity(password);
             _userManager.UpdatePassword(newPass);
+            return View();
+        }
+
+        public IActionResult BecomeDonorAction()
+        {
+            var becomeDonor = _userManager.becomeDonorEntity();
+            _userManager.BecomeDonor(becomeDonor);
             return View();
         }
 

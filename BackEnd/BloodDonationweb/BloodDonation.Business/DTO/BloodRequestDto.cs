@@ -15,7 +15,7 @@ namespace BloodDonation.Business.DTO
         
         public object ProofDocument { get; set; }
         
-        public int BloodTypeID { get; set; }
+        public BloodTypeDto BloodType { get; set; }
         
         // public int UserID { get; set; }
         

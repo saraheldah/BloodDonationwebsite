@@ -7,7 +7,7 @@
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h4 class="text-primary" style="margin-top: 120px ; color:black">Pending Requests </h4>
+            <h4 class="text-primary" style="margin-top: 120px ; color:black">Requests that are compatible with your bloodtype </h4>
         </div>
         <div class="col-6">
         </div>
@@ -33,6 +33,10 @@
             <th>
                 Center Name
             </th>
+            <th>
+                Requested bloodtype
+            </th>
+            
             </thead>
             <tbody>
             @foreach (var request in Model)
@@ -43,6 +47,10 @@
                     <td width="30%">@request.UserInfo.Email</td>
                     <td width="30%">@request.UserInfo.Phone</td>
                     <td width="30%">@request.CenterName</td>
+                    <td width="30%">@request.BloodType.Name</td>
+                    <td width="30%">
+                        <button type="submit" value="submit" class="SubmitFormBtn">Accept</button> 
+                        </td>
 
 
                 </tr>
