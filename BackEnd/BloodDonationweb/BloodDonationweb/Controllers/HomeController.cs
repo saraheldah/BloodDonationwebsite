@@ -6,7 +6,7 @@ using BloodDonation.Business.Managers;
 
 namespace BloodDonationweb.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : MyBaseController
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUserManager _userManager;
@@ -22,8 +22,7 @@ namespace BloodDonationweb.Controllers
 
         public IActionResult Index()
         {
-            var dtos = _bloodTypeManager.GetAll();
-            return View(dtos);
+            return View();
         }
         public IActionResult AboutUs()
         {

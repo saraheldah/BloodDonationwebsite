@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BloodDonationweb.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : MyBaseController
     {
         private readonly IUserManager _userManager;
         private readonly IBloodTypeManager _bloodTypeManager;
@@ -23,18 +23,7 @@ namespace BloodDonationweb.Controllers
             _bloodTypeManager = bloodTypeManager;
             _cityManager = cityManager;
         }
-        private async Task ClaimsIdentity(UserDTO user)
-        {
-            var identity = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Name, user.FirstName + " " + user.LastName),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Role, user.Role.ToString())
-            }, CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(identity);
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-        }
+
 
 
         // GET
@@ -48,21 +37,43 @@ namespace BloodDonationweb.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(string email, string password)
+        public IActionResult Login(string email, string password)
         {
+            if (email is null)
+            {
+                throw new System.ArgumentNullException(nameof(email));
+            }
+
+            if (password is null)
+            {
+                throw new System.ArgumentNullException(nameof(password));
+            }
+
+            UserDTO user;
             if (email == "saeed.eldah@gmail.com" && password == "123")
             {
-                var user = new UserDTO()
+                user = new UserDTO()
                 {
                     FirstName = "Saeed",
-                    Role = Role.Donner,
+                    Role = Role.Donor,
                     Email = email
                 };
-
-                UserManagement<UserDTO>.Authinticate(Response, user);
-                return RedirectToAction("Index", "Logged");
             }
-            return RedirectToAction("LogIn", "Account", "0");
+            else
+            {
+                user = _userManager.GetUserByEmailAndPassword(email, password);
+            }
+
+            if (user == null) return RedirectToAction("LogIn", "Account", "0");
+
+            UserManagement<UserDTO>.Authinticate(Response, user);
+            return RedirectToAction("Index", "Logged");
+        }
+
+        public IActionResult LogOut()
+        {
+            UserManagement<UserDTO>.LogOut(Response);
+            return RedirectToAction("Index", "Home");
         }
 
     }

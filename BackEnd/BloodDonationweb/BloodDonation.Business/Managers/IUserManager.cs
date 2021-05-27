@@ -7,9 +7,9 @@ namespace BloodDonation.Business.Managers
 {
     public interface IUserManager
     {
-        void LogIn();
-        
+
         List<UserDTO> GetAll();
+        UserDTO GetUserByEmailAndPassword(string email, string apssword);
 
         List<UserDTO> FindDonorByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId);
         void Add(User newUser);
@@ -18,16 +18,15 @@ namespace BloodDonation.Business.Managers
 
         void UpdatePassword(User updatedPassword);
 
-        User changePasswordEntity(string Password);
+        User ChangePasswordEntity(string Password);
 
-         User userEntity(string email,string password,string fname,string lname,string phone,DateTime birthDate,int city,int gender,int bloodType);
+        User UserEntity(string email, string password, string fname, string lname, string phone, DateTime birthDate, int city, int gender, int bloodType);
 
-         User updatedUserEntity(string firstname, string lastname, string phone, DateTime birthDate, int city, int gender, int bloodType);
+        User UpdatedUserEntity(string firstname, string lastname, string phone, DateTime birthDate, int city, int gender, int bloodType);
 
-         User becomeDonorEntity();
 
-         void BecomeDonor(User becomeDonor);
-         UserDTO Find(int id);
+        void MakeUserDonor(UserDTO user);
+        UserDTO Find(int id);
 
     }
 }

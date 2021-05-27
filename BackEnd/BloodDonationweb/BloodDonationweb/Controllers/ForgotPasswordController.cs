@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BloodDonationweb.Controllers
 {
-    public class ForgotPasswordController : Controller
+    public class ForgotPasswordController : MyBaseController
     {
         public IActionResult Index()
         {

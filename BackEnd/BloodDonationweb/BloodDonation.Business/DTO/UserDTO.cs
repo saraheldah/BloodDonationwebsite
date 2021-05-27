@@ -3,7 +3,7 @@ using BloodDonation.Common;
 
 namespace BloodDonation.Business.DTO
 {
-  
+
 
     public class UserDTO
     {
@@ -17,7 +17,8 @@ namespace BloodDonation.Business.DTO
         public Role Role { get; set; }
         public string Phone { get; set; }
 
-        public bool IsDonor { get; set; }
+        private bool _isDonor;
+        public bool IsDonor { get { return Role == Role.Donor ? true : false; } set { _isDonor = value; } }
 
         public BloodTypeDto BloodType { get; set; }
 

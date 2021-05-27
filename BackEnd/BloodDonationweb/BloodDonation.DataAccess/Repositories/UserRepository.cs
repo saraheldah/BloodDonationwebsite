@@ -1,4 +1,5 @@
-﻿using BloodDonation.DataAccess.Entities;
+﻿using BloodDonation.Common;
+using BloodDonation.DataAccess.Entities;
 using Dapper;
 using System.Collections.Generic;
 using System.Data;
@@ -18,7 +19,7 @@ namespace BloodDonation.DataAccess.Repositories
                 transaction: Transaction
             ).ToList();
         }
-        
+
         public IEnumerable<User> FindDonorByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId)
         {
             var sqlQuery = $@"SELECT * FROM `blood-donner`.USER U 
@@ -26,12 +27,12 @@ namespace BloodDonation.DataAccess.Repositories
  WHERE BTC.BloodTypeID = @BloodTypeId AND U.CityId=@CityId AND U.IsDonor=true;";
             return Connection.Query<User>(
                 sqlQuery,
-                param: new{BloodTypeId = bloodTypeId, CityId = cityId},
+                param: new { BloodTypeId = bloodTypeId, CityId = cityId },
                 transaction: Transaction
             ).ToList();
         }
 
-        
+
         public User Find(int id)
         {
             return Connection.Query<User>(
@@ -40,14 +41,31 @@ namespace BloodDonation.DataAccess.Repositories
                 transaction: Transaction
             ).FirstOrDefault();
         }
-        
-        
+        public User GetByEmailAndPassword(string email, string password)
+        {
+            if (email is null)
+            {
+                throw new System.ArgumentNullException(nameof(email));
+            }
+
+            if (password is null)
+            {
+                throw new System.ArgumentNullException(nameof(password));
+            }
+
+            return Connection.Query<User>(
+                "SELECT * FROM User WHERE email = @email and password = @password",
+                param: new { email, password },
+                transaction: Transaction
+            ).FirstOrDefault();
+        }
+
 
         public void Add(User newUser)
         {
             newUser.Id = Connection.ExecuteScalar<int>(
                 "INSERT INTO User(Fname,Lname,DOB,Gender,Phone,Email,Password,IsDonor,Role,BloodTypeID,CountryId,CityId) VALUES(@fname,@lname,@DOB,@Gender,@Phone,@Email,@Password,@IsDonor,@Role,@BloodTypeID,@CountryId,@CityId); SELECT LAST_INSERT_ID()",
-                param: new { Fname = newUser.Fname, Lname = newUser.Lname,DOB = newUser.DOB ,Gender = newUser.Gender ,Phone = newUser.Phone,Email = newUser.Phone,Password = newUser.Password,IsDonor = false,Role =1,BloodTypeID = newUser.BloodTypeID,CountryId = 125,CityId= newUser.CityId},
+                param: new { Fname = newUser.Fname, Lname = newUser.Lname, DOB = newUser.DOB, Gender = newUser.Gender, Phone = newUser.Phone, Email = newUser.Phone, Password = newUser.Password, IsDonor = false, Role = 1, BloodTypeID = newUser.BloodTypeID, CountryId = 125, CityId = newUser.CityId },
                 transaction: Transaction
             );
         }
@@ -56,24 +74,25 @@ namespace BloodDonation.DataAccess.Repositories
         {
             Connection.Execute(
                 "UPDATE User SET Fname = @Fname, Lname = @Lname, DOB = @DOB , phone = @phone , Gender = @Gender, BloodTypeID = @BloodTypeID , CityId=@CityId  WHERE Id = 3",
-               param: new { Fname = updatedUser.Fname, Lname = updatedUser.Lname, DOB = updatedUser.DOB, phone = updatedUser.Phone, Gender = updatedUser.Gender, BloodTypeID = updatedUser.BloodTypeID, CityId=updatedUser.CityId},
-                transaction: Transaction
-            );
-        }
-        
-        public void UpdatePassword(User updatedPassword)
-        {
-            Connection.Execute(
-                "UPDATE User SET Password = @Password WHERE Id = 3",
-                param: new { Password = updatedPassword.Password},
+               param: new { Fname = updatedUser.Fname, Lname = updatedUser.Lname, DOB = updatedUser.DOB, phone = updatedUser.Phone, Gender = updatedUser.Gender, BloodTypeID = updatedUser.BloodTypeID, CityId = updatedUser.CityId },
                 transaction: Transaction
             );
         }
 
-        public void BecomeDonor(User becomeDonor)
+        public void UpdatePassword(User updatedPassword)
         {
-            Connection.Execute("Update User SET IsDonor = true WHERE Id=3",
-                transaction:Transaction
+            Connection.Execute(
+                "UPDATE User SET Password = @password WHERE Id = @id",
+                param: new { password = updatedPassword.Password, id = updatedPassword.Id },
+                transaction: Transaction
+            );
+        }
+
+        public void MakeItDonor(int userId)
+        {
+            Connection.Execute("Update User SET IsDonor = true, Role = @role WHERE Id=@id",
+                param: new { id = userId, role = Role.Donor },
+                transaction: Transaction
                 );
         }
 

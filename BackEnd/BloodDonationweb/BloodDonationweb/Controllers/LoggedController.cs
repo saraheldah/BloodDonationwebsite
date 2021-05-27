@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BloodDonationweb.Controllers
 {
-    public class LoggedController : Controller
+    public class LoggedController : MyBaseController
     {
 
         private readonly IUserManager _userManager;
@@ -31,8 +31,7 @@ namespace BloodDonationweb.Controllers
         public IActionResult Index()
         {
             var user = UserManagement<UserDTO>.GetLoggedInUser(Request);
-            var userDto = new UserDTO() { IsDonor = false };
-            return View(userDto);
+            return View(user);
         }
 
 
@@ -48,6 +47,7 @@ namespace BloodDonationweb.Controllers
 
         public IActionResult BecomeDonor()
         {
+            var loggedInUser = UserManagement<UserDTO>.GetLoggedInUser(Request);
             return View();
         }
 
@@ -69,7 +69,7 @@ namespace BloodDonationweb.Controllers
         public IActionResult UpdatedUserInfo(string firstname, string lastname, string phone, DateTime birthDate, int city, int gender, int bloodType)
         {
             var DOB = birthDate.Date;
-            var newUpdateUserEntity = _userManager.updatedUserEntity(firstname, lastname, phone, DOB, city, gender, bloodType);
+            var newUpdateUserEntity = _userManager.UpdatedUserEntity(firstname, lastname, phone, DOB, city, gender, bloodType);
             _userManager.Update(newUpdateUserEntity);
 
             return View();
@@ -92,7 +92,12 @@ namespace BloodDonationweb.Controllers
 
         public IActionResult BloodRequests()
         {
-            List<BloodRequestDto> requestList = _bloodRequest.FindRequestByCompatibleBloodTypeAndCity(7, 7);
+            var user = GetLoggedInUser();
+            if (user.Role != Role.Donor)
+            {
+                return GoToHomePage();
+            }
+            List<BloodRequestDto> requestList = _bloodRequest.FindRequestByCompatibleBloodTypeAndCity(user.BloodType.ID, user.City.ID);
             return View(requestList);
         }
 
@@ -100,15 +105,18 @@ namespace BloodDonationweb.Controllers
         [HttpPost]
         public IActionResult UpdatePasswordAction(string password)
         {
-            var newPass = _userManager.changePasswordEntity(password);
+            var newPass = _userManager.ChangePasswordEntity(password);
             _userManager.UpdatePassword(newPass);
             return RedirectToAction("ChangePassword", "Logged", "1");
         }
 
         public IActionResult BecomeDonorAction()
         {
-            var becomeDonor = _userManager.becomeDonorEntity();
-            _userManager.BecomeDonor(becomeDonor);
+            var loggedInUser = UserManagement<UserDTO>.GetLoggedInUser(Request);
+            if (loggedInUser == null) return RedirectToAction("index", "Home");
+            if (loggedInUser.Role == Role.Donor) return RedirectToAction("index", "Home");
+
+            _userManager.MakeUserDonor(loggedInUser);
             return View();
         }
 

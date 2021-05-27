@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BloodDonationweb.Controllers
 {
-    public class RegistrationController : Controller
+    public class RegistrationController : MyBaseController
     {
 
         private readonly IUserManager _userManager;
@@ -33,7 +33,7 @@ namespace BloodDonationweb.Controllers
         public IActionResult Register(string email, string password, string fname, string lname, string phone,
             DateTime birthDate, int city, int gender, int bloodType)
         {
-            var newUserEntity = _userManager.userEntity(email, password, fname, lname, phone, birthDate, city, gender, bloodType);
+            var newUserEntity = _userManager.UserEntity(email, password, fname, lname, phone, birthDate, city, gender, bloodType);
             _userManager.Add(newUserEntity);
 
             return RedirectToAction("LogIn", "Account", "1");

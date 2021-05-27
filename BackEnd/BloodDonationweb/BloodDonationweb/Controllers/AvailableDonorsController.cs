@@ -12,7 +12,7 @@ using User = BloodDonation.DataAccess.Entities.User;
 
 namespace BloodDonationweb.Controllers
 {
-    public class AvailableDonorsController : Controller
+    public class AvailableDonorsController : MyBaseController
     {
         
         

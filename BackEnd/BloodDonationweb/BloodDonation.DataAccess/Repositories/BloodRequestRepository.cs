@@ -48,7 +48,8 @@ namespace BloodDonation.DataAccess.Repositories
         public void Add(BloodRequest bloodRequest)
         {
             bloodRequest.ID = Connection.ExecuteScalar<int>(
-                "INSERT INTO BloodRequest(`RequestDate`, `Status`,`BloodTypeID`,`UserID`,`CityId`,`CenterName`) VALUES(@RequestDate,@Status,@BloodTypeID,@UserID,@CityId,@CenterName); SELECT LAST_INSERT_ID()",
+                "INSERT INTO BloodRequest(`RequestDate`, `Status`,`BloodTypeID`,`UserID`,`CityId`,`CenterName`) " +
+                "VALUES(@RequestDate,@Status,@BloodTypeID,@UserID,@CityId,@CenterName); SELECT LAST_INSERT_ID()",
                 param: new
                 {
                     RequestDate = DateTime.UtcNow, Status = 1, BloodTypeID = bloodRequest.BloodTypeID, UserID = 1,
