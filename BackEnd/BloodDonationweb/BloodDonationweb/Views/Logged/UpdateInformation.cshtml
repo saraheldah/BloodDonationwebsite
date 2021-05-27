@@ -3,7 +3,7 @@
 
 @{
     Layout = "_LayoutUser";
-    
+
 }
 
 
@@ -13,109 +13,86 @@
 
     <link href="~/css/site.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/fc5ac8f09d.js" crossorigin="anonymous"></script>
-    <!--BlootStrap CDN-->
-    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content=
-          "width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body class="search-blood-body">
 
-<section class="search-blood">
-    
-    <div class="container">
-            
-        
+    <section class="search-blood">
 
-@using (Html.BeginForm("UpdatedUserInfo", "Logged", FormMethod.Post))
-                 {
-                     <input type="text" id="userId" name="firstname" placeholder="Your first name.." value="@Model.Item3.Id" hidden> 
+        <div class="container">
 
-                     <label for="fname">First Name</label> 
-                     <input type="text" id="fname" name="firstname" placeholder="Your first name.." value="@Model.Item3.FirstName"> 
-            
-                     <label for="lname">Last Name</label> 
-                     <input type="text" id="lname" name="lastname" placeholder="Your last name.." value="@Model.Item3.LastName"> 
-                     
-                    <label> Blood Type</label>
-                     <br>
-                     <select class="bloodtype-selector" id="blood-type" name="bloodType">
-                         <option value="@Model.Item3.BloodType.ID">@Model.Item3.BloodType.Name</option>
-                         @foreach (var bloodType in Model.Item1)
-                         {
-                           //  if (Model.Item3.BloodType.ID == bloodType.ID)
-                           //  {
-                                 <option value="@bloodType.ID">@bloodType.Name</option>
-                           //  }
-                          //   else
-                          //   {
-                          //       <option value="@Model.Item3.BloodType.ID ">@Model.Item3.BloodType.Name</option>
-                           //  }
-                
-                
-                         }
-                     </select>
-                     <label> 
-                         City
-                     </label>
-                     <br>
-                     <select class="City-selector" id="city" name="city">
-                         <option value="@Model.Item3.City.ID">@Model.Item3.City.CityName</option>
-                         @foreach (var city in Model.Item2)
-                         {
-                        //     if (Model.Item3.City.ID == city.ID)
-                        //     {
-                                 <option value="@city.ID">@city.CityName</option>
-                          //   }
-                         //    else
-                         //    {
-                         //        <option value="@Model.Item3.City.ID">@Model.Item3.City.CityName</option>
-                          //   }
-                             
-                
-                         }
-                     </select>
-                     <br>
-                          <label> Gender </label>
-                          <select id="bloodType" name="gender"> 
-                                 <option value="0">Male</option> 
-                                 <option value="1">Female</option>
-                         </select>
-                     <br>
-                     <br>
-                     <label for="age" id="label-age">Date of Birth</label>
-                     <br>
-                     <input type="date" id="birth-date" name="birthDate" value="@Model.Item3.DateOfBirth">
-            
-                     <br>
-                     <br>
-                     <label for="phone">Phone Number</label>
-                 <br>
-                 <input type="tel" id="phone" name="phone" value="@Model.Item3.Phone"/>
-                     <br>
-                     <br>
-            
-            
-                  <button type="submit" value="submit" class="SubmitFormBtn">Save Changes </button> 
-                  <button type="submit" value="submit" class="SubmitFormBtn">Cancel</button>
-            
-                  }
-                
+
+
+            @using (Html.BeginForm("UpdatedUserInfo", "Logged", FormMethod.Post))
+            {
+                <input type="text" id="userId" name="firstname" placeholder="Your first name.." value="@Model.Item3.Id" hidden>
+
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your first name.." value="@Model.Item3.FirstName">
+
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name.." value="@Model.Item3.LastName">
+
+                <label> Blood Type</label>
+                <br>
+                <select class="bloodtype-selector" id="blood-type" name="bloodType">
+                    <option value="@Model.Item3.BloodType.ID">@Model.Item3.BloodType.Name</option>
+                    @foreach (var bloodType in Model.Item1)
+                    {
+                        <option value="@bloodType.ID">@bloodType.Name</option>
+                    }
+                </select>
+                <label>
+                    City
+                </label>
+                <br>
+                <select class="City-selector" id="city" name="city">
+                    <option value="@Model.Item3.City.ID">@Model.Item3.City.CityName</option>
+                    @foreach (var city in Model.Item2)
+                    {
+                        <option value="@city.ID">@city.CityName</option>
+                    }
+                </select>
+                <br>
+                <label> Gender </label>
+                <select id="bloodType" name="gender">
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                </select>
+                <br>
+                <br>
+                <label for="age" id="label-age">Date of Birth</label>
+                <br>
+                <input type="date" id="birth-date" name="birthDate" value="@Model.Item3.DateOfBirth">
+
+                <br>
+                <br>
+                <label for="phone">Phone Number</label>
+                <br>
+                <input type="tel" id="phone" name="phone" value="@Model.Item3.Phone" />
+                <br>
+                <br>
+
+
+                <button type="submit" value="submit" class="SubmitFormBtn">Save Changes </button>
+                <button type="submit" value="submit" class="SubmitFormBtn">Cancel</button>
+
+            }
+
 
 
 
         </div>
     </section>
 
-      <script src="~/js/site.js"></script>  
-    </body>
+    <script src="~/js/site.js"></script>
+</body>
 </html>
 

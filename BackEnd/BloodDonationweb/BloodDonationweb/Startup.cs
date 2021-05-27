@@ -3,8 +3,11 @@ using BloodDonation.Business.Managers;
 using BloodDonation.Business.Mapping;
 using BloodDonation.DataAccess;
 using BloodDonation.DataAccess.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,6 +34,15 @@ namespace BloodDonationweb
             services.AddTransient<ICityManager, CityManager>();
             services.AddTransient<IBloodRequestManager, BloodRequestManager>();
 
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                //this lambda determines weather user cosent for non-essential cookie is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllersWithViews();
         }
 
@@ -50,6 +62,7 @@ namespace BloodDonationweb
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseRouting();
 

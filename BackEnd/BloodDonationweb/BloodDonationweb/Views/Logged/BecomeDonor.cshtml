@@ -3,132 +3,127 @@
     Layout = "_LayoutUser";
 }
 <html>
-    <head>
-        <title>Become a Donor</title>
+<head>
+    <title>Become a Donor</title>
 
-        <link href="~/css/site.css" rel="stylesheet" type="text/css">
-        <script src="https://kit.fontawesome.com/fc5ac8f09d.js" crossorigin="anonymous"></script>
-         <!--BlootStrap CDN-->
-          <!-- Latest compiled and minified CSS -->
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-          <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
-  
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content=
-         "width=device-width, initial-scale=1.0">
-     
-    </head>
-    <body class="search-blood-body">
-     <section class="search-blood"> 
-    
-      <div class="container">
-          
-          @using (Html.BeginForm("BecomeDonor", "Logged", FormMethod.Post))
-    {
-        <label>
-            Please answer the following questions:
-        </label>
-        <br>
-        <br>
-        <br>
-        <label>
-            Do you have diabetes?
-        </label>
-        <br>
-        <select id="bloodType" name="gender"> 
-            <option value="Yes">Yes</option> 
-            <option value="No">No</option>
-        </select>
-        <br>
-        <br>
-        <label>
-            Are you currently taking antibiotic or any other medication for an infection?
-        </label>
-        <select id="bloodType" name="gender"> 
-            <option value="Yes">Yes</option> 
-            <option value="No">No</option>
-        </select>
-        <br>
-        <br>
-        <label>
-            In the last 28 days have you had COVID-19? 
-        </label>
-        <select id="bloodType" name="gender"> 
-            <option value="Yes">Yes</option> 
-            <option value="No">No</option>
-        </select>
-        <br>
-        <br>
-        <label>
-            In the last 3 months did you donate?
-        </label>
-        <select id="bloodType" name="gender"> 
-            <option value="Yes">Yes</option> 
-            <option value="No">No</option>
-        </select>
-        <br>
-        <br>
-        <label>
-            In the last 3 months have you had a vaccination?
-        </label>
-        <select id="bloodType" name="gender"> 
-            <option value="Yes">Yes</option> 
-            <option value="No">No</option>
-        </select>
-        <br>
-        <br>
-        <label>
-            In the last 3 months have you had a tattoo?
-        </label>
-        <br>
-        <select id="bloodType" name="gender"> 
-            <option value="Yes">Yes</option> 
-            <option value="No">No</option>
-        </select>
-        <br>
-        <br>
-        <label>
-            In the last 3 months have you had skin or ear piercing?
-        </label>
-        <br>
-        <br>
-        <select id="bloodType" name="gender"> 
-            <option value="Yes">Yes</option> 
-            <option value="No">No</option>
-        </select>
-        <br>
-        <br>
-        <label>
-            In the last 6 months have you received blood or blood products?
-        </label>
-        <br>
-        <select id="bloodType" name="gender"> 
-            <option value="Yes">Yes</option> 
-            <option value="No">No</option>
-        </select>
-        <br>
-        <button type="submit" value="submit" class="SubmitFormBtn SendRequestBtn">
-            Submit
-        </button>
-        
-        
-    }
-      </div>
-     </section>
-    
+    <link href="~/css/site.css" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/fc5ac8f09d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body class="search-blood-body">
+    <section class="search-blood">
+
+        <div class="container">
+
+            @using (Html.BeginForm("BecomeDonor", "Logged", FormMethod.Post))
+            {
+                <label>
+                    Please answer the following questions:
+                </label>
+                <br>
+                <br>
+                <br>
+                <label>
+                    Do you have diabetes?
+                </label>
+                <br>
+                <select id="bloodType" name="gender">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <br>
+                <br>
+                <label>
+                    Are you currently taking antibiotic or any other medication for an infection?
+                </label>
+                <select id="bloodType" name="gender">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <br>
+                <br>
+                <label>
+                    In the last 28 days have you had COVID-19?
+                </label>
+                <select id="bloodType" name="gender">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <br>
+                <br>
+                <label>
+                    In the last 3 months did you donate?
+                </label>
+                <select id="bloodType" name="gender">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <br>
+                <br>
+                <label>
+                    In the last 3 months have you had a vaccination?
+                </label>
+                <select id="bloodType" name="gender">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <br>
+                <br>
+                <label>
+                    In the last 3 months have you had a tattoo?
+                </label>
+                <br>
+                <select id="bloodType" name="gender">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <br>
+                <br>
+                <label>
+                    In the last 3 months have you had skin or ear piercing?
+                </label>
+                <br>
+                <br>
+                <select id="bloodType" name="gender">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <br>
+                <br>
+                <label>
+                    In the last 6 months have you received blood or blood products?
+                </label>
+                <br>
+                <select id="bloodType" name="gender">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <br>
+                <button type="submit" value="submit" class="SubmitFormBtn SendRequestBtn">
+                    Submit
+                </button>
+
+
+            }
+        </div>
+    </section>
+
     <div class="bg-modal hidden" id="bg-modal">
         <div class="modal-content">
-          <div class="close">+</div>
-          <img src="./images/user1.png" alt="" class="user-icon">
-          <p style="color: black;">user's name</p>
-          <button type="button">Manage Your Profile</button>
-          <button type="button">Change Password</button>
+            <div class="close">+</div>
+            <img src="./images/user1.png" alt="" class="user-icon">
+            <p style="color: black;">user's name</p>
+            <button type="button">Manage Your Profile</button>
+            <button type="button">Change Password</button>
         </div>
-        </div>
-      <script src="~/js/site.js"></script>
-    </body>
+    </div>
+    <script src="~/js/site.js"></script>
+</body>
 </html>

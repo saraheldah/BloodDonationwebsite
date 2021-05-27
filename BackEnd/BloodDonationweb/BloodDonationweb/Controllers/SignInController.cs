@@ -22,49 +22,28 @@ namespace BloodDonationweb.Controllers
         private readonly IBloodTypeManager _bloodTypeManager;
         private readonly ICityManager _cityManager;
 
-        
-        public SignInController(IUserManager userManager , IBloodTypeManager bloodTypeManager,ICityManager cityManager)
+
+        public SignInController(IUserManager userManager, IBloodTypeManager bloodTypeManager, ICityManager cityManager)
         {
             _userManager = userManager;
             _bloodTypeManager = bloodTypeManager;
             _cityManager = cityManager;
         }
-        
+
         // GET
         public IActionResult Index()
         {
             return View();
         }
 
-        
-
-      
-     
-        public IActionResult Registration( string email,string password,string fname,string lname,string phone,DateTime birthDate,int city,int gender,int BloodType)
+        public IActionResult Authenticate(string email, string password)
         {
-            List<BloodTypeDto> bloodList = _bloodTypeManager.GetAll();
-            List<CityDTO> cityList = _cityManager.GetAll();
-            var tuple = new Tuple<List<BloodTypeDto>, List<CityDTO>>(bloodList, cityList);
-           
-
-
-           
-            
-            
-            return View(tuple);
+            if (email == "saeed.eldah@gmail.com" && password == "123")
+            {
+                return RedirectToAction("Index", "Logged");
+            }
+            return RedirectToAction("Index", "SignIn", "0");
         }
 
-     
- 
-
-   
-
-        public IActionResult ForgotPassword()
-        {
-            return View();
-        }
-
-
-    
     }
 }

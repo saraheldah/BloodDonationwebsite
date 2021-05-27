@@ -11,12 +11,12 @@
         <div class="col-6">
         </div>
     </div>
-    <br/>
+    <br />
     @if (Model.Any())
     {
         <table class="table table-bordered table-striped" style="width: 100% ">
             <thead>
-            
+
             <th>
                 First Name
             </th>
@@ -24,7 +24,7 @@
                 Last Name
             </th>
             <th>
-                Date of birth 
+                Date of birth
             </th>
             <th>
                 Gender
@@ -37,18 +37,18 @@
             </th>
             </thead>
             <tbody>
-            @foreach (var user in Model)
-            {
-                <tr>
-                    <td width="30%">@user.FirstName</td>
-                    <td width="30%">@user.LastName</td>
-                    <td width="30%">@user.DateOfBirth.ToString("yyyy-MM-dd")</td>
-                    <td width="30%">@user.Gender</td>
-                    <td width="30%">@user.Phone</td>
-                    <td width="30%">@user.Email</td>
-                    
-                </tr>
-            }
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td width="30%">@user.FirstName</td>
+                        <td width="30%">@user.LastName</td>
+                        <td width="30%">@user.DateOfBirth.ToString("yyyy-MM-dd")</td>
+                        <td width="30%">@user.Gender</td>
+                        <td width="30%">@user.Phone</td>
+                        <td width="30%">@user.Email</td>
+
+                    </tr>
+                }
             </tbody>
         </table>
     }

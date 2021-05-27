@@ -12,12 +12,12 @@
         <div class="col-6">
         </div>
     </div>
-    <br/>
+    <br />
     @if (Model.Any())
     {
         <table class="table table-bordered table-striped" style="width: 100% ">
             <thead>
-            
+
             <th>
                 First Name
             </th>
@@ -25,7 +25,7 @@
                 Last Name
             </th>
             <th>
-                Email 
+                Email
             </th>
             <th>
                 PhoneNumber
@@ -36,25 +36,25 @@
             <th>
                 Requested bloodtype
             </th>
-            
+
             </thead>
             <tbody>
-            @foreach (var request in Model)
-            {
-                <tr>
-                    <td width="30%">@request.UserInfo.FirstName</td>
-                    <td width="30%">@request.UserInfo.LastName</td>
-                    <td width="30%">@request.UserInfo.Email</td>
-                    <td width="30%">@request.UserInfo.Phone</td>
-                    <td width="30%">@request.CenterName</td>
-                    <td width="30%">@request.BloodType.Name</td>
-                    <td width="30%">
-                        <button type="submit" value="submit" class="SubmitFormBtn">Accept</button> 
+                @foreach (var request in Model)
+                {
+                    <tr>
+                        <td width="30%">@request.UserInfo.FirstName</td>
+                        <td width="30%">@request.UserInfo.LastName</td>
+                        <td width="30%">@request.UserInfo.Email</td>
+                        <td width="30%">@request.UserInfo.Phone</td>
+                        <td width="30%">@request.CenterName</td>
+                        <td width="30%">@request.BloodType.Name</td>
+                        <td width="30%">
+                            <button type="submit" value="submit" class="SubmitFormBtn">Accept</button>
                         </td>
 
 
-                </tr>
-            }
+                    </tr>
+                }
             </tbody>
         </table>
     }

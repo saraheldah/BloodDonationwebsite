@@ -121,7 +121,7 @@ namespace BloodDonationweb.Controllers
         {
             var newPass = _userManager.changePasswordEntity(password);
             _userManager.UpdatePassword(newPass);
-            return View();
+            return RedirectToAction("ChangePassword", "Logged", "1");
         }
 
         public IActionResult BecomeDonorAction()
@@ -130,16 +130,6 @@ namespace BloodDonationweb.Controllers
             _userManager.BecomeDonor(becomeDonor);
             return View();
         }
-
-        // public JsonResult Test(int id)
-        // {
-        //     var result = id;
-        //     var data = new {status = "ok", result = result};
-        //     return Json(data);
-        // }
-        
-        
-
        
     }
 }
