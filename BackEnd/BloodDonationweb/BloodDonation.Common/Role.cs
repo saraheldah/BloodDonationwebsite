@@ -2,7 +2,8 @@ namespace BloodDonation.Common
 {
     public enum Role
     {
-        User = 1,
-        Admin = 0
+        User = 0,
+        Donner = 1,
+        Admin = 2
     }
 }

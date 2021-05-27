@@ -36,7 +36,7 @@ namespace BloodDonationweb.Controllers
             var newUserEntity = _userManager.userEntity(email, password, fname, lname, phone, birthDate, city, gender, bloodType);
             _userManager.Add(newUserEntity);
 
-            return RedirectToAction("Index", "SignIn", "1");
+            return RedirectToAction("LogIn", "Account", "1");
         }
     }
 }

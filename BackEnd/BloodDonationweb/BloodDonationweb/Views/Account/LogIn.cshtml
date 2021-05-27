@@ -24,17 +24,14 @@
             <h3 id="thanks-message">thank you for the registration please sign in</h3>
             <h1>Sign in</h1>
             <span></span>
-            @using (Html.BeginForm("Authenticate", "SignIn", FormMethod.Post))
-            {
+
+            <form asp-action="Login" method="post">
                 <input type="email" name="email" placeholder="Email" />
                 <input type="password" name="password" placeholder="Password" />
-
                 <span id="signin-error-message" style="color: red">wrong username or password</span>
-
                 <a asp-area="" asp-controller="ForgotPassword" asp-action="Index">Forgot your password?</a>
                 <button type="submit" class="SubmitFormBtn">Sign In</button>
-            }
-
+            </form>
         </div>
         <div class="overlay-container">
             <div class="overlay">
