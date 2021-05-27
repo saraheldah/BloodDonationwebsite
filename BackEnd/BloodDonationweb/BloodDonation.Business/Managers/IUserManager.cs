@@ -27,6 +27,6 @@ namespace BloodDonation.Business.Managers
 
         void MakeUserDonor(UserDTO user);
         UserDTO Find(int id);
-
+        UserDTO GetByEmail(string email);
     }
 }

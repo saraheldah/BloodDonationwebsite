@@ -72,8 +72,8 @@ namespace BloodDonationweb.Controllers
 
         public IActionResult LogOut()
         {
-            UserManagement<UserDTO>.LogOut(Response);
-            return RedirectToAction("Index", "Home");
+            LogOutUser();
+            return GoToHomePage();
         }
 
     }

@@ -19,13 +19,22 @@ namespace BloodDonationweb.Controllers
         {
             UserManagement<UserDTO>.Authinticate(Response, user);
         }
-        protected void LogOut()
+        protected void LogOutUser()
         {
             UserManagement<UserDTO>.LogOut(Response);
         }
         protected IActionResult GoToHomePage()
         {
             return RedirectToAction("index", "Home");
+        }
+
+        protected IActionResult GoToLogIn(object routVale = null)
+        {
+            if (routVale == null)
+            {
+                return RedirectToAction("LogIn", "Account");
+            }
+            return RedirectToAction("LogIn", "Account", routVale);
         }
     }
 }

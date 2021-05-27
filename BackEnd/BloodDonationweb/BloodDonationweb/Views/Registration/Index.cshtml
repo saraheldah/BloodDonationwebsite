@@ -36,6 +36,7 @@
             <input type="email"
                    id="email"
                    placeholder="Email" name="email" />
+            <span id="email-exist-error-message" style="color: red">this email is already exist</span>
         </div>
 
         <div class="form-control">
@@ -129,7 +130,20 @@
             <input type="submit" value="Register" class="SubmitFormBtn" />
         </a>
     }
+    <script type="text/javascript">
+        $("#email-exist-error-message").hide();
 
+
+        if (window.location.hash) {
+            var hash = window.location.hash.substring(1);
+            if (hash == "1") {
+                $("#email-exist-error-message").show();
+            }
+            else {
+                $("#email-exist-error-message").show();
+            }
+        }
+    </script>
 </body>
 
 </html>

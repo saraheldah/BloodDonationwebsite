@@ -82,6 +82,17 @@ namespace BloodDonation.Business.Managers
             return newUser;
         }
 
+
+        public UserDTO GetByEmail(string email)
+        {
+            if (email is null)
+            {
+                throw new ArgumentNullException(nameof(email));
+            }
+
+            var user = _unitOfWork.UserRepository.GetByEmail(email);
+            return GetUserDtoWithRelatedEntities(user);
+        }
         public void Update(User updatedUser)
         {
             _unitOfWork.UserRepository.Update(updatedUser);

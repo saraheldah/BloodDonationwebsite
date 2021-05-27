@@ -61,6 +61,23 @@ namespace BloodDonation.DataAccess.Repositories
         }
 
 
+        public User GetByEmail(string email)
+        {
+            if (email is null)
+            {
+                throw new System.ArgumentNullException(nameof(email));
+            }
+
+
+
+            return Connection.Query<User>(
+                "SELECT * FROM User WHERE email = @email",
+                param: new { email },
+                transaction: Transaction
+            ).FirstOrDefault();
+        }
+
+
         public void Add(User newUser)
         {
             newUser.Id = Connection.ExecuteScalar<int>(
