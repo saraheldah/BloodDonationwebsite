@@ -35,19 +35,25 @@ namespace BloodDonationweb.Controllers
         }
         // GET
        
-        public IActionResult Index(string email,string password,string fname,string lname,string phone,DateTime birthDate,int city,int gender,int bloodType)
+        public IActionResult Index()
         {
             
+         //   var newUserEntity = _userManager.userEntity( email, password, fname, lname, phone, birthDate, city, gender, bloodType);
+         //   _userManager.Add(newUserEntity);
+            
+            // the following user is just a dummy user and it should be logged in user we should change it in the future 
+            
+            var userDto = new UserDTO() {IsDonor = false};
+            return View(userDto);
+        }
+
+        public IActionResult NewUser(string email, string password, string fname, string lname, string phone,
+            DateTime birthDate, int city, int gender, int bloodType)
+        {
             var newUserEntity = _userManager.userEntity( email, password, fname, lname, phone, birthDate, city, gender, bloodType);
             _userManager.Add(newUserEntity);
             return View();
         }
-
-        public IActionResult LoggedDonor()
-        {
-            return View();
-        }
-
         public IActionResult RequestBlood()
         {
             

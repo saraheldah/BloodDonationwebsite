@@ -48,18 +48,18 @@
                     <label> Blood Type</label>
                      <br>
                      <select class="bloodtype-selector" id="blood-type" name="bloodType">
-                         <option value="0">Please select</option>
+                         <option value="@Model.Item3.BloodType.ID">@Model.Item3.BloodType.Name</option>
                          @foreach (var bloodType in Model.Item1)
                          {
-                             if (Model.Item3.BloodType.ID == bloodType.ID)
-                             {
+                           //  if (Model.Item3.BloodType.ID == bloodType.ID)
+                           //  {
                                  <option value="@bloodType.ID">@bloodType.Name</option>
-                             }
-                             else
-                             {
-                                 <option value="@Model.Item3.BloodType.ID ">@Model.Item3.BloodType.Name</option>
-                             }
-                            
+                           //  }
+                          //   else
+                          //   {
+                          //       <option value="@Model.Item3.BloodType.ID ">@Model.Item3.BloodType.Name</option>
+                           //  }
+                
                 
                          }
                      </select>
@@ -68,17 +68,17 @@
                      </label>
                      <br>
                      <select class="City-selector" id="city" name="city">
-                         <option value="0">Please select</option>
+                         <option value="@Model.Item3.City.ID">@Model.Item3.City.CityName</option>
                          @foreach (var city in Model.Item2)
                          {
-                             if (Model.Item3.City.ID == city.ID)
-                             {
-                                 <option selected value="@city.ID">@city.CityName</option>
-                             }
-                             else
-                             {
-                                 <option value="@Model.Item3.City.ID">@Model.Item3.City.CityName</option>
-                             }
+                        //     if (Model.Item3.City.ID == city.ID)
+                        //     {
+                                 <option value="@city.ID">@city.CityName</option>
+                          //   }
+                         //    else
+                         //    {
+                         //        <option value="@Model.Item3.City.ID">@Model.Item3.City.CityName</option>
+                          //   }
                              
                 
                          }

@@ -14,7 +14,7 @@ namespace BloodDonation.Business.DTO
         public Gender Gender { get; set; }
         public string Email { get; set; }
 
-
+        public int Role { get; set; }
         public string Phone { get; set; }
 
         public bool IsDonor { get; set; }

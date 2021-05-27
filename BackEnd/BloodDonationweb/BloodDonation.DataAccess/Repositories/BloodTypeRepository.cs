@@ -23,7 +23,7 @@ namespace BloodDonation.DataAccess.Repositories
         public BloodType Find(int id)
         {
             return Connection.Query<BloodType>(
-                "SELECT * FROM BloodType WHERE BloodTypeId = @BloodTypeId",
+                "SELECT * FROM BloodType WHERE ID = @BloodTypeId",
                 param: new { BloodTypeId = id },
                 transaction: Transaction
             ).FirstOrDefault();

@@ -25,7 +25,7 @@ namespace BloodDonation.DataAccess.Repositories
         public City Find(int id)
         {
             return Connection.Query<City>(
-                "SELECT * FROM City WHERE CityId = @CityId",
+                "SELECT * FROM City WHERE Id = @CityId",
                 param: new { CityId = id },
                 transaction: Transaction
             ).FirstOrDefault();

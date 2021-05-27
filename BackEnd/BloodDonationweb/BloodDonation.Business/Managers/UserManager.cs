@@ -132,17 +132,13 @@ namespace BloodDonation.Business.Managers
         public UserDTO Find(int id)
         {
             var userEntity = _unitOfWork.UserRepository.Find(id);
-            var city = _unitOfWork.CityRepository.Find(id);
-            var bloodtype = _unitOfWork.CityRepository.Find(id);
-            var userDtoList = _mapper.Map<UserDTO>(userEntity);
-
-            var relatedUserEntity = userEntity.Id;
-            var relatedCity = city.ID;
-            var relatedBloodType = bloodtype.ID;
-            
-            userDtoList.City = _mapper.Map<CityDTO>(relatedCity);
-            userDtoList.BloodType = _mapper.Map<BloodTypeDto>(relatedBloodType);
-            return userDtoList;
+            if (userEntity == null) throw new Exception("user un available");
+            var city = _unitOfWork.CityRepository.Find(userEntity.CityId);
+            var bloodtype = _unitOfWork.BloodTypeRepository.Find(userEntity.BloodTypeID);
+            var userDTO = _mapper.Map<UserDTO>(userEntity);
+            userDTO.City = _mapper.Map<CityDTO>(city);
+            userDTO.BloodType = _mapper.Map<BloodTypeDto>(bloodtype);
+            return userDTO;
 
         }
     }
