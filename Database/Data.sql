@@ -323,7 +323,6 @@ INSERT INTO `blood-donner`.`City` (  `CityName`, `CountryId`) VALUES
 ('Chouf',125),
 ('Hasabaya',125),
 ('Hermel',125),
-('International',125),
 ('Jbeil',125),
 ('Jezzine',125),
 ('Keserouan',125),
