@@ -1,13 +1,8 @@
-using BloodDonation.Business.DTO;
 using BloodDonation.Business.Managers;
 using BloodDonation.Business.Mapping;
 using BloodDonation.DataAccess;
-using BloodDonation.DataAccess.Repositories;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
