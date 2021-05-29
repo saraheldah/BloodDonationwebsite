@@ -126,6 +126,8 @@
 
             </select>
         </div>
+        <span id="added-user-message" style="color: #ff0000">User has been added successfully</span>
+        <br>
 
         <a class="btn btn-half" asp-area="" asp-controller="Logged" asp-action="Index">
             <input type="submit" value="Register" class="SubmitFormBtn" />
@@ -137,6 +139,7 @@
     <script type="text/javascript">
         $("#email-exist-error-message").hide();
         $("#fill-missing-fields-error-message").hide();
+         $("#added-user-message").hide();
 
         if (window.location.hash) {
             var hash = window.location.hash.substring(1);
@@ -144,9 +147,14 @@
                 $("#email-exist-error-message").show();
            }
             else{
+                if (hash == "0") {
                 $("#fill-missing-fields-error-message").show();
-            }
+                }
+                else{
+                    $("#added-user-message").show();
+                }
         }
+            }
     </script>
 </body>
 

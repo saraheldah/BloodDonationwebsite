@@ -1,3 +1,4 @@
+@using BloodDonation.Common
 @model BloodDonation.Business.DTO.UserDTO
 @{
     ViewData["Title"] = "Home Page";
@@ -29,6 +30,12 @@
                         <h4 style="font-style: oblique;color: white;margin-top: 50px">Hello @Model.FirstName @Model.LastName</h4>
                         <h2 style="font-style: oblique">Donate your blood for a reason, let the reason to be life</h2>
                         <div class="btn-container" style="padding: 20px 0Px;">
+                            @if (user.Role == Role.Admin)
+                            {
+                                <a class="btn btn-half" asp-area="" asp-controller="Registration" asp-action="Index">Add User</a>
+                                <a class="btn btn-half" asp-area="" asp-controller="Logged" asp-action="SearchUser">Find User</a>
+                            }
+                            else{
                             <a class="btn btn-half" asp-area="" asp-controller="Logged" asp-action="RequestBlood">Request Blood</a>
                             @if (!user.IsDonor)
                             {
@@ -39,6 +46,7 @@
 
                                 <a class="btn btn-full" asp-area="" asp-controller="Logged" asp-action="BloodRequests">Blood Requests</a>
                             }
+                                }
 
                         </div>
 

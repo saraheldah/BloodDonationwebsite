@@ -40,8 +40,7 @@ namespace BloodDonationweb.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
-
+        
         public IActionResult RequestBlood()
         {
             try
@@ -58,8 +57,7 @@ namespace BloodDonationweb.Controllers
             }
             
         }
-
-
+        
         public IActionResult BecomeDonor()
         {
             try
@@ -159,15 +157,17 @@ namespace BloodDonationweb.Controllers
         [HttpPost]
         public IActionResult UpdatePasswordAction(string currentPassword,string newPassword,string confirmNewPassword)
         {
+            
             var user = GetLoggedInUser();
             if (currentPassword is null || newPassword is null || confirmNewPassword is null)
             {
                 return RedirectToAction("ChangePassword", "Logged", "3");
             }
-
+            
             if (newPassword == confirmNewPassword && user.Password == currentPassword)
             {
-                var newPass = _userManager.ChangePasswordEntity(newPassword , user.Id);
+                var newPassword1 = newPassword.Trim();
+                var newPass = _userManager.ChangePasswordEntity(newPassword1 , user.Id);
                 _userManager.UpdatePassword(newPass);
                 return RedirectToAction("ChangePassword", "Logged", "1");
             }
@@ -204,5 +204,21 @@ namespace BloodDonationweb.Controllers
             return RedirectToAction("BloodRequests", "Logged");
         }
 
+        
+        
+        //Admin 
+        public IActionResult SearchUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SearchUserAction(string email)
+        {
+            email = email.Trim().ToLower();
+            var user = _userManager.GetByEmail(email);
+            if (user != null) return RedirectToAction("SearchUser", "Logged", "1"); 
+            return View();
+        }
     }
 }
