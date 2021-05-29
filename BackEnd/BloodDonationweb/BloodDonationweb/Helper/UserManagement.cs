@@ -32,10 +32,10 @@ namespace BloodDonationweb.Helper
                 return null;
             }
             var token = request.Cookies[CookieKey];
-            if (!_loggedInUsers.ContainsKey(token))
-            {
-                return null;
-            }
+                if (!_loggedInUsers.ContainsKey(token))
+                {
+                    return null;
+                }
             return _loggedInUsers[token];
         }
 

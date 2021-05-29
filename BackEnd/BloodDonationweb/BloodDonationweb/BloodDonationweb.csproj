@@ -28,6 +28,7 @@
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Views\User\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\AvailableDonors\Index.cshtml" />
     </ItemGroup>
 
 </Project>

@@ -77,52 +77,32 @@ header nav ul li a:hover
 {
   color: rgb(214, 112, 112);
 }
-/*.slider a
-{
-    padding: 10px 50px;
-    margin-right: 10px;
-}*/
+
 .btn-container a
 {
   padding: 10px 50px;
   margin-right: 10px;
 }
-/*.slider a.btn-half 
-{
-    background-color:rgb(136, 38, 6);
-    color: white;
-    transition: 0.5s ease-in;
-}*/
+
 .btn-container a.btn-half
 {
   background-color:rgb(136, 38, 6);
   color: white;
   transition: 0.5s ease-in;
 }
-/*.slider a.btn-full
-{
-    background-color: rgb(136, 38, 6);
-    color: white;
-    transition: 0.5s ease-in;
-}*/
+
 .btn-container a.btn-full
 {
   background-color: rgb(136, 38, 6);
   color: white;
   transition: 0.5s ease-in;
 }
-/*.slider a.btn-half:hover 
-{
-    opacity: 0.8;
-}*/
+
 .btn-container a.btn-half:hover
 {
   opacity: 0.8;
 }
-/*.slider a.btn-full:hover
-{
-    opacity: 0.8;
-}*/
+
 .btn-container a.btn-full:hover
 {
   opacity: 0.8;
@@ -412,7 +392,8 @@ button.SubmitFormBtn:hover {
   background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(../images/donate3.jpg);
   background-repeat: no-repeat;
   background-position: center;
-  height: 680px;
+  height: 950px;
+  width: 100%;
   background-size: cover;
 
 }
@@ -420,25 +401,7 @@ i.far
 {
   font-size: 18px;
 }
-/*a.btn-donor
-{
-    background-color:rgb(136, 38, 6);
-    color: white;
-    transition: 0.5s ease-in;
-    border: 1px solid #777;
-    border-radius: 2px;
-    font-size: 15px;
-    display: block;
-    width: 20%;
-    margin: auto;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    opacity: 1;
-}
-.blood-search
-{
-    margin-top: 20px;
-}*/
+
 select.bloodtype-selector
 {
   width: 460px;
@@ -451,26 +414,6 @@ select.country-selector
   margin-top: 10px;
   margin-bottom: 12px;
 }
-
-
-/*a.btn-search
-{
-    background-color:rgb(136, 38, 6);
-    color: white;
-    transition: 0.5s ease-in;
-    border: 1px solid #777;
-    border-radius: 2px;
-    font-size: 15px;
-    display: block;
-    width: 150px;
-    margin: auto;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    margin-left: 450px;
-    opacity: 1;
-}*/
-
-
 
 input[type=text], select, textarea 
 {
@@ -502,6 +445,7 @@ input[type=submit]:hover
 .search-blood 
 {
   background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(../images/don2.jpeg);
+  height: 950px;
 }
 
 .search-blood-body
@@ -513,8 +457,6 @@ input[type=submit]:hover
 {
   margin-top: 120px;
 }
-
-
 
 /*eligibility requirements */
 .eligibility-requirements-area

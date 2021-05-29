@@ -26,6 +26,7 @@
     {
 
 
+        <span id="fill-missing-fields-error-message" style="color: #ff0000">please fill all the required fields</span>
 
         <div class="form-control">
             <label for="Email" id="label-name">
@@ -36,7 +37,7 @@
             <input type="email"
                    id="email"
                    placeholder="Email" name="email" />
-            <span id="email-exist-error-message" style="color: red">this email is already exist</span>
+            <span id="email-exist-error-message" style="color: #ff0000">this email already exists</span>
         </div>
 
         <div class="form-control">
@@ -130,17 +131,20 @@
             <input type="submit" value="Register" class="SubmitFormBtn" />
         </a>
     }
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/caroufredsel.js" type="text/javascript"></script>
     <script type="text/javascript">
         $("#email-exist-error-message").hide();
-
+        $("#fill-missing-fields-error-message").hide();
 
         if (window.location.hash) {
             var hash = window.location.hash.substring(1);
             if (hash == "1") {
                 $("#email-exist-error-message").show();
-            }
-            else {
-                $("#email-exist-error-message").show();
+           }
+            else{
+                $("#fill-missing-fields-error-message").show();
             }
         }
     </script>

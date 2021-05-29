@@ -9,8 +9,12 @@ namespace BloodDonation.Business.Managers
         List<BloodRequestDto> GetAll();
         void Add(BloodRequest bloodRequest);
 
-        BloodRequest requestEntity(int BloodType, int city,string HospitalName);
+        BloodRequest requestEntity(int BloodType, int city,string HospitalName,int UserId);
         
         List<BloodRequestDto> FindRequestByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId);
+
+        void UpdateRequestStatus(BloodRequest statusRequest);
+
+        BloodRequest StatusEntity(int id);
     }
 }

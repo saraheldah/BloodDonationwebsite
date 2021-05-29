@@ -65,7 +65,7 @@ namespace BloodDonation.Business.Managers
             _unitOfWork.Commit();
 
         }
-        public User UserEntity(string email, string password, string fname, string lname, string phone, DateTime birthDate, int city, int gender, int bloodType)
+        public User UserEntity(string email, string password, string fname, string lname, string phone, DateTime birthDate, int city, int gender, int bloodType,Role role)
         {
             User newUser = new User
             {
@@ -75,6 +75,7 @@ namespace BloodDonation.Business.Managers
                 Lname = lname,
                 Phone = phone,
                 DOB = birthDate.Date,
+                Role = role,
                 CityId = city,
                 Gender = (Gender)gender,
                 BloodTypeID = bloodType
@@ -91,6 +92,7 @@ namespace BloodDonation.Business.Managers
             }
 
             var user = _unitOfWork.UserRepository.GetByEmail(email);
+            if (user == null) return null;
             return GetUserDtoWithRelatedEntities(user);
         }
         public void Update(User updatedUser)
@@ -120,10 +122,12 @@ namespace BloodDonation.Business.Managers
             _unitOfWork.Commit();
         }
 
-        public User ChangePasswordEntity(string Password)
+
+        public User ChangePasswordEntity(string Password,int id)
         {
             User updatedPassword = new User();
             updatedPassword.Password = Password;
+            updatedPassword.Id = id;
             return updatedPassword;
         }
 
@@ -136,10 +140,14 @@ namespace BloodDonation.Business.Managers
         private UserDTO GetUserDtoWithRelatedEntities(User userEntity)
         {
             var userDTO = _mapper.Map<UserDTO>(userEntity);
-            var city = _unitOfWork.CityRepository.Find(userEntity.CityId);
-            var bloodtype = _unitOfWork.BloodTypeRepository.Find(userEntity.BloodTypeID);
-            userDTO.City = _mapper.Map<CityDTO>(city);
-            userDTO.BloodType = _mapper.Map<BloodTypeDto>(bloodtype);
+            if (userEntity != null)
+            {
+                var city = _unitOfWork.CityRepository.Find(userEntity.CityId);
+                var bloodtype = _unitOfWork.BloodTypeRepository.Find(userEntity.BloodTypeID);
+                userDTO.City = _mapper.Map<CityDTO>(city);
+                userDTO.BloodType = _mapper.Map<BloodTypeDto>(bloodtype);
+            }
+
             return userDTO;
         }
         public UserDTO Find(int id)
@@ -152,7 +160,7 @@ namespace BloodDonation.Business.Managers
         public UserDTO GetUserByEmailAndPassword(string email, string password)
         {
             var userEntity = _unitOfWork.UserRepository.GetByEmailAndPassword(email, password);
-            if (userEntity == null) throw new Exception("user un available");
+        //    if (userEntity == null) throw new Exception("user un available");
             return GetUserDtoWithRelatedEntities(userEntity);
         }
     }

@@ -28,7 +28,7 @@ namespace BloodDonation.DataAccess.Repositories
             var sqlQuery =
                 $@"SELECT br.* from BloodRequest br 
 		 inner join BloodTypeCompatibilty btc on br.BloodTypeID = btc.BloodTypeID
-         WHERE br.CityId = @CityId and btc.CompatibleBloodTypeID = @BloodTypeId ";
+         WHERE br.CityId = @CityId and btc.CompatibleBloodTypeID = @BloodTypeId and br.Status=0 ";
             return Connection.Query<BloodRequest>(
                 sqlQuery,
                 param: new {BloodTypeId = bloodTypeId, CityId = cityId},
@@ -52,20 +52,20 @@ namespace BloodDonation.DataAccess.Repositories
                 "VALUES(@RequestDate,@Status,@BloodTypeID,@UserID,@CityId,@CenterName); SELECT LAST_INSERT_ID()",
                 param: new
                 {
-                    RequestDate = DateTime.UtcNow, Status = 1, BloodTypeID = bloodRequest.BloodTypeID, UserID = 1,
+                    RequestDate = DateTime.UtcNow, Status = 0, BloodTypeID = bloodRequest.BloodTypeID, UserID = bloodRequest.UserID,
                     CityId = bloodRequest.CityId, CenterName = bloodRequest.CenterName
                 },
                 transaction: Transaction
             );
         }
 
-        public void Update(BloodRequest entity)
+        public void UpdateRequestStatus(BloodRequest statusRequest)
         {
-            //Connection.Execute(
-            //    "UPDATE City SET Name = @Name WHERE CityId = @CityId",
-            //    param: new { Name = entity.Name, CityId = entity.CityId },
-            //    transaction: Transaction
-            //);
+            Connection.Execute(
+                "UPDATE BloodRequest SET Status = 1 WHERE ID = @ID",
+                param: new { Status = 1, ID = statusRequest.ID },
+                transaction: Transaction
+            );
         }
 
         public void Delete(int id)

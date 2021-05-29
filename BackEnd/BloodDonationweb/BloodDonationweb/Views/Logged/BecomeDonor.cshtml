@@ -22,7 +22,7 @@
 
         <div class="container">
 
-            @using (Html.BeginForm("BecomeDonor", "Logged", FormMethod.Post))
+            @using (Html.BeginForm("BecomeDonorAction", "Logged", FormMethod.Post))
             {
                 <label>
                     Please answer the following questions:
@@ -34,7 +34,7 @@
                     Do you have diabetes?
                 </label>
                 <br>
-                <select id="bloodType" name="gender">
+                <select id="bloodType" name="diabetes">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
@@ -43,7 +43,7 @@
                 <label>
                     Are you currently taking antibiotic or any other medication for an infection?
                 </label>
-                <select id="bloodType" name="gender">
+                <select id="bloodType" name="antibiotic">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
@@ -52,7 +52,7 @@
                 <label>
                     In the last 28 days have you had COVID-19?
                 </label>
-                <select id="bloodType" name="gender">
+                <select id="bloodType" name="COVID">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
@@ -61,7 +61,7 @@
                 <label>
                     In the last 3 months did you donate?
                 </label>
-                <select id="bloodType" name="gender">
+                <select id="bloodType" name="donate">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
@@ -70,7 +70,7 @@
                 <label>
                     In the last 3 months have you had a vaccination?
                 </label>
-                <select id="bloodType" name="gender">
+                <select id="bloodType" name="vaccination">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
@@ -80,7 +80,7 @@
                     In the last 3 months have you had a tattoo?
                 </label>
                 <br>
-                <select id="bloodType" name="gender">
+                <select id="bloodType" name="tattoo">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
@@ -91,7 +91,7 @@
                 </label>
                 <br>
                 <br>
-                <select id="bloodType" name="gender">
+                <select id="bloodType" name="piercing">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
@@ -101,7 +101,7 @@
                     In the last 6 months have you received blood or blood products?
                 </label>
                 <br>
-                <select id="bloodType" name="gender">
+                <select id="bloodType" name="blood">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>

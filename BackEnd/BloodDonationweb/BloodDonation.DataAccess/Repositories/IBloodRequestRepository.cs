@@ -18,6 +18,6 @@ namespace BloodDonation.DataAccess.Repositories
         
         BloodRequest FindByName(string name);
         
-        void Update(BloodRequest entity);
+        void UpdateRequestStatus(BloodRequest statusRequest);
     }
 }

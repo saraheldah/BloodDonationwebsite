@@ -30,39 +30,78 @@ namespace BloodDonationweb.Controllers
         }
         public IActionResult Index()
         {
-            var user = UserManagement<UserDTO>.GetLoggedInUser(Request);
-            return View(user);
+            try
+            {
+                var user = UserManagement<UserDTO>.GetLoggedInUser(Request);
+                return View(user);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
 
         public IActionResult RequestBlood()
         {
-
-            List<BloodTypeDto> bloodList = _bloodTypeManager.GetAll();
-            List<CityDTO> cityList = _cityManager.GetAll();
-            var tuple = new Tuple<List<BloodTypeDto>, List<CityDTO>>(bloodList, cityList);
-            return View(tuple);
+            try
+            {
+                var user = GetLoggedInUser();
+                List<BloodTypeDto> bloodList = _bloodTypeManager.GetAll();
+                List<CityDTO> cityList = _cityManager.GetAll();
+                var tuple = new Tuple<List<BloodTypeDto>, List<CityDTO>>(bloodList, cityList);
+                return View(tuple);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
 
         public IActionResult BecomeDonor()
         {
-            var loggedInUser = UserManagement<UserDTO>.GetLoggedInUser(Request);
-            return View();
+            try
+            {
+                var user = GetLoggedInUser();
+                return View();  
+            
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public IActionResult ChangePassword()
         {
-            return View();
+            try
+            {
+                var user = GetLoggedInUser();
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public IActionResult UpdateInformation()
         {
-            List<BloodTypeDto> bloodList = _bloodTypeManager.GetAll();
-            List<CityDTO> cityList = _cityManager.GetAll();
-            UserDTO loggedUser = _userManager.Find(2);
-            var tuple = new Tuple<List<BloodTypeDto>, List<CityDTO>, UserDTO>(bloodList, cityList, loggedUser);
-            return View(tuple);
+            try
+            {
+                var user = GetLoggedInUser();
+                List<BloodTypeDto> bloodList = _bloodTypeManager.GetAll();
+                List<CityDTO> cityList = _cityManager.GetAll();
+                UserDTO loggedUser = _userManager.Find(user.Id);
+                var tuple = new Tuple<List<BloodTypeDto>, List<CityDTO>, UserDTO>(bloodList, cityList, loggedUser);
+                return View(tuple);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -72,52 +111,97 @@ namespace BloodDonationweb.Controllers
             var newUpdateUserEntity = _userManager.UpdatedUserEntity(firstname, lastname, phone, DOB, city, gender, bloodType);
             _userManager.Update(newUpdateUserEntity);
 
-            return View();
+            return RedirectToAction("UpdatedUserInfo", "Logged", "1");
         }
 
 
         [HttpPost]
         public IActionResult AvailableDonors(int BloodType, int city, string HospitalName)
         {
-            var booldId = BloodType;
-            var cityId = city;
-            var centerName = HospitalName;
-            var bloodRequestentity = _bloodRequest.requestEntity(booldId, cityId, centerName);
-            _bloodRequest.Add(bloodRequestentity);
+            try
+            {
+                var user = GetLoggedInUser();
+                var booldId = BloodType;
+                var cityId = city;
+                var centerName = HospitalName;
+                var bloodRequestentity = _bloodRequest.requestEntity(booldId, cityId, centerName,user.Id);
+                _bloodRequest.Add(bloodRequestentity);
 
-            List<UserDTO> objList = _userManager.FindDonorByCompatibleBloodTypeAndCity(booldId, city);
-            return View(objList);
+                List<UserDTO> objList = _userManager.FindDonorByCompatibleBloodTypeAndCity(booldId, city);
+                return View(objList);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
         }
 
         public IActionResult BloodRequests()
         {
-            var user = GetLoggedInUser();
-            if (user.Role != Role.Donor)
+            try
             {
-                return GoToHomePage();
+                var user = GetLoggedInUser();
+                if (user.Role != Role.Donor)
+                {
+                    return GoToHomePage();
+                }
+                List<BloodRequestDto> requestList = _bloodRequest.FindRequestByCompatibleBloodTypeAndCity(user.BloodType.ID, user.City.ID);
+                return View(requestList);
             }
-            List<BloodRequestDto> requestList = _bloodRequest.FindRequestByCompatibleBloodTypeAndCity(user.BloodType.ID, user.City.ID);
-            return View(requestList);
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
 
         [HttpPost]
-        public IActionResult UpdatePasswordAction(string password)
+        public IActionResult UpdatePasswordAction(string currentPassword,string newPassword,string confirmNewPassword)
         {
-            var newPass = _userManager.ChangePasswordEntity(password);
-            _userManager.UpdatePassword(newPass);
-            return RedirectToAction("ChangePassword", "Logged", "1");
+            var user = GetLoggedInUser();
+            if (currentPassword is null || newPassword is null || confirmNewPassword is null)
+            {
+                return RedirectToAction("ChangePassword", "Logged", "3");
+            }
+
+            if (newPassword == confirmNewPassword && user.Password == currentPassword)
+            {
+                var newPass = _userManager.ChangePasswordEntity(newPassword , user.Id);
+                _userManager.UpdatePassword(newPass);
+                return RedirectToAction("ChangePassword", "Logged", "1");
+            }
+            if (newPassword != confirmNewPassword) 
+            {
+                    return RedirectToAction("ChangePassword", "Logged", "0");
+            }
+            return RedirectToAction("ChangePassword", "Logged", "2");
+            
+
         }
 
-        public IActionResult BecomeDonorAction()
+        public IActionResult BecomeDonorAction(string diabetes,string antibiotic,string COVID,string donate,string vaccination,string tattoo,string piercing,string blood)
         {
+            
             var loggedInUser = UserManagement<UserDTO>.GetLoggedInUser(Request);
-            if (loggedInUser == null) return RedirectToAction("index", "Home");
-            if (loggedInUser.Role == Role.Donor) return RedirectToAction("index", "Home");
+            if (loggedInUser == null) return RedirectToAction("Index", "Home");
+            if (loggedInUser.Role == Role.Donor) return RedirectToAction("Index", "Home");
 
             _userManager.MakeUserDonor(loggedInUser);
-            return View();
+            loggedInUser.Role = Role.Donor;
+            LogOutUser();
+            AuthenticateUser(loggedInUser);
+            return RedirectToAction("Index", "Logged", "1");
+        }
+
+        [HttpPost]
+        public IActionResult DonateAction(int donate)
+        {
+            var user = GetLoggedInUser();
+            var requestId = donate;
+            var StatusEntity = _bloodRequest.StatusEntity(requestId);
+            _bloodRequest.UpdateRequestStatus(StatusEntity);
+            return RedirectToAction("BloodRequests", "Logged");
         }
 
     }

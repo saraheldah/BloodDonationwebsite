@@ -26,15 +26,10 @@
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <div class="title">
-                        <h2 style="font-style: oblique;">Donate your blood for a reason, let the reason to be life</h2>
+                        <h4 style="font-style: oblique;color: white;margin-top: 50px">Hello @Model.FirstName @Model.LastName</h4>
+                        <h2 style="font-style: oblique">Donate your blood for a reason, let the reason to be life</h2>
                         <div class="btn-container" style="padding: 20px 0Px;">
-                            IsD
                             <a class="btn btn-half" asp-area="" asp-controller="Logged" asp-action="RequestBlood">Request Blood</a>
-                            @if (user.Role == 0)
-                            {
-                                <a class="btn btn-full" asp-area="" asp-controller="Logged" asp-action="BecomeDonor">Add User</a>
-                                <a class="btn btn-full" asp-area="" asp-controller="Logged" asp-action="BecomeDonor">Delete User</a>
-                            }
                             @if (!user.IsDonor)
                             {
                                 <a class="btn btn-full" asp-area="" asp-controller="Logged" asp-action="BecomeDonor">Become a Donor</a>

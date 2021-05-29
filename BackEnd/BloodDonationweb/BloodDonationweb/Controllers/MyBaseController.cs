@@ -25,7 +25,7 @@ namespace BloodDonationweb.Controllers
         }
         protected IActionResult GoToHomePage()
         {
-            return RedirectToAction("index", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         protected IActionResult GoToLogIn(object routVale = null)

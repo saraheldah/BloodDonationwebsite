@@ -55,7 +55,7 @@ namespace BloodDonation.DataAccess.Repositories
 
             return Connection.Query<User>(
                 "SELECT * FROM User WHERE email = @email and password = @password",
-                param: new { email, password },
+                param: new { Email = email, Password = password },
                 transaction: Transaction
             ).FirstOrDefault();
         }
@@ -67,9 +67,7 @@ namespace BloodDonation.DataAccess.Repositories
             {
                 throw new System.ArgumentNullException(nameof(email));
             }
-
-
-
+            
             return Connection.Query<User>(
                 "SELECT * FROM User WHERE email = @email",
                 param: new { email },
@@ -82,7 +80,7 @@ namespace BloodDonation.DataAccess.Repositories
         {
             newUser.Id = Connection.ExecuteScalar<int>(
                 "INSERT INTO User(Fname,Lname,DOB,Gender,Phone,Email,Password,IsDonor,Role,BloodTypeID,CountryId,CityId) VALUES(@fname,@lname,@DOB,@Gender,@Phone,@Email,@Password,@IsDonor,@Role,@BloodTypeID,@CountryId,@CityId); SELECT LAST_INSERT_ID()",
-                param: new { Fname = newUser.Fname, Lname = newUser.Lname, DOB = newUser.DOB, Gender = newUser.Gender, Phone = newUser.Phone, Email = newUser.Phone, Password = newUser.Password, IsDonor = false, Role = 1, BloodTypeID = newUser.BloodTypeID, CountryId = 125, CityId = newUser.CityId },
+                param: new { Fname = newUser.Fname, Lname = newUser.Lname, DOB = newUser.DOB, Gender = newUser.Gender, Phone = newUser.Phone, Email = newUser.Email, Password = newUser.Password, IsDonor = false, Role = newUser.Role, BloodTypeID = newUser.BloodTypeID, CountryId = 125, CityId = newUser.CityId },
                 transaction: Transaction
             );
         }
@@ -90,8 +88,8 @@ namespace BloodDonation.DataAccess.Repositories
         public void Update(User updatedUser)
         {
             Connection.Execute(
-                "UPDATE User SET Fname = @Fname, Lname = @Lname, DOB = @DOB , phone = @phone , Gender = @Gender, BloodTypeID = @BloodTypeID , CityId=@CityId  WHERE Id = 3",
-               param: new { Fname = updatedUser.Fname, Lname = updatedUser.Lname, DOB = updatedUser.DOB, phone = updatedUser.Phone, Gender = updatedUser.Gender, BloodTypeID = updatedUser.BloodTypeID, CityId = updatedUser.CityId },
+                "UPDATE User SET Fname = @Fname, Lname = @Lname, DOB = @DOB , phone = @phone , Gender = @Gender, BloodTypeID = @BloodTypeID , CityId=@CityId  WHERE Id =@Id",
+               param: new { Fname = updatedUser.Fname, Lname = updatedUser.Lname, DOB = updatedUser.DOB, phone = updatedUser.Phone, Gender = updatedUser.Gender, BloodTypeID = updatedUser.BloodTypeID, CityId = updatedUser.CityId,Id=updatedUser.Id },
                 transaction: Transaction
             );
         }

@@ -34,13 +34,28 @@ namespace BloodDonation.Business.Managers
           
 
 
-          public BloodRequest requestEntity(int BloodType,int city,string HospitalName)
+          public BloodRequest requestEntity(int BloodType,int city,string HospitalName,int UserId)
           {
               BloodRequest bloodRequest = new BloodRequest();
               bloodRequest.BloodTypeID = BloodType;
               bloodRequest.CityId = city;
               bloodRequest.CenterName = HospitalName;
+              bloodRequest.UserID = UserId;
               return bloodRequest;
+          }
+
+
+          public BloodRequest StatusEntity(int id)
+          {
+              BloodRequest statusRequest = new BloodRequest();
+              statusRequest.ID = id;
+              statusRequest.Status = 1;
+              return statusRequest;
+          }
+          public void UpdateRequestStatus(BloodRequest statusRequest)
+          {
+              _unitOfWork.BloodRequestRepository.UpdateRequestStatus(statusRequest);
+              _unitOfWork.Commit();
           }
           
           public List<BloodRequestDto> FindRequestByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId )

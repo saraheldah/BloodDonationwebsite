@@ -21,14 +21,15 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-in-container">
-            <h3 id="thanks-message">thank you for the registration please sign in</h3>
-            <h1>Sign in</h1>
+            <h3 id="thanks-message" style="color: #3c97bf">thank you for the registration please sign in</h3>
+            <h1 style="text-align: center">Sign in</h1>
             <span></span>
 
             <form asp-action="Login" method="post">
                 <input type="email" name="email" placeholder="Email" />
                 <input type="password" name="password" placeholder="Password" />
-                <span id="signin-error-message" style="color: red">wrong username or password</span>
+                <span id="signin-error-message" style="color: red">wrong email or password</span>
+                <span id="fill-fields-message" style="color: red">please fill all the required fields</span>
                 <a asp-area="" asp-controller="ForgotPassword" asp-action="Index">Forgot your password?</a>
                 <button type="submit" class="SubmitFormBtn">Sign In</button>
             </form>
@@ -49,6 +50,7 @@
     <script type="text/javascript">
         $("#thanks-message").hide();
         $("#signin-error-message").hide();
+        $("#fill-fields-message").hide();
 
         if (window.location.hash) {
             var hash = window.location.hash.substring(1);
@@ -56,7 +58,12 @@
                 $("#thanks-message").show();
             }
             else {
+                if (hash == "0"){
                 $("#signin-error-message").show();
+                }
+                else {
+                    $("#fill-fields-message").show();
+                }
             }
         }
     </script>

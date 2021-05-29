@@ -39,6 +39,8 @@
 
             </thead>
             <tbody>
+            @using (Html.BeginForm("DonateAction", "Logged", FormMethod.Post))
+            {
                 @foreach (var request in Model)
                 {
                     <tr>
@@ -49,12 +51,14 @@
                         <td width="30%">@request.CenterName</td>
                         <td width="30%">@request.BloodType.Name</td>
                         <td width="30%">
-                            <button type="submit" value="submit" class="SubmitFormBtn">Accept</button>
+                            <button type="submit" name="donate" value="@request.ID" class="SubmitFormBtn">Donate</button>
                         </td>
 
 
                     </tr>
                 }
+            }
+  
             </tbody>
         </table>
     }

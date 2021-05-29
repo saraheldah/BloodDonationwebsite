@@ -28,10 +28,7 @@ namespace BloodDonationweb.Controllers
 
         // GET
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+     
         public IActionResult LogIn()
         {
             return View();
@@ -39,15 +36,16 @@ namespace BloodDonationweb.Controllers
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            if (email is null)
+            if (email is null || password is null)
             {
-                throw new System.ArgumentNullException(nameof(email));
+                return RedirectToAction("LogIn", "Account", "2");
+                //throw new System.ArgumentNullException(nameof(email));
             }
 
-            if (password is null)
-            {
-                throw new System.ArgumentNullException(nameof(password));
-            }
+         //   if (password is null)
+          //  {
+         //       throw new System.ArgumentNullException(nameof(password));
+        //    }
 
             UserDTO user;
             if (email == "saeed.eldah@gmail.com" && password == "123")
