@@ -1,8 +1,11 @@
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BloodDonation.Business.DTO;
 using BloodDonation.Business.Managers;
 using BloodDonation.Common;
+using BloodDonation.DataAccess;
+using BloodDonation.DataAccess.Repositories;
 using BloodDonationweb.Helper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -15,13 +18,16 @@ namespace BloodDonationweb.Controllers
         private readonly IUserManager _userManager;
         private readonly IBloodTypeManager _bloodTypeManager;
         private readonly ICityManager _cityManager;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IResetPasswordRepository _password;
 
 
-        public AccountController(IUserManager userManager, IBloodTypeManager bloodTypeManager, ICityManager cityManager)
+        public AccountController(IUserManager userManager, IBloodTypeManager bloodTypeManager, ICityManager cityManager, IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _bloodTypeManager = bloodTypeManager;
             _cityManager = cityManager;
+            _unitOfWork = unitOfWork;
         }
 
 
@@ -72,6 +78,24 @@ namespace BloodDonationweb.Controllers
         {
             LogOutUser();
             return GoToHomePage();
+        }
+
+
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+        public IActionResult ResetPasswordAction(string email)
+        {
+            var user = _userManager.GetByEmail(email);
+            if(email is null) return RedirectToAction("Index", "ForgotPassword", "0");
+            if (user != null) return RedirectToAction("Index", "ForgotPassword", "1");
+            var Code = Guid.NewGuid();
+            var newResetPasswordEntity =_unitOfWork.ResetPasswordRepository.ResetPasswordEntity(user.Id, Code.ToString(), true);
+            _unitOfWork.ResetPasswordRepository.Add(newResetPasswordEntity);
+            _unitOfWork.Commit();
+            // redirect to page with message 
+            
         }
 
     }

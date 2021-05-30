@@ -16,6 +16,7 @@ namespace BloodDonation.DataAccess
         ICityRepository CityRepository { get; }
         
         ICountryRepository CountryRepository { get; }
+        IResetPasswordRepository ResetPasswordRepository { get; }
         
         
 

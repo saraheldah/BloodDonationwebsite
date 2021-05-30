@@ -19,6 +19,7 @@ namespace BloodDonation.DataAccess
         private IDonationHistoryRepository _donationHistoryRepository;
         private ICityRepository _cityRepository;
         private ICountryRepository _countryRepository;
+        private IResetPasswordRepository _passwordRepository;
         
 
 
@@ -62,7 +63,10 @@ namespace BloodDonation.DataAccess
         {
             get { return _countryRepository ??= new CountryRepository(_transaction); }
         }
-
+        public IResetPasswordRepository ResetPasswordRepository
+        {
+            get { return _passwordRepository ??= new ResetPasswordRepository(_transaction); }
+        }
 
         public void Commit()
         {

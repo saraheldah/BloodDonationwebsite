@@ -68,6 +68,7 @@ namespace BloodDonationweb.Controllers
                 // {
                 //     throw new ArgumentNullException(nameof(fname));
                 // }
+                
                 email = email.Trim().ToLower();
                 password = password.Trim();
                 var user = _userManager.GetByEmail(email);
