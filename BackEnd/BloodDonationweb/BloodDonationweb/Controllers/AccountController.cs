@@ -85,7 +85,7 @@ namespace BloodDonationweb.Controllers
         {
             return View();
         }
-        public IActionResult ResetPasswordAction(string email)
+        public IActionResult ResetPasswordRequest(string email)
         {
             var user = _userManager.GetByEmail(email);
             if(email is null) return RedirectToAction("Index", "ForgotPassword", "0");
@@ -95,7 +95,34 @@ namespace BloodDonationweb.Controllers
             _unitOfWork.ResetPasswordRepository.Add(newResetPasswordEntity);
             _unitOfWork.Commit();
             // redirect to page with message 
-            
+            return View();
+        }
+        public IActionResult ResetPassword([FromQuery(Name = "code")] string code)
+        {
+            var x = code;
+            if (code is null)
+            {
+                throw new ArgumentNullException(nameof(code));
+            }
+            // if code exist in the database and the status valis then redirect to  reset password
+            // (two input to set the new password)
+            // else redirect to error page (invalid link)
+
+
+            var isValid = _unitOfWork.ResetPasswordRepository.IsValidCode(code);
+
+            if (isValid)
+            {
+                // update the ResetPassword row and set Status to 0
+                _unitOfWork.ResetPasswordRepository.ConsumeLink(code);
+
+                // redirect to  reset password
+            }
+            else
+            {
+                // redirect to error page (invalid link)
+            }
+            return View();
         }
 
     }
