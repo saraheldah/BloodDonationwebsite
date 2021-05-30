@@ -111,19 +111,19 @@ namespace BloodDonation.DataAccess.Repositories
                 );
         }
 
-        public void Delete(int id)
+        public void DeleteUser(int id)
         {
-            //Connection.Execute(
-            //    "DELETE FROM User WHERE UserId = @UserId",
-            //    param: new { UserId = id },
-            //    transaction: Transaction
-            //);
+            Connection.Execute(
+                "DELETE FROM User WHERE Id = @Id",
+                param: new { Id = id },
+                transaction: Transaction
+            );
         }
 
-        public void Delete(User entity)
-        {
-            Delete(entity.Id);
-        }
+        // public void Delete(User entity)
+        // {
+        //     Delete(entity.Id);
+        // }
 
         public User FindByFirstName(string FName)
         {

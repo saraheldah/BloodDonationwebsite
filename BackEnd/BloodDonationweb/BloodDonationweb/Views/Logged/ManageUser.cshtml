@@ -30,7 +30,7 @@
 
 
 
-            @using (Html.BeginForm("UpdatedUserInfo", "Logged", FormMethod.Post))
+            @using (Html.BeginForm("ManageUserAction", "Logged", FormMethod.Post))
             {
                 <input type="text" id="userId" name="Id" placeholder="Your first name.." value="@Model.Item3.Id" hidden>
 
@@ -79,32 +79,20 @@
                 <br>
                 <input type="tel" id="phone" name="phone" value="@Model.Item3.Phone" />
                 <br>
-                <span id="updated-information-message" style="color: red">you information updated successfully</span>
                 <br>
 
 
                 <button type="submit" value="submit" class="SubmitFormBtn">Save Changes </button>
-                <a asp-area="" asp-controller="Logged" asp-action="UpdateInformation"><button type="button" class="SubmitFormBtn">Cancel</button></a>
+                <button type="submit" value="submit" class="SubmitFormBtn">Cancel</button>
 
             }
-            
+
+
+
+
         </div>
     </section>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/caroufredsel.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $("#updated-information-message").hide();
-      
-        if (window.location.hash) {
-            var hash = window.location.hash.substring(1);
-            if (hash == "1") {
-                $("#updated-information-message").show();
-            }
-        }
-    </script>
-@* <script src="~/js/site.js"></script> *@
+    <script src="~/js/site.js"></script>
 </body>
 </html>
-

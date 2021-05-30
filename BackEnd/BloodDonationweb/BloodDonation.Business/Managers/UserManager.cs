@@ -101,7 +101,7 @@ namespace BloodDonation.Business.Managers
             _unitOfWork.Commit();
         }
 
-        public User UpdatedUserEntity(string firstname, string lastname, string phone, DateTime birthDate, int city, int gender, int bloodType)
+        public User UpdatedUserEntity(string firstname, string lastname, string phone, DateTime birthDate, int city, int gender, int bloodType,int Id)
         {
             User updatedUser = new User
             {
@@ -111,7 +111,8 @@ namespace BloodDonation.Business.Managers
                 DOB = birthDate.Date,
                 CityId = city,
                 Gender = (Gender)gender,
-                BloodTypeID = bloodType
+                BloodTypeID = bloodType,
+                Id = Id
             };
             return updatedUser;
         }
@@ -119,6 +120,11 @@ namespace BloodDonation.Business.Managers
         public void UpdatePassword(User updatedPassword)
         {
             _unitOfWork.UserRepository.UpdatePassword(updatedPassword);
+            _unitOfWork.Commit();
+        }
+        public void DeleteUser(int id)
+        {
+            _unitOfWork.UserRepository.DeleteUser(id);
             _unitOfWork.Commit();
         }
 

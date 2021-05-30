@@ -27,5 +27,6 @@ namespace BloodDonation.Business.DTO
         public CountryDTO Country { get; set; }
 
         public CityDTO City { get; set; }
+        
     }
 }

@@ -103,13 +103,12 @@ namespace BloodDonationweb.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdatedUserInfo(string firstname, string lastname, string phone, DateTime birthDate, int city, int gender, int bloodType)
+        public IActionResult UpdatedUserInfo(string firstname, string lastname, string phone, DateTime birthDate, int city, int gender, int bloodType ,int Id)
         {
             var DOB = birthDate.Date;
-            var newUpdateUserEntity = _userManager.UpdatedUserEntity(firstname, lastname, phone, DOB, city, gender, bloodType);
+            var newUpdateUserEntity = _userManager.UpdatedUserEntity(firstname, lastname, phone, DOB, city, gender, bloodType,Id);
             _userManager.Update(newUpdateUserEntity);
-
-            return RedirectToAction("UpdatedUserInfo", "Logged", "1");
+            return RedirectToAction("UpdateInformation", "Logged", "1");
         }
 
 
@@ -215,10 +214,38 @@ namespace BloodDonationweb.Controllers
         [HttpPost]
         public IActionResult SearchUserAction(string email)
         {
+            if(email is null) return RedirectToAction("SearchUser", "Logged", "3"); 
             email = email.Trim().ToLower();
             var user = _userManager.GetByEmail(email);
-            if (user != null) return RedirectToAction("SearchUser", "Logged", "1"); 
-            return View();
+            if (user == null) return RedirectToAction("SearchUser", "Logged", "1"); 
+            return View(user);
+        }
+
+        
+        [HttpPost]
+        public IActionResult ManageUser(int update, int delete)
+        {
+             if (delete != 0)
+             {
+                  _userManager.DeleteUser(delete);
+                  return RedirectToAction("SearchUser", "Logged", "0"); 
+             }
+           
+            List<BloodTypeDto> bloodList = _bloodTypeManager.GetAll();
+            List<CityDTO> cityList = _cityManager.GetAll();
+            UserDTO managedUser = _userManager.Find(update);
+            var tuple = new Tuple<List<BloodTypeDto>, List<CityDTO>, UserDTO>(bloodList, cityList, managedUser);
+            return View(tuple);
+        }
+        
+        [HttpPost]
+        public IActionResult ManageUserAction(string firstname, string lastname, string phone, DateTime birthDate, int city, int gender, int bloodType,int Id)
+        {
+            var DOB = birthDate.Date;
+            var newUpdateUserEntity = _userManager.UpdatedUserEntity(firstname, lastname, phone, DOB, city, gender, bloodType,Id);
+            _userManager.Update(newUpdateUserEntity);
+
+            return RedirectToAction("SearchUser", "Logged", "2");
         }
     }
 }

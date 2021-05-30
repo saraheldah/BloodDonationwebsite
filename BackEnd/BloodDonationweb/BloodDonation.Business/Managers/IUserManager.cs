@@ -23,9 +23,9 @@ namespace BloodDonation.Business.Managers
 
         User UserEntity(string email, string password, string fname, string lname, string phone, DateTime birthDate, int city, int gender, int bloodType,Role role);
 
-        User UpdatedUserEntity(string firstname, string lastname, string phone, DateTime birthDate, int city, int gender, int bloodType);
+        User UpdatedUserEntity(string firstname, string lastname, string phone, DateTime birthDate, int city, int gender, int bloodType,int Id);
 
-
+        void DeleteUser(int id);
         void MakeUserDonor(UserDTO user);
         UserDTO Find(int id);
         UserDTO GetByEmail(string email);

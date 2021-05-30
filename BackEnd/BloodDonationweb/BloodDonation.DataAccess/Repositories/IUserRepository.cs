@@ -7,8 +7,8 @@ namespace BloodDonation.DataAccess.Repositories
     {
         void Add(User newUser);
         IEnumerable<User> All();
-        void Delete(int id);
-        void Delete(User entity);
+        void DeleteUser(int id);
+     //   void Delete(User entity);
         User Find(int id);
         User FindByFirstName(string name);
         void Update(User updatedUser);
