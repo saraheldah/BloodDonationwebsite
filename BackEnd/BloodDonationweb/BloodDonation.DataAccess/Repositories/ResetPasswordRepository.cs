@@ -33,6 +33,16 @@ namespace BloodDonation.DataAccess.Repositories
 
             return password > 0;
         }
+        public int GetUserId(string code)
+        {
+            var userId = Connection.Query<int>(
+            "SELECT UserId FROM ResetPassword WHERE Code = @code",
+            param: new { code },
+            transaction: Transaction
+            ).FirstOrDefault();
+
+            return userId;
+        }
         public void ConsumeLink(string code)
         {
             Connection.Execute(

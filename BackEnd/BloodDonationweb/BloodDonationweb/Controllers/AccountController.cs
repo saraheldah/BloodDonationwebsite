@@ -113,6 +113,11 @@ namespace BloodDonationweb.Controllers
 
             if (isValid)
             {
+                // get userId
+                var userId = _unitOfWork.ResetPasswordRepository.GetUserId(code);
+                // get user
+                var user = _unitOfWork.UserRepository.Find(userId);
+                // and send user email to the view 
                 // update the ResetPassword row and set Status to 0
                 _unitOfWork.ResetPasswordRepository.ConsumeLink(code);
 
@@ -123,6 +128,13 @@ namespace BloodDonationweb.Controllers
                 // redirect to error page (invalid link)
             }
             return View();
+        }
+
+        public IActionResult ResetPassword(string email, string newPassword)
+        {
+            // update user password where email = to email 
+           
+           // redirect to message page 
         }
 
     }
