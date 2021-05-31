@@ -44,6 +44,15 @@ namespace BloodDonation.DataAccess.Repositories
                 transaction: Transaction
             ).FirstOrDefault();
         }
+        
+        public IEnumerable<BloodRequest> FindRequestByUserId(int id)
+        {
+            return Connection.Query<BloodRequest>(
+                "SELECT * FROM BloodRequest WHERE UserId = @UserId",
+                param: new {UserId = id},
+                transaction: Transaction
+            ).ToList();
+        }
 
         public void Add(BloodRequest bloodRequest)
         {

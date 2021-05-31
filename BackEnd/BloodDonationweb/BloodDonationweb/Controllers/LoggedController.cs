@@ -247,5 +247,12 @@ namespace BloodDonationweb.Controllers
 
             return RedirectToAction("SearchUser", "Logged", "2");
         }
+
+        public IActionResult UserRequest()
+        {
+            var user = GetLoggedInUser();
+            List<BloodRequestDto> bloodRequestList = _bloodRequest.FindRequestByUserId(user.Id);
+            return View(bloodRequestList);
+        }
     }
 }

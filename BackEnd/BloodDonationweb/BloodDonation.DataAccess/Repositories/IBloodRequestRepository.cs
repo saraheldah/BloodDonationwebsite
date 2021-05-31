@@ -19,5 +19,7 @@ namespace BloodDonation.DataAccess.Repositories
         BloodRequest FindByName(string name);
         
         void UpdateRequestStatus(BloodRequest statusRequest);
+
+        public IEnumerable<BloodRequest> FindRequestByUserId(int id);
     }
 }

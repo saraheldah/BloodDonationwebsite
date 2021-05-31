@@ -352,3 +352,33 @@ INSERT INTO `blood-donner`.`USER` ( `Fname`,`Lname`, `DOB`,  `Gender`,`Phone`,`E
  
   INSERT INTO `blood-donner`.`USER` ( `Fname`,`Lname`, `DOB`,  `Gender`,`Phone`,`Email`,  `Password`,`IsDonor`,`Role`,  `BloodTypeId`,`CountryId`,`CityId`) VALUES
  ('Samira','Bashir','1965/3/10',1,'12345678','Ss.eldah@hotmail.com','$@my123',1,1,5,125,10);
+
+
+ CREATE TABLE IF NOT EXISTS `blood-donner`.`ResetPassword` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `UserId` INT(11) NOT NULL,
+  `Code` NVARCHAR(50) NOT NULL,
+  `Date` DATE NULL DEFAULT NULL,
+ `Status` BIT NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`))
+
+
+  ALTER TABLE ResetPassword
+ADD CONSTRAINT fk_user_id FOREIGN KEY (UserID) REFERENCES USER(ID);
+
+ALTER TABLE ResetPassword ADD UserId INT NOT NULL ;
+ALTER TABLE ResetPassword ADD CONSTRAINT fk_UserId FOREIGN KEY (UserId) REFERENCES USER(ID);
+
+
+       public IActionResult ResetPasswordAction(string email)
+        {
+            var user = _userManager.GetByEmail(email);
+            if(email is null) return RedirectToAction("Index", "ForgotPassword", "0");
+            if (user != null) return RedirectToAction("Index", "ForgotPassword", "1");
+            var Code = Guid.NewGuid();
+            var newResetPasswordEntity = .(user.Id, Code, DateTime.Now, 0);
+            _userManager.Add(newResetPasswordEntity);
+            
+            
+        }
+  

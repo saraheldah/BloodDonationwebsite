@@ -80,22 +80,32 @@ namespace BloodDonationweb.Controllers
             return GoToHomePage();
         }
 
-
-        public IActionResult ForgotPassword()
+        public IActionResult ResetPasswordRequest()
         {
+    
             return View();
         }
-        public IActionResult ResetPasswordRequest(string email)
+
+        [HttpPost]
+        public IActionResult ResetPasswordRequestA(string email)
         {
-            var user = _userManager.GetByEmail(email);
-            if(email is null) return RedirectToAction("Index", "ForgotPassword", "0");
-            if (user != null) return RedirectToAction("Index", "ForgotPassword", "1");
-            var Code = Guid.NewGuid();
-            var newResetPasswordEntity =_unitOfWork.ResetPasswordRepository.ResetPasswordEntity(user.Id, Code.ToString(), true);
-            _unitOfWork.ResetPasswordRepository.Add(newResetPasswordEntity);
-            _unitOfWork.Commit();
-            // redirect to page with message 
-            return View();
+            try
+            {
+             
+                var user = _userManager.GetByEmail(email);
+                if (user == null) return RedirectToAction("ResetPasswordRequest", "Account", "1");
+                var Code = Guid.NewGuid();
+                var newResetPasswordEntity =_unitOfWork.ResetPasswordRepository.ResetPasswordEntity(user.Id, Code.ToString(), true);
+                _unitOfWork.ResetPasswordRepository.Add(newResetPasswordEntity);
+                _unitOfWork.Commit();
+                // redirect to page with message 
+                return RedirectToAction("ResetPasswordRequest", "Account", "2");
+            }
+             catch (Exception ex)
+             { 
+                 return RedirectToAction("ResetPasswordRequest", "Account", "0");
+             }
+            
         }
         public IActionResult ResetPassword([FromQuery(Name = "code")] string code)
         {
@@ -104,8 +114,7 @@ namespace BloodDonationweb.Controllers
             {
                 throw new ArgumentNullException(nameof(code));
             }
-            // if code exist in the database and the status valis then redirect to  reset password
-            // (two input to set the new password)
+            // if code exist in the database and the status valid then redirect to  reset password
             // else redirect to error page (invalid link)
 
 
@@ -113,28 +122,47 @@ namespace BloodDonationweb.Controllers
 
             if (isValid)
             {
-                // get userId
+                
                 var userId = _unitOfWork.ResetPasswordRepository.GetUserId(code);
-                // get user
-                var user = _unitOfWork.UserRepository.Find(userId);
-                // and send user email to the view 
-                // update the ResetPassword row and set Status to 0
+               
+                UserDTO user = _userManager.Find(userId);
+                
                 _unitOfWork.ResetPasswordRepository.ConsumeLink(code);
+                _unitOfWork.Commit();
 
-                // redirect to  reset password
+                
+                return View(user);
             }
             else
             {
                 // redirect to error page (invalid link)
+                return RedirectToAction("Index", "ResetPasswordRequest", "3");
             }
-            return View();
+            
         }
 
-        public IActionResult ResetPassword(string email, string newPassword)
+        public IActionResult ResetPasswordA(string email, string newPassword, string confirmNewPassword)
         {
-            // update user password where email = to email 
+            if (newPassword is null || confirmNewPassword is null)
+            {
+                return RedirectToAction("ResetPassword", "Account", "3");
+            }
+            
+            if (newPassword != confirmNewPassword) 
+            {
+                return RedirectToAction("ResetPassword", "Logged", "0");
+            }
+          
+            
+                var newPassword1 = newPassword.Trim();
+                var user = _userManager.GetByEmail(email);
+                var newPass = _userManager.ChangePasswordEntity(newPassword1 , user.Id);
+                _userManager.UpdatePassword(newPass);
+                return RedirectToAction("ResetPasswordRequest", "Account", "4");
+            
+            
+
            
-           // redirect to message page 
         }
 
     }

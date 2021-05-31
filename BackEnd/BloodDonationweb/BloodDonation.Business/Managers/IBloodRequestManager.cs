@@ -16,5 +16,7 @@ namespace BloodDonation.Business.Managers
         void UpdateRequestStatus(BloodRequest statusRequest);
 
         BloodRequest StatusEntity(int id);
+
+        public List<BloodRequestDto> FindRequestByUserId(int id);
     }
 }

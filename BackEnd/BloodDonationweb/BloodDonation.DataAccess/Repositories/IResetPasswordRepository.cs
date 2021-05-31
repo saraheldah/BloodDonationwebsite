@@ -10,5 +10,6 @@ namespace BloodDonation.DataAccess.Repositories
         bool IsValidCode(string code);
         void ConsumeLink(string code);
         int GetUserId(string code);
+      
     }
 }

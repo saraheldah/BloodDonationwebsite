@@ -19,5 +19,6 @@ namespace BloodDonation.DataAccess.Repositories
         IEnumerable<User> FindDonorByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId);
         User GetByEmailAndPassword(string email, string password);
         User GetByEmail(string email);
+        
     }
 }

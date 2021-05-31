@@ -21,8 +21,6 @@ namespace BloodDonation.Business.Managers
 
             // _unitOfWork.UserRepository.Add(new User());
             // _unitOfWork.Commit();
-            
-         
             return requestDtoList;
         }
 
@@ -51,6 +49,20 @@ namespace BloodDonation.Business.Managers
               statusRequest.ID = id;
               statusRequest.Status = 1;
               return statusRequest;
+          }
+
+          public List<BloodRequestDto> FindRequestByUserId(int id)
+          {
+              var RequestEntityList = _unitOfWork.BloodRequestRepository.FindRequestByUserId(id).ToList();
+              var countries = _unitOfWork.CountryRepository.All().ToList();
+              var cities = _unitOfWork.CityRepository.All().ToList();
+              var requestDtoList = _mapper.Map<List<BloodRequestDto>>(RequestEntityList);
+
+              foreach (var requestDto in requestDtoList)
+              {
+                  var relatedUserEntity = requestDtoList.FirstOrDefault(x => x.ID == requestDto.ID);
+              }
+              return requestDtoList;
           }
           public void UpdateRequestStatus(BloodRequest statusRequest)
           {

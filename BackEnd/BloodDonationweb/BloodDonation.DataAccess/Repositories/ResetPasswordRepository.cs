@@ -16,7 +16,7 @@ namespace BloodDonation.DataAccess.Repositories
         public void Add(ResetPassword resetPassword)
         {
             resetPassword.ID = Connection.ExecuteScalar<int>(
-                "INSERT INTO ResetPassword(UserId,Code,Date,Status) VALUES(@ID,@UserId,@Code,@Date,@Status); SELECT LAST_INSERT_ID()",
+                "INSERT INTO ResetPassword(UserId,Code,Date,Status) VALUES(@UserId,@Code,@Date,@Status); SELECT LAST_INSERT_ID()",
                 param: new { UserId = resetPassword.UserId, Code = resetPassword.Code, Date = resetPassword.Date, Status = resetPassword.Status },
                 transaction: Transaction
             );
@@ -46,7 +46,7 @@ namespace BloodDonation.DataAccess.Repositories
         public void ConsumeLink(string code)
         {
             Connection.Execute(
-            "UPDATE ResetPassword SET Status = 0 WHERE Code = @code",
+            "UPDATE ResetPassword SET Status = false WHERE Code = @code",
             param: new { code },
             transaction: Transaction
             );
@@ -64,5 +64,7 @@ namespace BloodDonation.DataAccess.Repositories
             };
             return resetPassword;
         }
+        
+
     }
 }
