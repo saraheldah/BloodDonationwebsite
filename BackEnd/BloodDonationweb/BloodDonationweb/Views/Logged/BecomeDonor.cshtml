@@ -106,6 +106,8 @@
                     <option value="No">No</option>
                 </select>
                 <br>
+                <span id="cannot-be-donor-message" style="color: #ff0000">sorry you can't be donor for health reasons</span>
+                <br>
                 <button type="submit" value="submit" class="SubmitFormBtn SendRequestBtn">
                     Submit
                 </button>
@@ -114,16 +116,19 @@
             }
         </div>
     </section>
-
-    <div class="bg-modal hidden" id="bg-modal">
-        <div class="modal-content">
-            <div class="close">+</div>
-            <img src="./images/user1.png" alt="" class="user-icon">
-            <p style="color: black;">user's name</p>
-            <button type="button">Manage Your Profile</button>
-            <button type="button">Change Password</button>
-        </div>
-    </div>
-    <script src="~/js/site.js"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/caroufredsel.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $("#cannot-be-donor-message").hide();
+          
+            if (window.location.hash) {
+                var hash = window.location.hash.substring(1);
+                if (hash == "1") 
+                    $("#cannot-be-donor-message").show();
+                }
+           
+        </script>
+@* <script src="~/js/site.js"></script> *@
 </body>
 </html>

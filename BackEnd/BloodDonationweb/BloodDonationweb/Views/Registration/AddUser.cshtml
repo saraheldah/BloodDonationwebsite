@@ -1,9 +1,8 @@
 @model Tuple<List<BloodDonation.Business.DTO.BloodTypeDto>, List<BloodDonation.Business.DTO.CityDTO>>
+
 @{
-    ViewData["Title"] = "Registration Page";
     Layout = null;
 }
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +21,7 @@
 
 <body class="Form-body">
 
-    @using (Html.BeginForm("Register", "Registration", FormMethod.Post))
+    @using (Html.BeginForm("AddUserAction", "Registration", FormMethod.Post))
     {
 
 
@@ -127,10 +126,11 @@
 
             </select>
         </div>
+        <span id="added-user-message" style="color: #3c97bf">User has been added successfully</span>
         <br>
 
         <a class="btn btn-half" asp-area="" asp-controller="Logged" asp-action="Index">
-            <input type="submit" value="Register" class="SubmitFormBtn" />
+            <input type="submit" value="Add" class="SubmitFormBtn" />
         </a>
     }
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -139,14 +139,20 @@
     <script type="text/javascript">
         $("#email-exist-error-message").hide();
         $("#fill-missing-fields-error-message").hide();
+         $("#added-user-message").hide();
 
         if (window.location.hash) {
             var hash = window.location.hash.substring(1);
             if (hash == "1") {
                 $("#email-exist-error-message").show();
            }
-            else{ 
-                $("#fill-missing-fields-error-message").show();    
+            else{
+                if (hash == "0") {
+                $("#fill-missing-fields-error-message").show();
+                }
+                else{
+                    $("#added-user-message").show();
+                }
         }
             }
     </script>

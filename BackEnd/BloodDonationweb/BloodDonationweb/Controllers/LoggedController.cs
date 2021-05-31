@@ -181,16 +181,23 @@ namespace BloodDonationweb.Controllers
 
         public IActionResult BecomeDonorAction(string diabetes,string antibiotic,string COVID,string donate,string vaccination,string tattoo,string piercing,string blood)
         {
-            
-            var loggedInUser = UserManagement<UserDTO>.GetLoggedInUser(Request);
-            if (loggedInUser == null) return RedirectToAction("Index", "Home");
-            if (loggedInUser.Role == Role.Donor) return RedirectToAction("Index", "Home");
+            if (diabetes == "yes" && antibiotic == "yes" && COVID == "yes" && donate == "yes" && vaccination == "yes" &&
+                tattoo == "yes" && piercing == "yes" && blood == "yes")
+            {
+                var loggedInUser = UserManagement<UserDTO>.GetLoggedInUser(Request);
+                if (loggedInUser == null) return RedirectToAction("Index", "Home");
+                if (loggedInUser.Role == Role.Donor) return RedirectToAction("Index", "Home");
 
-            _userManager.MakeUserDonor(loggedInUser);
-            loggedInUser.Role = Role.Donor;
-            LogOutUser();
-            AuthenticateUser(loggedInUser);
-            return RedirectToAction("Index", "Logged", "1");
+                _userManager.MakeUserDonor(loggedInUser);
+                loggedInUser.Role = Role.Donor;
+                LogOutUser();
+                AuthenticateUser(loggedInUser);
+                return RedirectToAction("Index", "Logged", "1");
+            }
+            else
+            {
+                return RedirectToAction("BecomeDonor", "Logged", "1");
+            }
         }
 
         [HttpPost]
