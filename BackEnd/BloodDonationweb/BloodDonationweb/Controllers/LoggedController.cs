@@ -30,76 +30,73 @@ namespace BloodDonationweb.Controllers
         }
         public IActionResult Index()
         {
-            try
-            {
+         //   try
+         //   {
                 var user = UserManagement<UserDTO>.GetLoggedInUser(Request);
+                if (user is null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
                 return View(user);
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction("Index", "Home");
-            }
+
+                //  }
+          //  catch (Exception ex)
+           // {
+                
+          //  }
         }
         
         public IActionResult RequestBlood()
         {
-            try
+            var user = GetLoggedInUser();
+            if (user is null)
             {
-                var user = GetLoggedInUser();
+                return RedirectToAction("Index", "Home");
+            }  
                 List<BloodTypeDto> bloodList = _bloodTypeManager.GetAll();
                 List<CityDTO> cityList = _cityManager.GetAll();
                 var tuple = new Tuple<List<BloodTypeDto>, List<CityDTO>>(bloodList, cityList);
                 return View(tuple);
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            
+
         }
         
         public IActionResult BecomeDonor()
         {
-            try
-            {
-                var user = GetLoggedInUser();
-                return View();  
             
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            
+                var user = GetLoggedInUser();
+                if (user is null )
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                if(user.Role == Role.Donor) return RedirectToAction("Index", "Logged");
+                return View();  
+                
         }
 
         public IActionResult ChangePassword()
         {
-            try
-            {
-                var user = GetLoggedInUser();
-                return View();
-            }
-            catch (Exception ex)
+        
+            var user = GetLoggedInUser();
+            if (user is null)
             {
                 return RedirectToAction("Index", "Home");
             }
+            return View();  
         }
 
         public IActionResult UpdateInformation()
         {
-            try
+            var user = GetLoggedInUser();
+            if (user is null)
             {
-                var user = GetLoggedInUser();
-                List<BloodTypeDto> bloodList = _bloodTypeManager.GetAll();
+                return RedirectToAction("Index", "Home");
+            }   
+            List<BloodTypeDto> bloodList = _bloodTypeManager.GetAll();
                 List<CityDTO> cityList = _cityManager.GetAll();
                 UserDTO loggedUser = _userManager.Find(user.Id);
                 var tuple = new Tuple<List<BloodTypeDto>, List<CityDTO>, UserDTO>(bloodList, cityList, loggedUser);
                 return View(tuple);
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction("Index", "Home");
-            }
         }
 
         [HttpPost]
@@ -136,20 +133,18 @@ namespace BloodDonationweb.Controllers
 
         public IActionResult BloodRequests()
         {
-            try
-            {
+            
                 var user = GetLoggedInUser();
-                if (user.Role != Role.Donor)
+                if (user is null)
                 {
-                    return GoToHomePage();
-                }
+                    return RedirectToAction("Index", "Home");
+                }  
+                if (user.Role == Role.User)
+                {
+                    return RedirectToAction("Index", "Logged");
+                }  
                 List<BloodRequestDto> requestList = _bloodRequest.FindRequestByCompatibleBloodTypeAndCity(user.BloodType.ID, user.City.ID);
                 return View(requestList);
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction("Index", "Home");
-            }
         }
 
 
@@ -181,8 +176,8 @@ namespace BloodDonationweb.Controllers
 
         public IActionResult BecomeDonorAction(string diabetes,string antibiotic,string COVID,string donate,string vaccination,string tattoo,string piercing,string blood)
         {
-            if (diabetes == "yes" && antibiotic == "yes" && COVID == "yes" && donate == "yes" && vaccination == "yes" &&
-                tattoo == "yes" && piercing == "yes" && blood == "yes")
+            if (diabetes == "Yes" && antibiotic == "Yes" && COVID == "Yes" && donate == "Yes" && vaccination == "Yes" &&
+                tattoo == "Yes" && piercing == "Yes" && blood == "Yes")
             {
                 var loggedInUser = UserManagement<UserDTO>.GetLoggedInUser(Request);
                 if (loggedInUser == null) return RedirectToAction("Index", "Home");
@@ -258,6 +253,10 @@ namespace BloodDonationweb.Controllers
         public IActionResult UserRequest()
         {
             var user = GetLoggedInUser();
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }  
             List<BloodRequestDto> bloodRequestList = _bloodRequest.FindRequestByUserId(user.Id);
             return View(bloodRequestList);
         }
