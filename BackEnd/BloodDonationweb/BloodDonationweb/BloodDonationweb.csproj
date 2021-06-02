@@ -5,12 +5,30 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Pages\**" />
+      <Content Remove="Pages\**" />
+      <EmbeddedResource Remove="Pages\**" />
+      <None Remove="Pages\**" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Folder Include="wwwroot\images" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\BloodDonation.Business\BloodDonation.Business.csproj" />
       <ProjectReference Include="..\BloodDonation.DataAccess\BloodDonation.DataAccess.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="10.1.1" />
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+      <PackageReference Include="Font.Awesome" Version="5.15.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\User\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\AvailableDonors\Index.cshtml" />
     </ItemGroup>
 
 </Project>

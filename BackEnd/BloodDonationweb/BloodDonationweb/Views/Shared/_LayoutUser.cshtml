@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - BloodDonationweb</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="row">
+            <a class="logo" asp-area="" asp-controller="Logged" asp-action="Index">
+                <img class="logo1" src="~/images/logo1.png" alt="logo"></a>
+            <nav>
+                <ul>
+                    <li>
+                        <a asp-area="" asp-controller="Logged" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Logged" asp-action="UserRequest"><i class="far fa-bell"></i></a>
+                    </li>
+                    <li>
+                         <div class="profile">
+                             <div class="icon_wrap"><a><i class="far fa-user"></i></a></div>
+                                                                   
+                              <div class="profile_dd">
+                                  <ul class="profile-ul">
+                                      <li class="profile-li">
+                                          <div>
+                                              <img src="~/images/user1.png" alt="" class="user-icon">
+                                              <p style="color:rgb(102, 101, 101); margin-top: -35px;"><br></p>
+                                              <div class="profile-btn">
+                                                  <a class="btn btn-half" asp-area="" asp-controller="Logged" asp-action="UpdateInformation" >Manage Your Profile</a>
+                                                  <a class="btn btn-full" asp-area="" asp-controller="Logged" asp-action="ChangePassword" >Change Password</a>
+                                              </div>
+                                          </div>
+                                      </li>
+                                   </ul>
+                              </div>
+                         </div>
+                        </li>
+                    <li>
+                        <a asp-area="" asp-controller="Account" asp-action="LogOut">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<!--<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2021 - BloodDonationweb - <a asp-area="" asp-controller="Home" asp-action="GiveBlood">Privacy</a>
+    </div>
+</footer>-->
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+     <script>
+              $(document).ready(function(){
+              
+                $(".profile .icon_wrap").click(function(){
+                        $(this).parent().toggleClass("active");
+                        
+                });
+        
+               
+              });
+     </script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/caroufredsel.js" type="text/javascript"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -5,12 +5,20 @@ namespace BloodDonation.DataAccess.Repositories
 {
     public interface IUserRepository
     {
-        void Add(User entity);
+        void Add(User newUser);
         IEnumerable<User> All();
-        void Delete(int id);
-        void Delete(User entity);
+        void DeleteUser(int id);
+     //   void Delete(User entity);
         User Find(int id);
         User FindByFirstName(string name);
-        void Update(User entity);
+        void Update(User updatedUser);
+
+        void UpdatePassword(User updatedPassword);
+
+        void MakeItDonor(int userId);
+        IEnumerable<User> FindDonorByCompatibleBloodTypeAndCity(int bloodTypeId, int cityId);
+        User GetByEmailAndPassword(string email, string password);
+        User GetByEmail(string email);
+        
     }
 }

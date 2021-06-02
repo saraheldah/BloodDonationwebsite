@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BloodDonation.Business;
+using BloodDonation.Business.Managers;
+using BloodDonation.Business.Mapping;
 using BloodDonation.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,9 +21,13 @@ namespace BloodDonationweb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddTransient<IUnitOfWork>(x => new UnitOfWork(connectionString));
+            services.AddAutoMapper(c => c.AddProfile<MappingProfile>(), typeof(Startup));
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");//retrieving the connection string and saving the default connection in a variable
+            services.AddTransient<IUnitOfWork>(x => new UnitOfWork(connectionString));//we are passing the database we want to use (I want to make sure that this connection string is used when ever we use the IUniOfWork)
             services.AddTransient<IUserManager, UserManager>();
+            services.AddTransient<IBloodTypeManager, BloodTypeManager>();
+            services.AddTransient<ICityManager, CityManager>();
+            services.AddTransient<IBloodRequestManager, BloodRequestManager>();
 
             services.AddControllersWithViews();
         }
@@ -42,13 +42,11 @@ namespace BloodDonationweb
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthorization();

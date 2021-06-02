@@ -1,0 +1,73 @@
+
+@{
+    ViewData["Title"] = "Give Blood Page";
+    Layout = null;
+}
+
+
+<html>
+<head>
+    <title>Sign in</title>
+    <link href="~/css/SignIn.css" rel="stylesheet" type="text/css">
+    <!--BlootStrap CDN-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-in-container">
+            <h3 id="thanks-message" style="color: #3c97bf">thank you for the registration please sign in</h3>
+            <h1 style="text-align: center">Sign in</h1>
+            <span></span>
+
+            <form asp-action="Login" method="post">
+                <input type="email" name="email" placeholder="Email" />
+                <input type="password" name="password" placeholder="Password" />
+                <span id="signin-error-message" style="color: red">wrong email or password</span>
+                <span id="fill-fields-message" style="color: red">please fill all the required fields</span>
+                <a asp-area="" asp-controller="Account" asp-action="ResetPasswordRequest">Forgot your password?</a>
+              <!--<a asp-area="" asp-controller="Account" asp-action="ResetPassword">Reset</a>-->
+               <button type="submit" class="SubmitFormBtn">Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <a asp-area="" asp-controller="Registration" asp-action="Index" style="text-decoration: none; color: white"><button class="ghost" id="signUp">Sign Up</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/caroufredsel.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $("#thanks-message").hide();
+        $("#signin-error-message").hide();
+        $("#fill-fields-message").hide();
+
+        if (window.location.hash) {
+            var hash = window.location.hash.substring(1);
+            if (hash == "1") {
+                $("#thanks-message").show();
+            }
+            else {
+                if (hash == "0"){
+                $("#signin-error-message").show();
+                }
+                else {
+                    $("#fill-fields-message").show();
+                }
+            }
+        }
+    </script>
+    @* <script src="~/js/site.js"></script> *@
+</body>
+</html>

@@ -1,0 +1,119 @@
+@using BloodDonation.Business.DTO
+@model Tuple<List<BloodDonation.Business.DTO.BloodTypeDto>, List<BloodDonation.Business.DTO.CityDTO>>
+
+@{
+    Layout = "_LayoutUser";
+
+}
+
+
+<html>
+<head>
+    <title>Request Blood</title>
+
+    <link href="~/css/site.css" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/fc5ac8f09d.js" crossorigin="anonymous"></script>
+    <!--BlootStrap CDN-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body class="search-blood-body">
+
+<section class="search-blood" >
+
+        <div class="container">
+
+            @using (Html.BeginForm("AvailableDonors", "Logged", FormMethod.Post))
+            {
+                <label>
+                    Blood Type
+                </label>
+                <br>
+                <select class="bloodtype-selector" id="blood-type" name="bloodType">
+                    <option value="0">Please select</option>
+                    @foreach (var bloodType in Model.Item1)
+                    {
+                        <option value="@bloodType.ID">@bloodType.Name</option>
+
+                    }
+                </select>
+                <label>
+                    City
+                </label>
+                <br>
+                <select class="City-selector" id="city" name="city">
+                    <option value="0">Please select</option>
+                    @foreach (var city in Model.Item2)
+                    {
+                        <option value="@city.ID">@city.CityName</option>
+
+                    }
+                </select>
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your first name..">
+
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+                <label for="lname">Center/Hospital Name</label>
+                <input type="text" id="HospitalName" name="HospitalName" placeholder="Center Name">
+
+                <br>
+                <label for="phone">Phone Number</label>
+                <br>
+                <input type="tel" id="phone" name="phone" />
+                <br>
+                <br>
+                <label for="document">Attach a Proof Document:</label>
+                <input type="file" id="document" name="document">
+                <br>
+
+                <input type="submit" value="Send Request" />
+
+            }
+
+
+
+
+        </div>
+    </section>
+
+    @* <script src="~/lib/jquery/dist/jquery.js"></script> *@
+    @* <script> *@
+    @* $(document).ready(function (){ *@
+    @*     let id = 0; *@
+    @*          $("#blood-type").onchange(function (){ *@
+    @*                  *@
+    @*                      id = $("#blood-type option:selected").val(); *@
+    @*                     console.log("id"); *@
+    @*                 }); *@
+    @*     $("#submitRequest").click(function (){ *@
+    @*     *@
+    @* *@
+    @*         $.ajax({ *@
+    @*         url: '@Url.Action("Test","Logged")?blood-type=' + id, *@
+    @*         success: function (data){ *@
+    @*             if (data.status === "ok") *@
+    @*             { *@
+    @*                 $("#results").html(data.result); *@
+    @*             } *@
+    @*         } *@
+    @*         }); *@
+    @*     }); *@
+    @* *@
+    @* }); *@
+    @* </script> *@
+
+    <script src="~/js/site.js"></script>
+</body>
+</html>
+

@@ -72,18 +72,28 @@ window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-}*/
+}
 
 
 
 document.getElementById('user-profile').addEventListener('click', function() {
 	document.querySelector('.bg-modal').style.display ='flex';
-});
+});*/
 
 
+
+$(document).ready(function(){
+              
+    $(".profile .icon_wrap").click(function(){
+            $(this).parent().toggleClass("active");
+            
+    });
+
+   
+  });
 
   
-
+  
 
 
 

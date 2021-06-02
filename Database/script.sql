@@ -7,30 +7,43 @@ CREATE SCHEMA IF NOT EXISTS `blood-donner` DEFAULT CHARACTER SET utf8 ;
 
 CREATE TABLE IF NOT EXISTS `blood-donner`.`USER` (
   `ID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Fname` VARCHAR(45) NOT NULL,
-  `Lname` VARCHAR(45) NOT NULL,
+  `Fname` NVARCHAR(45) NOT NULL,
+  `Lname` NVARCHAR(45) NOT NULL,
   `DOB` DATE NULL DEFAULT NULL,
-  `Gender` VARCHAR(45) NULL DEFAULT NULL,
-  `Phone` VARCHAR(45) NOT NULL,
+  `Gender` INT(11) NULL DEFAULT NULL,
+  `Phone` NVARCHAR(45) NOT NULL,
   `Email` NVARCHAR(250) NOT NULL,
-  `Password` VARCHAR(45) NOT NULL,
+  `Password` NVARCHAR(45) NOT NULL,
   `IsDonor` BIT NULL DEFAULT NULL,
   `Role` INT(11) NULL NOT NULL,
   `BloodTypeID` INT(11) NOT NULL,
-  `Country` VARCHAR(45) NOT NULL,
+  `CountryId` INT(45) NOT NULL,
+  `CityId` INT(45) NOT NULL,
+
   PRIMARY KEY (`ID`),
   INDEX `fk_USER_BloodType_idx` (`BloodTypeID` ASC),
   CONSTRAINT `fk_USER_BloodType`
     FOREIGN KEY (`BloodTypeID`)
     REFERENCES `blood-donner`.`BloodType` (`ID`)
     ON DELETE CASCADE
+    ON UPDATE CASCADE,
+     CONSTRAINT `fk_USER_Country`
+    FOREIGN KEY (`CountryId`)
+    REFERENCES `blood-donner`.`Country` (`ID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+      CONSTRAINT `fk_USER_City`
+    FOREIGN KEY (`CityId`)
+    REFERENCES `blood-donner`.`City` (`ID`)
+    ON DELETE CASCADE
     ON UPDATE CASCADE)
+
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE IF NOT EXISTS `blood-donner`.`BloodType` (
   `ID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(45) NOT NULL,
+  `Name` NVARCHAR(45) NOT NULL,
   `RareGrade` INT NOT NULL,
   PRIMARY KEY (`ID`))
 ENGINE = InnoDB
@@ -96,6 +109,27 @@ CREATE TABLE IF NOT EXISTS `blood-donner`.`BloodTypeCompatibilty` (
     REFERENCES `blood-donner`.`BloodType` (`ID`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `blood-donner`.`City` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `CityName` NVARCHAR(50) NOT NULL,
+  `CountryId` INT(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  INDEX `fk_City_Country_idx` (`CountryId` ASC),
+  CONSTRAINT `fk_City_Country`
+    FOREIGN KEY (`CountryId`)
+    REFERENCES `blood-donner`.`Country` (`ID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `blood-donner`.`Country` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `CountryName` NVARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

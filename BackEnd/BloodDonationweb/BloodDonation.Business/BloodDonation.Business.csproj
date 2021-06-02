@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BloodDonation.Common\BloodDonation.Common.csproj" />
     <ProjectReference Include="..\BloodDonation.DataAccess\BloodDonation.DataAccess.csproj" />
   </ItemGroup>
 

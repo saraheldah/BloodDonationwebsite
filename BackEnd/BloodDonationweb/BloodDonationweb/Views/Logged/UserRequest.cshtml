@@ -1,0 +1,61 @@
+@model System.Collections.Generic.List<BloodDonation.Business.DTO.BloodRequestDto>
+
+@{
+    Layout = "_LayoutUser";
+}
+
+<div class="container p-3">
+    @* <div class="row pt-4"> *@
+    @*     <div class="col-6"> *@
+    @*         <h4 class="text-primary" style="margin-top: 120px ; color:black">Your Requests </h4> *@
+    @*     </div> *@
+    @*     <div class="col-6"> *@
+    @*     </div> *@
+    @* </div> *@
+    <br />
+    @if (Model.Any())
+    {
+        <div class="row pt-4">
+            <div class="col-6">
+                <h4 class="text-primary" style="margin-top: 120px ; color:black">Your Requests </h4>
+            </div>
+            <div class="col-6">
+            </div>
+        </div>
+        <br />
+        <table class="table table-bordered table-striped" style="width: 100% ">
+            <thead>
+
+            <th>
+                Center 
+                Name
+            </th>
+            <th>
+                Request Date
+            </th>
+            <th>
+                Status
+            </th>
+            
+            
+            </thead>
+            <tbody>
+                @foreach (var request in Model)
+                {
+                    <tr>
+                        <td width="30%">@request.CenterName</td>
+                        <td width="30%">@request.RequestDate.ToString("yyyy-MM-dd")</td>
+                        @if(@request.Status==0){
+                            <td width="30%">Pending</td>
+                        }else{  <td width="30%">Fulfilled</td>}
+                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p style="color: black">you don't have any requests</p>
+    }
+</div>
